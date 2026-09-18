@@ -1,0 +1,69 @@
+{
+  "slug": "veraviewepocs-3d",
+  "name": "Veraviewepocs 3D R100",
+  "brand": "J. Morita",
+  "model": "Veraviewepocs 3D R100 (2-em-1 ou 3-em-1)",
+  "category": "imagem-3d",
+  "featured": true,
+  "order": 2,
+  "tagline": "Panorâmico e CBCT com o FOV Reuleaux Full Arch exclusivo",
+  "summary": "O Veraviewepocs 3D R100 mudou a forma do campo de visão. O 3D Reuleaux Full Arch FOV tem formato triangular convexo que acompanha a arcada dentária: captura maxila e mandíbula completas com menos dose do que um cilindro de mesma abrangência. Disponível como 2-em-1 (pan + CBCT) ou 3-em-1 (pan + ceph + CBCT), é uma opção de investimento mais flexível para quem começa em CBCT.",
+  "image": {
+    "src": "/images/products/veraviewepocs-3d-4.jpg",
+    "alt": "Veraviewepocs 3D R100 com braço cefalométrico, visto de frente"
+  },
+  "gallery": [
+    { "src": "/images/products/veraviewepocs-3d.jpg", "alt": "Veraviewepocs 3D R100, unidade na versão sem cefalostato", "caption": "Versão 2-em-1" },
+    { "src": "/images/products/veraviewepocs-3d-5.jpg", "alt": "Detalhe do cabeçote e do apoio de mento do Veraviewepocs 3D", "caption": "Cabeçote e apoio de mento" },
+    { "src": "/images/products/veraviewepocs-3d-6.jpg", "alt": "Veraviewepocs 3D visto em perspectiva", "caption": "Perspectiva" }
+  ],
+  "highlights": [
+    { "label": "Voxel", "value": "125 µm" },
+    { "label": "Resolução espacial", "value": "2 pl/mm (MTF 10 %)" },
+    { "label": "FOV exclusivo", "value": "R100 Reuleaux" },
+    { "label": "Configurações", "value": "2-em-1 ou 3-em-1" }
+  ],
+  "specGroups": [
+    {
+      "title": "Geral",
+      "items": [
+        { "label": "Nome comercial", "value": "Veraviewepocs 3D R100", "mono": false },
+        { "label": "Configurações", "value": "2-em-1 (pan + CBCT) ou 3-em-1 (pan + ceph + CBCT)", "mono": false },
+        { "label": "Fabricante", "value": "J. Morita Mfg. Corp., Kyoto, Japão", "mono": false }
+      ]
+    },
+    {
+      "title": "CBCT",
+      "items": [
+        { "label": "Voxel", "value": "125 µm" },
+        { "label": "Resolução espacial", "value": "2 pl/mm (MTF 10 %)" },
+        { "label": "Campos de visão", "value": "6 opções, incluindo o R100 Reuleaux Full Arch (equivalente a Ø100)" },
+        { "label": "Formato do FOV R100", "value": "Triangular convexo (Reuleaux), acompanha a arcada", "mono": false }
+      ]
+    }
+  ],
+  "fovs": [],
+  "sections": [
+    {
+      "title": "Software e fluxo de trabalho",
+      "paragraphs": [
+        "Assim como o X800, o Veraviewepocs 3D trabalha com o i-Dixel para aquisição, reconstrução e exportação DICOM, e pode compartilhar o mesmo fluxo de laudo do centro de radiologia."
+      ]
+    },
+    {
+      "title": "Assistência técnica e garantia",
+      "paragraphs": [
+        "Atendido pelos técnicos próprios da Scientific Dental, empresa indicada pela J. Morita para assistência de raios X no Brasil, com peças originais e suporte remoto em horário comercial."
+      ],
+      "verificar": ["Prazo de garantia e SLA: confirmar antes de publicar."]
+    }
+  ],
+  "downloads": [],
+  "related": ["veraview-x800", "impressora-5950", "avental-panoramico-em-borracha-plumbifera"],
+  "verificar": [
+    "Lista completa dos 6 FOV, tempos de exposição, kV/mA e dimensões: incluir da ficha técnica J. Morita.",
+    "Catálogo e manual do site antigo apontavam para domínio fora do ar; reenviar PDFs.",
+    "Confirmar se o modelo segue em linha de venda no Brasil.",
+    "Número de registro ANVISA a exibir."
+  ]
+}

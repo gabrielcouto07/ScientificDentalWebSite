@@ -1,0 +1,56 @@
+{
+  "slug": "filme-periapical-e-speed-caixa-com-150-peliculas",
+  "name": "Filme periapical E-speed, caixa com 150 películas",
+  "brand": "Carestream",
+  "model": "E-speed",
+  "category": "intraoral",
+  "tagline": "Filme periapical de sensibilidade E",
+  "summary": "Filme periapical de sensibilidade E, caixa com 150 películas, para radiografias intraorais periapicais e interproximais.",
+  "image": {
+    "src": "/images/products/filme-periapical-e-speed-caixa-com-150-peliculas.jpg",
+    "alt": "Caixa de filme periapical E-speed com 150 películas"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Sensibilidade",
+          "value": "E",
+          "mono": true
+        },
+        {
+          "label": "Formato",
+          "value": "Periapical (tamanho 2)",
+          "mono": true
+        },
+        {
+          "label": "Embalagem",
+          "value": "150 películas",
+          "mono": true
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "filme-periapical-insight-ip-21",
+    "revelador-475-ml-pronto-uso-para-consultorios"
+  ],
+  "featured": true,
+  "order": 31,
+  "verificar": [
+    "Tamanho do filme inferido; confirmar.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

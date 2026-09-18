@@ -1,0 +1,204 @@
+{
+  "slug": "veraview-x800",
+  "name": "Veraview X800",
+  "brand": "J. Morita",
+  "model": "X800 (F40, R100, F150; versões P e CP)",
+  "category": "imagem-3d",
+  "featured": true,
+  "order": 1,
+  "tagline": "Tomógrafo 3-em-1 com voxel de 80 µm e feixe horizontal de raios X",
+  "summary": "O Veraview X800 é a unidade all-in-one da J. Morita para imagem panorâmica, cefalométrica e CBCT. O voxel mínimo de 80 µm e o feixe horizontal reduzem artefatos e distorção. Os dois modos de varredura, 360° em alta definição e 180° com menos dose, deixam com o radiologista o equilíbrio entre detalhe e exposição. São 11 campos de visão, de Ø40 a Ø150 mm, incluindo o R100 no formato da arcada dentária.",
+  "image": {
+    "src": "/images/products/veraview-x800.jpg",
+    "alt": "Veraview X800: cabeçote com detector, apoio de mento e painel de comando, visto de frente"
+  },
+  "gallery": [
+    {
+      "src": "/images/products/veraview-x800-perspectiva.jpg",
+      "alt": "Veraview X800 em perspectiva, com o braço em C e a coluna",
+      "caption": "Unidade em perspectiva"
+    },
+    {
+      "src": "/images/products/veraview-x800-pan.jpg",
+      "alt": "Veraview X800 posicionado para exposição panorâmica",
+      "caption": "Posição para panorâmica"
+    },
+    {
+      "src": "/images/products/veraview-x800-posicionamento.jpg",
+      "alt": "Operador posiciona a paciente no Veraview X800 usando o painel de toque, frente a frente",
+      "caption": "Posicionamento frente a frente pelo painel de toque"
+    }
+  ],
+  "clinicalImages": [
+    {
+      "src": "/images/clinical/x800-axial-80um.jpg",
+      "alt": "Corte axial CBCT em alta resolução mostrando raízes e canais de molares inferiores",
+      "caption": "Ø40 × H40, voxel 80 µm: corte axial"
+    },
+    {
+      "src": "/images/clinical/x800-r100-arcada.jpg",
+      "alt": "Composição do FOV R100: corte axial da arcada completa, reconstrução 3D e cortes coronal e sagital",
+      "caption": "R100 × H80, Dental Arch FOV: axial, 3D e cortes"
+    },
+    {
+      "src": "/images/clinical/x800-150-craniofacial.jpg",
+      "alt": "Composição do FOV Ø150 × H140: cortes e reconstrução 3D do crânio completo",
+      "caption": "Ø150 × H140: região craniofacial completa"
+    },
+    {
+      "src": "/images/clinical/x800-panoramica.jpg",
+      "alt": "Radiografia panorâmica com dentição completa e restaurações metálicas, nítida do ápice ao incisivo",
+      "caption": "Panorâmica com AFP, AGS e AIE-HD"
+    },
+    {
+      "src": "/images/clinical/x800-cefalometrica.jpg",
+      "alt": "Telerradiografia lateral do crânio com filtro de tecido mole",
+      "caption": "Cefalométrica lateral, 96 µm, 100 kV"
+    }
+  ],
+  "highlights": [
+    { "label": "Voxel mínimo", "value": "80 µm" },
+    { "label": "Resolução espacial", "value": "2,5 pl/mm" },
+    { "label": "Campos de visão", "value": "11 FOV" },
+    { "label": "Redução de dose", "value": "até 40 %" }
+  ],
+  "specGroups": [
+    {
+      "title": "Geral",
+      "items": [
+        { "label": "Nome comercial", "value": "Veraview X800", "mono": false },
+        { "label": "Configurações", "value": "F40, R100 e F150, nas versões P (pan + CBCT) e CP (pan + ceph + CBCT)", "mono": false },
+        { "label": "Fabricante", "value": "J. Morita Mfg. Corp., Kyoto, Japão", "mono": false },
+        { "label": "Peso", "value": "aprox. 185 kg (220 kg com cefalostato)" },
+        { "label": "Alimentação", "value": "120 V 60 Hz ou 220/230/240 V 50/60 Hz" },
+        { "label": "Consumo", "value": "2,0 kVA" }
+      ]
+    },
+    {
+      "title": "Gerador de raios X",
+      "items": [
+        { "label": "Tensão do tubo", "value": "60 a 100 kV, conforme o modo" },
+        { "label": "Corrente do tubo", "value": "2 a 10 mA, conforme o modo" },
+        { "label": "Ponto focal nominal", "value": "0,5 mm" },
+        { "label": "Controle de exposição", "value": "DDAE (Digital Direct Auto Exposure)", "mono": false }
+      ]
+    },
+    {
+      "title": "Panorâmica",
+      "items": [
+        { "label": "Tempo de exposição", "value": "aprox. 7,4 s (high speed) ou 14,8 s (fine)" },
+        { "label": "Programas", "value": "Padrão (padrão, ortogonal, maxilar), pediátrica, seio maxilar (anterior, posterior), ATM quádrupla, parcial e bite-wing", "mono": false },
+        { "label": "Órbitas de camada", "value": "3 (estreita, padrão e larga)" },
+        { "label": "Processamento", "value": "AFP, AGS e AIE-HD combináveis; panorâmica shadowless", "mono": false }
+      ]
+    },
+    {
+      "title": "CBCT",
+      "items": [
+        { "label": "Tempo de varredura", "value": "aprox. 9,4 s (180°) ou 17,9 s (360°)" },
+        { "label": "Voxel", "value": "80 µm (Ø40 × H40 alta resolução), 125 µm (padrão), 320 µm (Ø150)" },
+        { "label": "Resolução espacial", "value": "2,5 pl/mm em Ø40 × H40" },
+        { "label": "Campos de visão", "value": "11, de Ø40 × H40 a Ø150 × H140" },
+        { "label": "Posicionamento", "value": "Scout panorâmico e scout em duas direções", "mono": false },
+        { "label": "Reconstrução zoom", "value": "de 125 µm para 80 µm sem nova exposição (exceto Ø150)", "mono": false },
+        { "label": "Redução de dose", "value": "até 40 % com a função Dose Reduction" }
+      ]
+    },
+    {
+      "title": "Cefalométrica (versões CP)",
+      "items": [
+        { "label": "Tensão do tubo", "value": "100 kV" },
+        { "label": "Resolução", "value": "96 µm" },
+        { "label": "Tempo de exposição", "value": "3,5 s (2,6 s parcial) sem processamento variável; 5,8 s (4,2 s parcial) com" },
+        { "label": "Formato da imagem", "value": "lateral 220 × 250 mm; PA 220 × 200 mm" },
+        { "label": "Filtro de tecido mole", "value": "ajustável em passos de 5 mm" },
+        { "label": "Ceph parcial", "value": "até 3 regiões excluídas para reduzir a dose", "mono": false }
+      ]
+    },
+    {
+      "title": "Dimensões e sala",
+      "items": [
+        { "label": "Altura da unidade", "value": "2185 mm (coluna curta) ou 2325 mm (coluna longa)" },
+        { "label": "Apoio de mento", "value": "de 865 a 1615 mm (curta); de 1005 a 1755 mm (longa)" },
+        { "label": "Cadeira de rodas", "value": "compatível: apoio de mento desce a 865 mm na coluna curta", "mono": false },
+        { "label": "Espaço operacional", "value": "recomendado 2300 × 1800 mm; mínimo 2100 × 1500 mm (versão P)" },
+        { "label": "Fixação", "value": "obrigatória em piso e parede", "mono": false }
+      ]
+    }
+  ],
+  "fovs": [
+    { "diameter": 40, "height": 40, "voxel": 80, "modes": ["180", "360"], "models": ["F40", "R100", "F150"], "indication": "Endodontia e dente único em alta resolução" },
+    { "diameter": 40, "height": 80, "voxel": 125, "modes": ["180", "360"], "models": ["F40", "R100", "F150"], "indication": "Região de dois a três dentes nos dois arcos" },
+    { "diameter": 80, "height": 40, "voxel": 125, "modes": ["180", "360"], "models": ["R100", "F150"], "indication": "Sextante ou arco parcial" },
+    { "diameter": 80, "height": 50, "voxel": 125, "modes": ["180", "360"], "models": ["R100", "F150"], "indication": "Implantes múltiplos em um arco" },
+    { "diameter": 80, "height": 80, "voxel": 125, "modes": ["180", "360"], "models": ["R100", "F150"], "indication": "Os dois arcos e o seio maxilar" },
+    { "diameter": 100, "height": 40, "shape": "reuleaux", "voxel": 125, "modes": ["180"], "models": ["R100", "F150"], "indication": "Arcada completa (Dental Arch FOV) para planejamento de implantes" },
+    { "diameter": 100, "height": 50, "shape": "reuleaux", "voxel": 125, "modes": ["180"], "models": ["R100", "F150"], "indication": "Arcada completa com maior altura" },
+    { "diameter": 100, "height": 80, "shape": "reuleaux", "voxel": 125, "modes": ["180"], "models": ["R100", "F150"], "indication": "Arcada completa nos dois arcos" },
+    { "diameter": 150, "height": 50, "voxel": 320, "modes": ["360"], "models": ["F150"], "indication": "Região maxilomandibular ampla" },
+    { "diameter": 150, "height": 75, "voxel": 320, "modes": ["360"], "models": ["F150"], "indication": "Terço médio da face e ortodontia" },
+    { "diameter": 150, "height": 140, "voxel": 320, "modes": ["360"], "models": ["F150"], "indication": "Região craniofacial completa: ATM, ortodontia e planejamento ortognático" }
+  ],
+  "sections": [
+    {
+      "title": "Software e fluxo de trabalho",
+      "paragraphs": [
+        "O X800 trabalha com o i-Dixel, software de aquisição e visualização da J. Morita, que reconstrói os volumes CBCT, gera as panorâmicas e cefalométricas e exporta em DICOM 3.0.",
+        "Com o i-Dixel WEB, imagens 2D e volumes CBCT podem ser abertos em qualquer computador ou tablet da clínica pelo navegador, sem instalar software, o que facilita a discussão do caso com o paciente e com o dentista encaminhador.",
+        "O i-Dixel atende às classes DICOM 3.0 de worklist, storage, modality performed procedure step e print management, o que permite integrá-lo ao sistema de laudos e ao PACS do centro de radiologia."
+      ],
+      "verificar": ["Confirmar a versão do i-Dixel fornecida e o número de licenças incluídas na venda."]
+    },
+    {
+      "title": "O que está incluído e instalação",
+      "paragraphs": [
+        "A instalação é feita pela equipe técnica da Scientific Dental. A unidade precisa ser fixada ao piso e à parede, e a sala deve respeitar o espaço operacional mínimo e as exigências de blindagem da Vigilância Sanitária local.",
+        "Antes da entrega, a Scientific Dental avalia a planta da sala, o ponto de energia (120 V ou 220 a 240 V, 2,0 kVA) e a rede para o computador de aquisição."
+      ],
+      "bullets": [
+        "Unidade Veraview X800 na configuração escolhida (F40, R100 ou F150; P ou CP)",
+        "Software i-Dixel com licença de aquisição",
+        "Computador de aquisição e monitor",
+        "Instalação, calibração e testes de aceitação",
+        "Treinamento operacional da equipe"
+      ],
+      "verificar": ["Lista de itens inclusos, computador e monitor: confirmar com o comercial o que faz parte da proposta padrão."]
+    },
+    {
+      "title": "Treinamento",
+      "paragraphs": [
+        "O treinamento operacional acontece na instalação, com a equipe do centro de radiologia: posicionamento, escolha de FOV e modo, protocolos de dose e fluxo no i-Dixel. Para os radiologistas, o Legacy SD oferece acompanhamento continuado em produção de diagnóstico com alta resolução."
+      ],
+      "verificar": ["Carga horária, formato (presencial ou remoto) e número de turmas incluídas."]
+    },
+    {
+      "title": "Assistência técnica e garantia",
+      "paragraphs": [
+        "A Scientific Dental é a empresa indicada pela J. Morita para vendas e assistência técnica de raios X no Brasil. A manutenção é feita por técnicos próprios treinados pela fabricante, com peças originais e suporte remoto em horário comercial.",
+        "Um tomógrafo parado é receita perdida para o centro de radiologia. Por isso o atendimento começa por diagnóstico remoto e, quando é preciso ir até a sala, o técnico já vai com a peça provável."
+      ],
+      "bullets": [
+        "Garantia de fábrica J. Morita, administrada pela Scientific Dental",
+        "Contratos de manutenção preventiva e corretiva",
+        "Peças originais com estoque em Belo Horizonte",
+        "Suporte remoto pelo telefone (31) 2112-1903 e suporte@scientificdental.com.br"
+      ],
+      "verificar": ["Prazo de garantia, SLA de resposta e opções de contrato: confirmar antes de publicar."]
+    }
+  ],
+  "downloads": [
+    {
+      "label": "Catálogo Veraview X800 (pt-BR)",
+      "href": "/downloads/catalogo-veraview-x800.pdf",
+      "size": "6,4 MB",
+      "type": "PDF"
+    }
+  ],
+  "related": ["veraviewepocs-3d", "impressora-5950", "avental-panoramico-em-borracha-plumbifera"],
+  "verificar": [
+    "Indicações clínicas por FOV são sugestões de uso; validar com os radiologistas da equipe.",
+    "Espaço operacional: valores lidos do diagrama do catálogo; confirmar leitura (2300 × 1800 mm recomendado, 2100 × 1500 mm mínimo).",
+    "Manual de instruções do site antigo apontava para domínio fora do ar; reenviar o PDF para hospedar em /downloads.",
+    "Número de registro ANVISA a exibir."
+  ]
+}

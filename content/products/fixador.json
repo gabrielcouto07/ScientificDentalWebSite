@@ -1,0 +1,33 @@
+{
+  "slug": "fixador",
+  "name": "Fixador",
+  "brand": null,
+  "category": "insumos-e-impressao",
+  "tagline": "Fixador para processamento manual de filmes radiográficos",
+  "summary": "Fixador para processamento manual de filmes intraorais, complementar ao revelador pronto para uso.",
+  "image": {
+    "src": "/images/products/fixador.jpg",
+    "alt": "Frasco de fixador radiográfico"
+  },
+  "specGroups": [],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "revelador-475-ml-pronto-uso-para-consultorios"
+  ],
+  "featured": false,
+  "order": 24,
+  "verificar": [
+    "Volume, marca e composição não constavam no site antigo.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

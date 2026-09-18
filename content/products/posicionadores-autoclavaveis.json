@@ -1,0 +1,45 @@
+{
+  "slug": "posicionadores-autoclavaveis",
+  "name": "Posicionadores autoclaváveis",
+  "brand": null,
+  "category": "intraoral",
+  "tagline": "Kit de posicionadores para a técnica do paralelismo",
+  "summary": "Kit de posicionadores radiográficos autoclaváveis para a técnica do paralelismo, com peças para regiões anterior, posterior e interproximal.",
+  "image": {
+    "src": "/images/products/posicionadores-autoclavaveis.jpg",
+    "alt": "Kit de posicionadores radiográficos autoclaváveis coloridos"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Esterilização",
+          "value": "Autoclave",
+          "mono": false
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "filme-periapical-insight-ip-21",
+    "filme-periapical-e-speed-caixa-com-150-peliculas"
+  ],
+  "featured": true,
+  "order": 33,
+  "verificar": [
+    "Composição do kit e marca não constavam no site antigo.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

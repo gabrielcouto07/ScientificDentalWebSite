@@ -1,0 +1,51 @@
+{
+  "slug": "filme-periapical-insight-ip-21",
+  "name": "Filme periapical Insight IP-21",
+  "brand": "Carestream",
+  "model": "IP-21",
+  "category": "intraoral",
+  "tagline": "Filme periapical de sensibilidade F, com menor dose ao paciente",
+  "summary": "Filme periapical Carestream Insight IP-21, sensibilidade F, que reduz a exposição do paciente em relação ao filme E mantendo o contraste diagnóstico.",
+  "image": {
+    "src": "/images/products/filme-periapical-insight-ip-21.jpg",
+    "alt": "Caixa de filme periapical Carestream Insight IP-21"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Sensibilidade",
+          "value": "F",
+          "mono": true
+        },
+        {
+          "label": "Formato",
+          "value": "Periapical (tamanho 2)",
+          "mono": true
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "filme-periapical-e-speed-caixa-com-150-peliculas",
+    "posicionadores-autoclavaveis"
+  ],
+  "featured": true,
+  "order": 32,
+  "verificar": [
+    "Quantidade por caixa não constava no site antigo.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

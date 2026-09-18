@@ -1,0 +1,52 @@
+{
+  "slug": "tri-auto-zx-2",
+  "name": "Tri Auto ZX2",
+  "brand": "J. Morita",
+  "model": "TR-ZX2",
+  "category": "endodontia",
+  "tagline": "Motor endodôntico sem fio com localizador apical Root ZX integrado",
+  "summary": "Um motor para patência apical, glide path e modelagem. O Tri Auto ZX2 incorpora o localizador de ápice Root ZX e usa a medição do canal para controlar torque e rotação em tempo real, com as funções OGP, OTR e OAS.",
+  "image": {
+    "src": "/images/products/tri-auto-zx-2.jpg",
+    "alt": "Motor endodôntico Tri Auto ZX2 da J. Morita, sem fio, com contra-ângulo"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Funções",
+          "value": "Root Canal Measurement, OGP (Optimum Glide Path), OTR (Optimum Torque Reverse), OAS (Optimum Apical Stop), Auto Start/Stop, Auto Torque Reverse, Auto Apical Reverse/Stop, Auto Apical Slow Down, Auto Apical Torque Down, Auto Torque Slow Down",
+          "mono": false
+        },
+        {
+          "label": "Fabricante",
+          "value": "J. Morita Mfg. Corp.",
+          "mono": false
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "localizador-apical-root-zx-mini",
+    "veraview-x800"
+  ],
+  "featured": true,
+  "order": 10,
+  "verificar": [
+    "Especificações de torque, rotação e bateria não constavam no site antigo; incluir da ficha técnica J. Morita.",
+    "Manual e folder do site antigo apontam para domínio da agência (fora do ar); reenviar PDFs.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

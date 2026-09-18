@@ -1,0 +1,34 @@
+{
+  "slug": "vidro-e-visor-plumbifero",
+  "name": "Vidro e visor plumbífero",
+  "brand": null,
+  "category": "protecao-e-acessorios",
+  "tagline": "Visor de proteção para a cabine de comando",
+  "summary": "Vidro plumbífero para visores de cabine de comando, permitindo observar o paciente durante a exposição com proteção equivalente à da parede.",
+  "image": {
+    "src": "/images/products/vidro-e-visor-plumbifero.jpg",
+    "alt": "Vidro plumbífero para visor de cabine de comando"
+  },
+  "specGroups": [],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "lencol-de-chumbo-1-mm-de-espessura",
+    "barita"
+  ],
+  "featured": false,
+  "order": 49,
+  "verificar": [
+    "Dimensões e equivalência em chumbo não constavam no site antigo.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

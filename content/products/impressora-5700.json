@@ -1,0 +1,52 @@
+{
+  "slug": "impressora-5700",
+  "name": "DryView 5700",
+  "brand": "Carestream",
+  "model": "DryView 5700",
+  "category": "insumos-e-impressao",
+  "tagline": "Impressora a laser para filme dry em consultórios e centros de radiologia",
+  "summary": "Impressora a laser Carestream para impressão de exames em filme dry, sem processamento químico. Indicada para centros de radiologia odontológica que entregam laudos impressos junto ao exame digital.",
+  "image": {
+    "src": "/images/products/impressora-5700.jpg",
+    "alt": "Impressora a laser Carestream DryView 5700 sobre bancada"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Tecnologia",
+          "value": "Impressão a laser em filme dry, sem química",
+          "mono": false
+        },
+        {
+          "label": "Fabricante",
+          "value": "Carestream Health",
+          "mono": false
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "impressora-5950",
+    "filme-dry-com-125-peliculas"
+  ],
+  "featured": true,
+  "order": 20,
+  "verificar": [
+    "Resolução, tamanhos de filme e produtividade não constavam no site antigo; confirmar com a Carestream.",
+    "Confirmar se a linha DryView segue em comercialização.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

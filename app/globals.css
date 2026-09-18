@@ -1,0 +1,396 @@
+@import "tailwindcss";
+
+/*
+  Design tokens — ver docs/DESIGN-PLAN.md (seção "Revisão visual 18/09").
+
+  Lógica radiográfica mantida: radiopaco é claro (texto vive aqui),
+  radiolúcido é escuro (a radiografia vive aqui, como filme no negatoscópio).
+
+  Novidade: a cor da marca. A logo oficial da Scientific Dental é um
+  azul-marinho (#262443, amostrado do PNG "Azul"). Ele passa a ser a cor dos
+  títulos, das superfícies escuras institucionais (rodapé, faixa de suporte,
+  CTA final) e dos botões secundários. O vermelho Marcador continua sendo a
+  única cor de ação primária e de linha de medição.
+*/
+@theme {
+  /* Paleta: apaga a paleta padrão do Tailwind para forçar o uso dos tokens */
+  --color-*: initial;
+  --color-radiopaco: #ffffff;
+  --color-osso: #f3f4f9;
+  --color-escala: #d5d8e3;
+  --color-tecido: #5c6070;
+  --color-radiolucido: #121417;
+
+  /* Marca (da logo oficial) */
+  --color-marca: #262443;
+  --color-marca-claro: #3a386a; /* hover de superfícies em Marca */
+  --color-marca-tint: #eeedf7; /* fundo de chips, ícones, linhas de destaque */
+  --color-marca-profundo: #17162b; /* fim dos gradientes escuros */
+
+  /* Marcador: ação primária e linhas de medição */
+  --color-marcador: #d6302b;
+  --color-marcador-hover: #b9271f;
+  --color-marcador-tint: #fdeceb;
+
+  /* Cores funcionais (uma ocorrência cada) */
+  --color-whatsapp: #25d366;
+  --color-sucesso: #1e8e5a;
+
+  /* Tipografia: IBM Plex Sans (texto e UI) + IBM Plex Mono (só grandezas reais) */
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* Escala tipográfica (corpo 17 px) */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 1.3;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 1.2;
+  --text-3xl: 2.375rem;
+  --text-3xl--line-height: 1.12;
+  --text-4xl: 3rem;
+  --text-4xl--line-height: 1.08;
+  --text-5xl: 3.625rem;
+  --text-5xl--line-height: 1.04;
+  --text-6xl: 4.25rem;
+  --text-6xl--line-height: 1.02;
+
+  /* Raios: cantos suaves, nunca "pílula" em superfície grande */
+  --radius-*: initial;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* Sombras: tingidas de Marca, nunca cinza puro (parecem luz, não sujeira) */
+  --shadow-*: initial;
+  --shadow-soft: 0 1px 2px rgb(38 36 67 / 0.06), 0 8px 24px -12px rgb(38 36 67 / 0.16);
+  --shadow-lift: 0 2px 4px rgb(38 36 67 / 0.06), 0 18px 40px -16px rgb(38 36 67 / 0.28);
+  --shadow-panel: 0 24px 60px -24px rgb(18 20 23 / 0.55);
+  --shadow-focus: 0 0 0 4px rgb(38 36 67 / 0.16);
+
+  /* Contêiner da página */
+  --container-page: 80rem;
+  /* Medida máxima de leitura (~68 caracteres em Plex 17 px) */
+  --container-prose: 36rem;
+
+  /* Movimento */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-draw: draw 700ms var(--ease-out-soft) both;
+  @keyframes draw {
+    from {
+      stroke-dashoffset: var(--draw-length, 1000);
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  --animate-fade: fade 500ms ease-out both;
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  --animate-rise: rise 700ms var(--ease-out-soft) both;
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  --animate-pulse-dot: pulse-dot 2.4s ease-in-out infinite;
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgb(30 142 90 / 0.45);
+    }
+    60% {
+      box-shadow: 0 0 0 7px rgb(30 142 90 / 0);
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background-color: var(--color-radiopaco);
+    color: var(--color-radiolucido);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "tnum" 1; /* algarismos tabulares em todo o site */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+    letter-spacing: -0.018em;
+    font-weight: 600;
+    color: var(--color-marca);
+  }
+  h1 {
+    letter-spacing: -0.028em;
+    font-weight: 700;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  /* Foco visível em todo elemento interativo. */
+  :focus-visible {
+    outline: 2px solid var(--color-marca);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+  }
+  .viewer :focus-visible,
+  .viewer:focus-visible,
+  .on-dark :focus-visible,
+  .on-dark:focus-visible {
+    outline-color: var(--color-radiopaco);
+  }
+
+  ::selection {
+    background-color: var(--color-marca-tint);
+    color: var(--color-marca);
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .reveal {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
+
+/* Em páginas com barra de CTA inferior (produto, celular), o WhatsApp flutuante sobe. */
+@media (max-width: 39.99rem) {
+  main.has-cta-bar ~ .wa-float {
+    bottom: 5.25rem;
+  }
+}
+
+/*
+  Revelação ao rolar, sem JavaScript: animação dirigida pela posição do
+  elemento na viewport (scroll-driven animation). Em navegador sem suporte
+  o conteúdo simplesmente aparece, sem estado invisível.
+*/
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 35%;
+  }
+  .reveal-delay-1 {
+    animation-range: entry 10% entry 45%;
+  }
+  .reveal-delay-2 {
+    animation-range: entry 15% entry 55%;
+  }
+}
+
+/* Régua: filete superior com marcas de tick, herança da calibração. */
+@utility rule-ticks {
+  position: relative;
+  border-top: 1px solid var(--color-escala);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 5px;
+    background-image: repeating-linear-gradient(to right, var(--color-escala) 0 1px, transparent 1px 8px);
+    opacity: 0.8;
+    pointer-events: none;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 10px;
+    background-image: repeating-linear-gradient(to right, var(--color-escala) 0 1px, transparent 1px 80px);
+    pointer-events: none;
+  }
+}
+
+/* Painel viewer: onde a radiografia vive. Texto secundário em Escala. */
+@utility viewer {
+  background-color: var(--color-radiolucido);
+  color: var(--color-radiopaco);
+}
+
+/* Superfície escura institucional (Marca) com gradiente sutil */
+@utility surface-marca {
+  background-color: var(--color-marca);
+  background-image:
+    radial-gradient(120% 90% at 100% 0%, rgb(255 255 255 / 0.08) 0%, transparent 55%),
+    linear-gradient(160deg, var(--color-marca) 0%, var(--color-marca-profundo) 100%);
+  color: var(--color-radiopaco);
+}
+
+/* Fundo de hero: gradiente claro + grade de pontos que desvanece */
+@utility surface-hero {
+  background-color: var(--color-radiopaco);
+  background-image:
+    radial-gradient(60% 80% at 85% 10%, rgb(38 36 67 / 0.07) 0%, transparent 60%),
+    radial-gradient(50% 60% at 10% 100%, rgb(214 48 43 / 0.05) 0%, transparent 60%);
+}
+@utility grid-dots {
+  background-image: radial-gradient(rgb(38 36 67 / 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(70% 70% at 50% 40%, #000 30%, transparent 100%);
+}
+
+/* Link padrão: escuro e sublinhado, nunca vermelho. */
+@utility link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--color-escala);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition:
+    text-decoration-color 150ms ease,
+    text-decoration-thickness 150ms ease,
+    color 150ms ease;
+  &:hover {
+    color: var(--color-marca);
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+  }
+}
+.on-dark .link:hover,
+.viewer .link:hover {
+  color: var(--color-radiopaco);
+}
+
+/* Link de navegação com sublinhado que cresce */
+@utility nav-link {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0.625rem;
+    right: 0.625rem;
+    bottom: 0.35rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-marcador);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 220ms var(--ease-out-soft);
+  }
+  &:hover::after,
+  &[aria-current="page"]::after,
+  &[data-open="true"]::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Cartão: superfície clara, borda fina, sombra suave; sobe no hover */
+@utility card {
+  background-color: var(--color-radiopaco);
+  border: 1px solid var(--color-escala);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 220ms var(--ease-out-soft),
+    box-shadow 220ms var(--ease-out-soft),
+    border-color 220ms ease;
+}
+@utility card-hover {
+  &:hover,
+  &:focus-visible,
+  &:focus-within {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lift);
+    border-color: rgb(38 36 67 / 0.25);
+  }
+}
+
+/* Medida de leitura */
+@utility prose-measure {
+  max-width: var(--container-prose);
+}
+
+/* Esconde a barra de rolagem de listas horizontais (o gesto continua) */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Esconde visualmente, mantém para leitores de tela */
+@utility sr-only-focusable {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  &:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    clip: auto;
+    white-space: normal;
+    z-index: 100;
+    background: var(--color-radiopaco);
+    color: var(--color-marca);
+    border: 1px solid var(--color-marca);
+    border-radius: var(--radius-md);
+  }
+}

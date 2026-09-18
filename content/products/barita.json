@@ -1,0 +1,34 @@
+{
+  "slug": "barita",
+  "name": "Barita",
+  "brand": null,
+  "category": "protecao-e-acessorios",
+  "tagline": "Argamassa baritada para blindagem de salas de raios X",
+  "summary": "Argamassa baritada para revestimento de paredes de salas de raios X, alternativa ao lençol de chumbo em obras novas e reformas.",
+  "image": {
+    "src": "/images/products/barita.jpg",
+    "alt": "Saco de argamassa baritada para blindagem radiológica"
+  },
+  "specGroups": [],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "lencol-de-chumbo-1-mm-de-espessura",
+    "vidro-e-visor-plumbifero"
+  ],
+  "featured": false,
+  "order": 47,
+  "verificar": [
+    "Embalagem, rendimento e equivalência em chumbo não constavam no site antigo.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

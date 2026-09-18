@@ -1,0 +1,46 @@
+{
+  "slug": "avental-panoramico-em-borracha-plumbifera",
+  "name": "Avental panorâmico em borracha plumbífera",
+  "brand": null,
+  "category": "protecao-e-acessorios",
+  "tagline": "Proteção do paciente em exames panorâmicos e tomográficos",
+  "summary": "Avental de proteção radiológica para exames panorâmicos e CBCT, em borracha plumbífera, com corte que libera a região cervical para o exame.",
+  "image": {
+    "src": "/images/products/avental-panoramico-em-borracha-plumbifera.jpg",
+    "alt": "Avental panorâmico de proteção radiológica em borracha plumbífera"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Material",
+          "value": "Borracha plumbífera",
+          "mono": false
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "avental-periapical-com-protetor-tireoide",
+    "suporte-para-avental-de-parede",
+    "veraview-x800"
+  ],
+  "featured": true,
+  "order": 43,
+  "verificar": [
+    "Equivalência em mm de chumbo não constava no site antigo.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

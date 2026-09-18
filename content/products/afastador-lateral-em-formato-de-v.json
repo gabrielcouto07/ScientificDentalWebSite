@@ -1,0 +1,33 @@
+{
+  "slug": "afastador-lateral-em-formato-de-v",
+  "name": "Afastador lateral em V",
+  "brand": null,
+  "category": "protecao-e-acessorios",
+  "tagline": "Afastador para fotografia lateral",
+  "summary": "Afastador labial em formato de V para fotografias laterais e de oclusão.",
+  "image": {
+    "src": "/images/products/afastador-lateral-em-formato-de-v.jpg",
+    "alt": "Afastador lateral transparente em formato de V"
+  },
+  "specGroups": [],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "afastador-oclusal-kit-com-p-m-g",
+    "afastador-frontal-em-formato-de-c"
+  ],
+  "featured": false,
+  "order": 41,
+  "verificar": [
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

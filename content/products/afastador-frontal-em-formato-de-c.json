@@ -1,0 +1,33 @@
+{
+  "slug": "afastador-frontal-em-formato-de-c",
+  "name": "Afastador frontal em C",
+  "brand": null,
+  "category": "protecao-e-acessorios",
+  "tagline": "Afastador para fotografia frontal",
+  "summary": "Afastador labial em formato de C para fotografias frontais intraorais.",
+  "image": {
+    "src": "/images/products/afastador-frontal-em-formato-de-c.jpg",
+    "alt": "Afastador frontal transparente em formato de C"
+  },
+  "specGroups": [],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "afastador-oclusal-kit-com-p-m-g",
+    "afastador-lateral-em-formato-de-v"
+  ],
+  "featured": false,
+  "order": 42,
+  "verificar": [
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

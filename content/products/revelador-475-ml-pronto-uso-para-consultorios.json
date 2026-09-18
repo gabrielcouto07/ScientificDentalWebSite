@@ -1,0 +1,45 @@
+{
+  "slug": "revelador-475-ml-pronto-uso-para-consultorios",
+  "name": "Revelador 475 ml pronto para uso",
+  "brand": null,
+  "category": "insumos-e-impressao",
+  "tagline": "Revelador pronto para uso, para processamento manual em consultório",
+  "summary": "Revelador pronto para uso em embalagem de 475 ml, para processamento manual de filmes intraorais em consultórios e clínicas.",
+  "image": {
+    "src": "/images/products/revelador-475-ml-pronto-uso-para-consultorios.jpg",
+    "alt": "Frasco de revelador radiográfico de 475 ml"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Volume",
+          "value": "475 ml",
+          "mono": true
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "fixador",
+    "filme-periapical-e-speed-caixa-com-150-peliculas"
+  ],
+  "featured": false,
+  "order": 23,
+  "verificar": [
+    "Marca e composição não constavam no site antigo.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

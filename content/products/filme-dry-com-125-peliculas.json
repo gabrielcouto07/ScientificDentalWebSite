@@ -1,0 +1,45 @@
+{
+  "slug": "filme-dry-com-125-peliculas",
+  "name": "Filme dry, caixa com 125 películas",
+  "brand": "Carestream",
+  "category": "insumos-e-impressao",
+  "tagline": "Filme para impressoras a laser DryView",
+  "summary": "Filme dry para impressoras a laser Carestream DryView. Caixa com 125 películas.",
+  "image": {
+    "src": "/images/products/filme-dry-com-125-peliculas.jpg",
+    "alt": "Caixa de filme dry Carestream com 125 películas"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Embalagem",
+          "value": "125 películas",
+          "mono": true
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "impressora-5700",
+    "impressora-5950"
+  ],
+  "featured": false,
+  "order": 22,
+  "verificar": [
+    "Tamanho do filme (por exemplo 8 × 10 pol.) não constava no site antigo.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

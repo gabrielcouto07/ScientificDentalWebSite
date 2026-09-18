@@ -1,0 +1,55 @@
+{
+  "_comment": "Fonte única dos 301 do site antigo (/sd/...). Consumido por next.config.ts e por scripts/generate-web-config.mjs (IIS). Rotas não listadas caem em app/sd/[[...rest]] e vão para a home.",
+  "redirects": [
+    { "source": "/sd", "destination": "/" },
+    { "source": "/sd/index.php", "destination": "/" },
+    { "source": "/sd/sample-page", "destination": "/" },
+
+    { "source": "/sd/a-scientific", "destination": "/a-scientific" },
+    { "source": "/sd/missao", "destination": "/a-scientific#missao" },
+    { "source": "/sd/visao", "destination": "/a-scientific#missao" },
+    { "source": "/sd/valores", "destination": "/a-scientific#missao" },
+    { "source": "/sd/parceria-j-morita-corporation", "destination": "/a-scientific#morita" },
+    { "source": "/sd/parceria-carestream", "destination": "/a-scientific#carestream" },
+    { "source": "/sd/morita-br", "destination": "/legacy-sd" },
+    { "source": "/sd/contato", "destination": "/contato" },
+
+    { "source": "/sd/loja", "destination": "/produtos" },
+    { "source": "/sd/carrinho", "destination": "/produtos" },
+    { "source": "/sd/finalizar-compra", "destination": "/orcamento" },
+    { "source": "/sd/minha-conta", "destination": "/contato" },
+
+    { "source": "/sd/ultimas-novidades", "destination": "/conteudo" },
+    { "source": "/sd/index.php/ultimas-novidades", "destination": "/conteudo" },
+    { "source": "/sd/category/novidades", "destination": "/conteudo" },
+    { "source": "/sd/author/:author", "destination": "/conteudo" },
+    { "source": "/sd/feed", "destination": "/conteudo" },
+    { "source": "/sd/comments/feed", "destination": "/conteudo" },
+
+    { "source": "/sd/produto/:slug", "destination": "/produtos/:slug" },
+
+    { "source": "/sd/categoria-produto/equipamentos", "destination": "/produtos/imagem-3d" },
+    { "source": "/sd/categoria-produto/endodontia", "destination": "/produtos/endodontia" },
+    { "source": "/sd/categoria-produto/filmes-intra-orais", "destination": "/produtos/intraoral" },
+    { "source": "/sd/categoria-produto/posicionadores", "destination": "/produtos/intraoral" },
+    { "source": "/sd/categoria-produto/impressoras", "destination": "/produtos/insumos-e-impressao" },
+    { "source": "/sd/categoria-produto/filme-dry", "destination": "/produtos/insumos-e-impressao" },
+    { "source": "/sd/categoria-produto/revelador", "destination": "/produtos/insumos-e-impressao" },
+    { "source": "/sd/categoria-produto/fixador", "destination": "/produtos/insumos-e-impressao" },
+    { "source": "/sd/categoria-produto/aventais", "destination": "/produtos/protecao-e-acessorios" },
+    { "source": "/sd/categoria-produto/afastadores", "destination": "/produtos/protecao-e-acessorios" },
+    { "source": "/sd/categoria-produto/espelhos", "destination": "/produtos/protecao-e-acessorios" },
+    { "source": "/sd/categoria-produto/protecao-radiologica", "destination": "/produtos/protecao-e-acessorios" },
+
+    { "source": "/sd/case-retention-of-tooth-17", "destination": "/conteudo/case-retention-of-tooth-17" },
+    { "source": "/sd/case-cone-beam-computed-tomography-in-endodontics", "destination": "/conteudo/case-cone-beam-computed-tomography-in-endodontics" },
+    { "source": "/sd/case-dens-in-dente-type-iii-oehlers", "destination": "/conteudo/case-dens-in-dente-type-iii-oehlers" },
+    { "source": "/sd/tomografo-x800-da-morita-eleva-a-odontologia-a-novos-patamares", "destination": "/conteudo/tomografo-x800-da-morita-eleva-a-odontologia-a-novos-patamares" },
+    { "source": "/sd/explorando-as-vantagens-vitais-a-importancia-do-uso-de-tomografos-dentais-de-alta-resolucao", "destination": "/conteudo/explorando-as-vantagens-vitais-a-importancia-do-uso-de-tomografos-dentais-de-alta-resolucao" },
+    { "source": "/sd/a-importancia-do-marketing-digital-para-clinicas-radiologicas-dentais", "destination": "/conteudo/a-importancia-do-marketing-digital-para-clinicas-radiologicas-dentais" },
+    { "source": "/sd/inovacao-em-foco-apresentacao-exclusiva-do-tomografo-x800-da-morita-no-evento-da-scientific-dental-no-proximo-mes", "destination": "/conteudo/inovacao-em-foco-apresentacao-exclusiva-do-tomografo-x800-da-morita-no-evento-da-scientific-dental-no-proximo-mes" },
+
+    { "source": "/sd/wp-content/uploads/2024/02/Catalogo-X800.pdf", "destination": "/downloads/catalogo-veraview-x800.pdf" },
+    { "source": "/sd/wp-content/uploads/2024/02/Manual.pdf", "destination": "/produtos/veraview-x800#downloads" }
+  ]
+}

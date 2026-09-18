@@ -1,0 +1,45 @@
+{
+  "slug": "lencol-de-chumbo-1-mm-de-espessura",
+  "name": "Lençol de chumbo 1 mm",
+  "brand": null,
+  "category": "protecao-e-acessorios",
+  "tagline": "Blindagem de paredes e portas de salas de raios X",
+  "summary": "Chapa de chumbo com 1 mm de espessura para blindagem de paredes, portas e cabines de salas de raios X odontológicas.",
+  "image": {
+    "src": "/images/products/lencol-de-chumbo-1-mm-de-espessura.jpg",
+    "alt": "Lençol de chumbo de 1 mm de espessura enrolado"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Espessura",
+          "value": "1 mm",
+          "mono": true
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "barita",
+    "vidro-e-visor-plumbifero"
+  ],
+  "featured": true,
+  "order": 48,
+  "verificar": [
+    "Dimensões da chapa não constavam no site antigo.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

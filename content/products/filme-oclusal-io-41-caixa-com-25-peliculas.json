@@ -1,0 +1,51 @@
+{
+  "slug": "filme-oclusal-io-41-caixa-com-25-peliculas",
+  "name": "Filme oclusal IO-41, caixa com 25 películas",
+  "brand": "Carestream",
+  "model": "IO-41",
+  "category": "intraoral",
+  "tagline": "Filme oclusal para radiografia intraoral",
+  "summary": "Filme radiográfico oclusal IO-41, caixa com 25 películas, para exames oclusais da maxila e da mandíbula.",
+  "image": {
+    "src": "/images/products/filme-oclusal-io-41-caixa-com-25-peliculas.jpg",
+    "alt": "Caixa de filme oclusal IO-41 com 25 películas"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Formato",
+          "value": "Oclusal (tamanho 4)",
+          "mono": true
+        },
+        {
+          "label": "Embalagem",
+          "value": "25 películas",
+          "mono": true
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "filme-periapical-e-speed-caixa-com-150-peliculas",
+    "posicionadores-autoclavaveis"
+  ],
+  "featured": false,
+  "order": 30,
+  "verificar": [
+    "Sensibilidade e marca inferidas da nomenclatura Kodak/Carestream; confirmar.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

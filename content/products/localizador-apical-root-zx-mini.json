@@ -1,0 +1,50 @@
+{
+  "slug": "localizador-apical-root-zx-mini",
+  "name": "Root ZX mini",
+  "brand": "J. Morita",
+  "model": "RCM-7",
+  "category": "endodontia",
+  "tagline": "Localizador apical compacto com a tecnologia de medição do Root ZX",
+  "summary": "Versão compacta do localizador apical Root ZX, referência em medição eletrônica do comprimento do canal. Mede pela razão entre duas frequências, o que mantém a leitura estável mesmo com o canal úmido.",
+  "image": {
+    "src": "/images/products/localizador-apical-root-zx-mini.jpg",
+    "alt": "Localizador apical Root ZX mini da J. Morita, branco, com tela colorida"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Tecnologia",
+          "value": "Medição por razão de impedâncias em duas frequências",
+          "mono": false
+        },
+        {
+          "label": "Fabricante",
+          "value": "J. Morita Mfg. Corp.",
+          "mono": false
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "tri-auto-zx-2"
+  ],
+  "featured": true,
+  "order": 11,
+  "verificar": [
+    "Modelo RCM-7 e detalhes de tela e alimentação inferidos da linha Root ZX; confirmar na ficha técnica.",
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

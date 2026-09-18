@@ -1,0 +1,33 @@
+{
+  "slug": "suporte-para-avental-de-parede",
+  "name": "Suporte de parede para avental",
+  "brand": null,
+  "category": "protecao-e-acessorios",
+  "tagline": "Guarda o avental sem dobrar o chumbo",
+  "summary": "Suporte de parede para aventais plumbíferos. Guardar o avental pendurado evita dobras, que trincam a lâmina de chumbo e comprometem a proteção.",
+  "image": {
+    "src": "/images/products/suporte-para-avental-de-parede.jpg",
+    "alt": "Suporte de parede metálico para avental plumbífero"
+  },
+  "specGroups": [],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "avental-panoramico-em-borracha-plumbifera",
+    "avental-periapical-com-protetor-tireoide"
+  ],
+  "featured": false,
+  "order": 45,
+  "verificar": [
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}

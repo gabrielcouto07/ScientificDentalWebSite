@@ -1,0 +1,44 @@
+{
+  "slug": "afastador-oclusal-kit-com-p-m-g",
+  "name": "Afastador oclusal, kit P, M e G",
+  "brand": null,
+  "category": "protecao-e-acessorios",
+  "tagline": "Afastador labial para fotografia oclusal em três tamanhos",
+  "summary": "Kit de afastadores labiais para fotografia oclusal, nos tamanhos pequeno, médio e grande.",
+  "image": {
+    "src": "/images/products/afastador-oclusal-kit-com-p-m-g.jpg",
+    "alt": "Kit de afastadores oclusais transparentes em três tamanhos"
+  },
+  "specGroups": [
+    {
+      "title": "Especificações",
+      "items": [
+        {
+          "label": "Tamanhos",
+          "value": "P, M e G",
+          "mono": true
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Assistência e garantia",
+      "paragraphs": [
+        "Fornecido e atendido pela Scientific Dental, com suporte técnico em Belo Horizonte e cobertura nacional."
+      ],
+      "verificar": [
+        "Prazo de garantia e condições de troca não confirmados."
+      ]
+    }
+  ],
+  "related": [
+    "espelhos-para-foto-oclusal-cristal-em-vidro",
+    "afastador-lateral-em-formato-de-v"
+  ],
+  "featured": true,
+  "order": 40,
+  "verificar": [
+    "Descrição redigida a partir do nome do produto no site antigo; confirmar com o comercial."
+  ]
+}
