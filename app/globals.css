@@ -475,3 +475,13 @@
     transform: none;
   }
 }
+
+/* Text remains readable in narrow cards and at browser zoom. */
+@layer base {
+  h1, h2, h3, h4, p, a, button, td, th { overflow-wrap: anywhere; }
+  main, main .grid > *, main .flex > * { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-hover:hover, .card-hover:focus-within, .card-hover:focus-visible,
+  .group\/btn:hover, .wa-float:hover { transform: none !important; }
+}

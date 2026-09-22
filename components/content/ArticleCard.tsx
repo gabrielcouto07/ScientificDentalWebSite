@@ -10,7 +10,7 @@ export function ArticleCard({ article: a, className }: { article: Article; class
   return (
     <Link
       href={`/conteudo/${a.slug}`}
-      className={cn("card card-hover group flex h-full flex-col p-6 focus-visible:outline-none", className)}
+      className={cn("card card-hover group flex h-full flex-col p-6", className)}
     >
       <div className="flex items-center justify-between gap-3">
         <span

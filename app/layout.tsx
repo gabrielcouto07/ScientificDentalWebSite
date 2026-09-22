@@ -6,7 +6,7 @@ import { Footer } from "@/components/site/Footer";
 import { Header, type HeaderCategory } from "@/components/site/Header";
 import { JsonLd } from "@/components/site/JsonLd";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
-import { getCategories, getProduct, getSite } from "@/lib/content";
+import { getCategories, getProduct, getProducts, getSite } from "@/lib/content";
 import { organizationJsonLd, SITE_URL } from "@/lib/seo";
 import { whatsappLink, whatsappMessages } from "@/lib/whatsapp";
 
@@ -75,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         {children}
         <Footer site={site} categories={categories} />
-        <WhatsAppButton href={whatsappLink(whatsappMessages.default)} />
+        <WhatsAppButton href={whatsappLink(whatsappMessages.default)} products={Object.fromEntries(getProducts().map((p) => [`/produtos/${p.slug}`, p.name]))} />
         <CookieConsent gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
         <JsonLd data={organizationJsonLd(site)} />
       </body>

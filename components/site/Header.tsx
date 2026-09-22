@@ -122,9 +122,10 @@ export function Header({ categories, phone, whatsappHref }: Props) {
     if (!mobileOpen || !mobilePanelRef.current) return;
     const panel = mobilePanelRef.current;
     const selector = 'a[href], button:not([disabled]), summary, input:not([disabled]), [tabindex]:not([tabindex="-1"])';
-    const focusable = Array.from(panel.querySelectorAll<HTMLElement>(selector));
-    focusable[0]?.focus();
+    const visibleControls = () => Array.from(panel.querySelectorAll<HTMLElement>(selector)).filter((element) => element.getClientRects().length > 0);
+    visibleControls()[0]?.focus();
     const trapFocus = (event: KeyboardEvent) => {
+      const focusable = visibleControls();
       if (event.key !== "Tab" || focusable.length === 0) return;
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
@@ -139,6 +140,13 @@ export function Header({ categories, phone, whatsappHref }: Props) {
     panel.addEventListener("keydown", trapFocus);
     return () => panel.removeEventListener("keydown", trapFocus);
   }, [mobileOpen]);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => { if (media.matches) setMobileOpenFor(null); };
+    media.addEventListener("change", closeOnDesktop);
+    return () => media.removeEventListener("change", closeOnDesktop);
+  }, []);
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   const produtosActive = pathname.startsWith("/produtos");
@@ -222,8 +230,8 @@ export function Header({ categories, phone, whatsappHref }: Props) {
             <PhoneIcon size={18} />
           </a>
           {/* Wrapper: `hidden` no próprio Button perde para o `inline-flex` da base */}
-          <div className="hidden sm:block">
-            <Button href="/orcamento" size="md">
+          <div className="hidden whitespace-nowrap sm:block">
+            <Button href="/orcamento" variant="secondary" size="md" className="whitespace-nowrap">
               <span className="xl:hidden">Orçamento</span>
               <span className="hidden xl:inline">Solicitar orçamento</span>
             </Button>
@@ -283,6 +291,7 @@ export function Header({ categories, phone, whatsappHref }: Props) {
 
       {/* Menu mobile */}
       {mobileOpen && <div
+        onClick={(event) => { if ((event.target as Element).closest("a[href]")) closeAll(); }}
         ref={mobilePanelRef}
         id={mobileId}
         role="dialog"
@@ -291,6 +300,7 @@ export function Header({ categories, phone, whatsappHref }: Props) {
         className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto border-t border-escala bg-radiopaco lg:hidden"
       >
         <Container className="flex min-h-full flex-col py-4">
+          <button type="button" className="mb-2 flex items-center gap-2 self-end rounded-md p-3 text-marca" onClick={() => { closeAll(); mobileButtonRef.current?.focus(); }}>Fechar menu <CloseIcon size={20} /></button>
           <nav aria-label="Principal, celular" className="flex flex-col divide-y divide-escala">
             <Link href="/a-scientific" className="py-4 text-lg font-medium text-marca">
               A Scientific
@@ -334,7 +344,7 @@ export function Header({ categories, phone, whatsappHref }: Props) {
             <Button href="/orcamento" size="lg" className="w-full">
               Solicitar orçamento
             </Button>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid gap-3 min-[400px]:grid-cols-2">
               <Button href={`tel:${phone.tel}`} variant="secondary" size="lg">
                 <PhoneIcon size={18} />
                 <span className="font-mono text-sm">{phone.display}</span>

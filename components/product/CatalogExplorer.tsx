@@ -53,7 +53,7 @@ function writeFilters(brand: BrandFilter, category: string) {
   if (category !== "all") q.set("categoria", category);
   const qs = q.toString();
   // Preserva history.state: o roteador do Next guarda o próprio estado ali.
-  window.history.replaceState(window.history.state, "", `${window.location.pathname}${qs ? `?${qs}` : ""}`);
+  window.history.pushState(window.history.state, "", `${window.location.pathname}${qs ? `?${qs}` : ""}`);
   listeners.forEach((l) => l());
 }
 

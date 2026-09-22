@@ -74,7 +74,7 @@ function Tile({
   return (
     <Link
       href={`/produtos/${category.slug}`}
-      className={cn("card card-hover group flex flex-col overflow-hidden p-3 focus-visible:outline-none", className)}
+      className={cn("card card-hover group flex flex-col overflow-hidden p-3", className)}
     >
       {img && (
         <div

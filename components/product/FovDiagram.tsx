@@ -38,7 +38,7 @@ export function FovDiagram({
 
   return (
     <figure>
-      <div className="viewer overflow-x-auto rounded-xl shadow-panel">
+      <div tabIndex={0} role="region" aria-label="Diagrama dos campos de visão; role horizontalmente para explorar" className="viewer overflow-x-auto rounded-xl shadow-panel">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           width={width}
@@ -176,7 +176,7 @@ export function FovDiagram({
       </figcaption>
 
       {/* Contêiner rolável: 5 colunas em Mono não cabem em 390 px sem quebrar a página */}
-      <div className="no-scrollbar mt-6 -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+      <div tabIndex={0} role="region" aria-label="Tabela dos campos de visão; role horizontalmente para explorar" className="no-scrollbar mt-6 -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
         <table className="w-full min-w-[40rem] border-collapse text-sm">
           <caption className="sr-only">
             Campos de visão, voxel, modos de varredura, modelos e indicação

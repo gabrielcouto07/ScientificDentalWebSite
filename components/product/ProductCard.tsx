@@ -43,7 +43,7 @@ export function ProductCard({
   return (
     <Link
       href={`/produtos/${product.slug}`}
-      className={cn("card card-hover group flex flex-col p-3 focus-visible:outline-none", className)}
+      className={cn("card card-hover group flex flex-col p-3", className)}
     >
       <ViewTransition name={`product-${product.slug}`} share="morph" default="none">
         <div className="relative aspect-square w-full overflow-hidden rounded-md bg-osso">

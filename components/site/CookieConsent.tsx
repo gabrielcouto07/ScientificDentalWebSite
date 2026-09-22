@@ -13,6 +13,7 @@ type Consent = "all" | "essential";
  * sem setState dentro de effect (regra react-hooks/set-state-in-effect) e sem
  * divergência entre servidor e cliente: no servidor o snapshot é "loading".
  */
+let memoryConsent: Consent | null = null;
 const listeners = new Set<() => void>();
 
 function subscribe(cb: () => void) {
@@ -29,7 +30,7 @@ function getSnapshot(): Consent | null {
     const v = window.localStorage.getItem(KEY);
     return v === "all" || v === "essential" ? v : null;
   } catch {
-    return null;
+    return memoryConsent;
   }
 }
 
@@ -38,6 +39,7 @@ function getServerSnapshot(): "loading" {
 }
 
 export function writeCookieConsent(value: Consent) {
+  memoryConsent = value;
   try {
     window.localStorage.setItem(KEY, value);
   } catch {
@@ -47,6 +49,7 @@ export function writeCookieConsent(value: Consent) {
 }
 
 export function revokeCookieConsent() {
+  memoryConsent = null;
   try {
     window.localStorage.removeItem(KEY);
   } catch {

@@ -6,7 +6,7 @@ type Variant = "primary" | "secondary" | "contrast" | "inverse" | "inverse-solid
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "group/btn inline-flex items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap select-none " +
+  "group/btn inline-flex items-center justify-center gap-2 rounded-md max-w-full min-w-0 font-medium whitespace-normal text-center select-none " +
   "transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out " +
   "active:translate-y-px disabled:pointer-events-none disabled:opacity-60";
 
@@ -31,9 +31,9 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 px-3.5 text-sm",
-  md: "h-11 px-5 text-sm",
-  lg: "h-13 px-6 text-base",
+  sm: "min-h-9 py-2 px-3.5 text-sm",
+  md: "min-h-11 py-2.5 px-5 text-sm",
+  lg: "min-h-13 py-3 px-6 text-base",
 };
 
 type CommonProps = {
@@ -89,7 +89,7 @@ export function ButtonArrow({ className }: { className?: string }) {
       strokeLinejoin="round"
       aria-hidden
       focusable={false}
-      className={cn("transition-transform duration-200 ease-out group-hover/btn:translate-x-0.5", className)}
+      className={cn("shrink-0 transition-transform duration-200 ease-out group-hover/btn:translate-x-0.5", className)}
     >
       <path d="M5 12h14M13 6l6 6-6 6" />
     </svg>

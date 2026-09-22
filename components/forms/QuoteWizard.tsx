@@ -58,7 +58,11 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
   const formRef = useRef<HTMLFormElement>(null);
   const [values, setValues] = useState<Record<string, string>>({});
   const [consent, setConsent] = useState(false);
-  const fieldValue = (name: string) => ({ value: values[name] ?? "", onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setValues((previous) => ({ ...previous, [name]: event.target.value })) });
+  const fieldValue = (name: string) => ({
+    value: values[name] ?? "",
+    onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setValues((previous) => ({ ...previous, [name]: event.target.value })),
+  });
   const [state, action, pending] = useActionState(async (previous: LeadState, formData: FormData) => {
     const result = await submitLead(previous, formData);
     if (result.status === "error" && result.fieldErrors) {
@@ -121,7 +125,7 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
   }
 
   return (
-    <form ref={formRef} action={action} onSubmit={(event) => { if (step < 3) { event.preventDefault(); next(); } }} noValidate className="card min-h-[36rem] p-6 sm:p-8 lg:p-10">
+    <form ref={formRef} onReset={(event) => event.preventDefault()} action={action} onSubmit={(event) => { if (step < 3) { event.preventDefault(); next(); } }} noValidate className="card min-h-[36rem] p-6 sm:p-8 lg:p-10">
       <input type="hidden" name="kind" value="orcamento" />
       <input type="hidden" name="sourcePath" value={sourcePath} />
       <Honeypot id="quote-website" />
@@ -176,7 +180,7 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
         <div className="mt-6">
           <TextField
             id="city"
-            name="city" {...fieldValue("city")} 
+            name="city" {...fieldValue("city")}
             label="Cidade e estado"
             optional
             placeholder="Belo Horizonte, MG"
@@ -193,10 +197,10 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
           Para quem enviamos a proposta?
         </h2>
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
-          <TextField id="name" name="name" {...fieldValue("name")}  label="Nome" autoComplete="name" error={errors.name} />
+          <TextField id="name" name="name" {...fieldValue("name")} label="Nome" autoComplete="name" error={errors.name} />
           <TextField
             id="phone"
-            name="phone" {...fieldValue("phone")} 
+            name="phone" {...fieldValue("phone")}
             label="Telefone ou WhatsApp"
             type="tel"
             inputMode="tel"
@@ -204,8 +208,8 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
             placeholder="(31) 99999-9999"
             error={errors.phone}
           />
-          <TextField id="email" name="email" {...fieldValue("email")}  label="E-mail" type="email" autoComplete="email" error={errors.email} />
-          <TextField id="company" name="company" {...fieldValue("company")}  label="Empresa ou clínica" optional autoComplete="organization" error={errors.company} />
+          <TextField id="email" name="email" {...fieldValue("email")} label="E-mail" type="email" autoComplete="email" error={errors.email} />
+          <TextField id="company" name="company" {...fieldValue("company")} label="Empresa ou clínica" optional autoComplete="organization" error={errors.company} />
           <div className="sm:col-span-2">
             <ConsentField checked={consent} onChange={(event) => setConsent(event.target.checked)} error={errors.consent} />
           </div>
@@ -213,7 +217,7 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
       </fieldset>
 
       {(stepError || state.status === "error") && (
-        <p role="alert" className="mt-5 rounded-md bg-marcador-tint px-3.5 py-2.5 text-sm text-marcador">
+        <p role="alert" className="mt-5 rounded-md bg-marcador-tint px-3.5 py-2.5 text-sm text-marcador-hover">
           {stepError ?? (state.status === "error" ? state.message : "")}
         </p>
       )}
@@ -230,12 +234,12 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
             </Button>
           )}
           {step < STEPS.length - 1 ? (
-            <Button type="button" size="lg" onClick={next}>
+            <Button key="next" type="button" size="lg" onClick={(event) => { event.preventDefault(); next(); }}>
               Continuar
               <ButtonArrow />
             </Button>
           ) : (
-            <Button type="submit" size="lg" disabled={pending} aria-busy={pending}>
+            <Button key="submit" type="submit" size="lg" disabled={pending} aria-busy={pending}>
               {pending ? "Enviando…" : "Enviar pedido de orçamento"}
             </Button>
           )}

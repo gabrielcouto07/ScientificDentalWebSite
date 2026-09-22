@@ -1,3 +1,7 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import { whatsappLink, whatsappMessages } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "@/components/ui/Icons";
 
 /**
@@ -7,10 +11,16 @@ import { WhatsAppIcon } from "@/components/ui/Icons";
  * Em páginas com barra de CTA inferior no celular, a classe `has-cta-bar`
  * no <main> empurra o botão para cima (ver globals via seletor irmão).
  */
-export function WhatsAppButton({ href }: { href: string }) {
+export function WhatsAppButton({ href, products }: { href: string; products: Record<string, string> }) {
+  const pathname = usePathname();
+  const productName = products[pathname];
+  const contextualHref = productName ? whatsappLink(whatsappMessages.product(productName))
+    : pathname === "/suporte" ? whatsappLink(whatsappMessages.support)
+    : pathname === "/legacy-sd" ? whatsappLink(whatsappMessages.legacy)
+    : pathname === "/orcamento" ? whatsappLink(whatsappMessages.quote()) : href;
   return (
     <a
-      href={href}
+      href={contextualHref}
       target="_blank"
       rel="noopener"
       className="wa-float group fixed bottom-4 right-4 z-30 inline-flex h-14 items-center gap-0 rounded-full bg-whatsapp pl-0 pr-0 text-whatsapp-ink shadow-lift transition-[padding,box-shadow,transform] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_6px_10px_rgb(38_36_67/0.12),0_22px_44px_-16px_rgb(38_36_67/0.4)] sm:bottom-6 sm:right-6 lg:hover:pl-5 lg:hover:pr-1"

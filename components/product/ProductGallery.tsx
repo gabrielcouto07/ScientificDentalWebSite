@@ -24,7 +24,7 @@ export function ProductGallery({ images, name, slug }: { images: ContentImage[];
   return (
     <div>
       <ViewTransition name={`product-${slug}`} share="morph" default="none">
-        <div id={panelId} role="tabpanel" className="card relative aspect-[4/5] w-full overflow-hidden rounded-xl sm:aspect-square lg:aspect-[4/5]">
+        <div id={panelId} role={images.length > 1 ? "tabpanel" : undefined} aria-label={current.alt} className="card relative aspect-[4/5] w-full overflow-hidden rounded-xl sm:aspect-square lg:aspect-[4/5]">
           <Picture
             key={current.src}
             image={current}
@@ -36,7 +36,7 @@ export function ProductGallery({ images, name, slug }: { images: ContentImage[];
         </div>
       </ViewTransition>
       {images.length > 1 && (
-        <ul className="mt-3 flex gap-2" role="tablist" aria-label={`Fotos do ${name}`}>
+        <ul className="mt-3 flex flex-wrap gap-2" role="tablist" aria-label={`Fotos do ${name}`}>
           {images.map((img, i) => (
             <li key={img.src} role="presentation">
               <button
@@ -60,7 +60,7 @@ export function ProductGallery({ images, name, slug }: { images: ContentImage[];
           ))}
         </ul>
       )}
-      {current.caption && <p className="mt-2 font-mono text-xs text-tecido">{current.caption}</p>}
+      {current.caption && <p className="mt-2 text-xs text-tecido">{current.caption}</p>}
     </div>
   );
 }
