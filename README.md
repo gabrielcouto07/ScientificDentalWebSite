@@ -6,13 +6,14 @@ mexer no projeto sem ter participado do começo. O raciocínio de design está e
 
 ## Rodar no computador
 
-Precisa de Node 22 ou mais novo.
+Precisa de Node 22.18 ou mais novo (os testes executam o schema TypeScript nativamente).
 
 ```bash
 npm install
 npm run dev        # abre em http://localhost:3000
 npm run build      # gera a versão de produção (também valida tipos)
 npm run start      # serve a versão de produção
+npm run typecheck  # TypeScript sem emitir arquivos
 npm run lint       # ESLint
 npm test           # integridade das referências de conteúdo
 npm run validate:content
@@ -69,6 +70,7 @@ Tudo que o cliente pode querer mudar está em `content/`, em JSON:
 
 | Arquivo | O que tem |
 |---|---|
+| `forms.json` | opções do orçamento, mensagens de sucesso e textos de consentimento |
 | `site.json` | endereço, telefones, WhatsApp, horário, anos de fundação, territórios |
 | `categories.json` | as 5 categorias de produto e seus produtos-destaque |
 | `products/*.json` | um arquivo por produto (23 hoje). O `veraview-x800.json` é o exemplo completo |
@@ -192,3 +194,24 @@ Os 301 do site antigo estão em `next.config.ts`, lidos de `content/redirects.js
 - Mapa real de cobertura depende da lista de filiais.
 - Prazos de SLA, garantia e retenção de dados marcados com VERIFICAR.
 - Certificado TLS do domínio atual vencido em 05/08/2026: renovar antes de apontar o DNS.
+
+## Revisão final e testes no navegador
+
+Resultados e limites da revisão: [docs/REVISAO-FINAL.md](docs/REVISAO-FINAL.md).
+Confirmações factuais antes da publicação: [docs/PENDENCIAS-CLIENTE.md](docs/PENDENCIAS-CLIENTE.md).
+
+Os scripts opcionais `scripts/qa-browser.py` e `scripts/qa-interactions.py` usam Python + Playwright,
+instalados fora das dependências do site (`python -m pip install playwright`). Use Chromium instalado
+pelo Playwright (`python -m playwright install chromium`). O primeiro verifica todas as rotas em cinco
+larguras, links internos, âncoras, redirects e JSON-LD, com `npm run start -- --port 3001`.
+O segundo usa `npm run dev` na porta 3000 **sem canais de entrega configurados**, envia apenas dados
+fictícios ao console e confere a falha segura do servidor de produção sem configuração na porta 3001.
+Reinicie o servidor dev antes de repetir a suíte: o limite de cinco envios em dez minutos também é testável localmente.
+As capturas e o JSON de auditoria ficam em `%TEMP%/scientific-qa`.
+
+Para incluir axe-core na suíte visual, coloque `axe.min.js` (4.11.0) em `%TEMP%/scientific-axe.min.js`.
+Sem esse arquivo, o script mantém as verificações de navegação e layout; não executa a auditoria axe.
+
+Produção exige Redis REST **e** pelo menos um canal real de entrega (webhook ou SMTP).
+O fallback para console é exclusivo de desenvolvimento. Configure as variáveis de `.env.example`
+e faça um envio de homologação ao canal real antes de divulgar o site. Nenhuma credencial está no repositório.

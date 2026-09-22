@@ -46,6 +46,7 @@ export function validateContent(root = process.cwd()) {
     }
     for (const image of [product.image, ...(product.gallery ?? []), ...(product.clinicalImages ?? [])]) {
       checkPublicFile(product.slug, image.src);
+      if (!image.alt?.trim()) errors.push(`${product.slug}: imagem sem texto alternativo ${image.src}`);
       for (const variant of Object.values(image.variants ?? {}).flat()) checkPublicFile(product.slug, variant.src);
     }
     for (const download of product.downloads ?? []) checkPublicFile(product.slug, download.href);
