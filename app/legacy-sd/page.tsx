@@ -41,7 +41,7 @@ export default function LegacySdPage() {
           <>
             <Button href={whatsappHref} variant="whatsapp" size="lg" target="_blank">
               <WhatsAppIcon size={18} />
-              Entrar no canal do WhatsApp
+              {site.legacy.action}
             </Button>
             <a href={site.legacy.url} className="link text-sm" target="_blank" rel="noopener">
               Página atual do programa
@@ -102,7 +102,7 @@ export default function LegacySdPage() {
             </p>
             <Button href={whatsappHref} variant="secondary" size="lg" target="_blank" className="mt-6">
               <WhatsAppIcon size={18} className="text-sucesso" />
-              Entrar no canal
+              {site.legacy.action}
               <ButtonArrow />
             </Button>
           </div>

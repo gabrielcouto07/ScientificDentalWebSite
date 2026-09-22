@@ -174,10 +174,7 @@ export function ProductPage({ product, category, related, site, whatsappHref }: 
               </ul>
             )}
           </div>
-          {s.verificar.length > 0 && (
-            // Marcadores de verificação ficam só no HTML fonte, invisíveis ao leitor
-            <div hidden data-verificar={s.verificar.join(" | ")} />
-          )}
+
         </Section>
       ))}
 
@@ -209,7 +206,7 @@ export function ProductPage({ product, category, related, site, whatsappHref }: 
               <li key={d.href}>
                 <a
                   href={d.href}
-                  className="card card-hover flex items-center gap-4 p-4 focus-visible:outline-none"
+                  className="card card-hover flex items-center gap-4 p-4"
                   download
                 >
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-marca-tint text-marca">
@@ -246,7 +243,7 @@ export function ProductPage({ product, category, related, site, whatsappHref }: 
           />
           <aside className="reveal reveal-delay-1 flex flex-col gap-3 lg:col-span-5">
             <p className="text-base font-semibold text-marca">Prefere falar agora?</p>
-            <a href={`tel:${site.phones.main.tel}`} className="card card-hover flex items-center gap-4 p-4 focus-visible:outline-none">
+            <a href={`tel:${site.phones.main.tel}`} className="card card-hover flex items-center gap-4 p-4">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-marca-tint text-marca">
                 <PhoneIcon size={18} />
               </span>
@@ -257,7 +254,7 @@ export function ProductPage({ product, category, related, site, whatsappHref }: 
             </a>
             <a
               href={whatsappHref}
-              className="card card-hover flex items-center gap-4 p-4 focus-visible:outline-none"
+              className="card card-hover flex items-center gap-4 p-4"
               target="_blank"
               rel="noopener"
             >

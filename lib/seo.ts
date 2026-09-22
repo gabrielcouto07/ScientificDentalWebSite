@@ -106,12 +106,7 @@ export function productJsonLd(product: Product, categoryName: string) {
     model: product.model,
     category: categoryName,
     url: absoluteUrl(`/produtos/${product.slug}`),
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      priceSpecification: { "@type": "PriceSpecification", priceCurrency: "BRL" },
-      seller: { "@id": `${SITE_URL}/#organization` },
-      // Preço sob consulta: sem "price" para não declarar valor inexistente
-    },
+    // Sob consulta: não declarar preço nem disponibilidade de estoque sem dados.
+
   };
 }

@@ -112,6 +112,7 @@ export const articleSchema = z.object({
   type: z.enum(["caso", "artigo"]),
   title: z.string(),
   excerpt: z.string(),
+  archiveNote: z.string(),
   date: z.string(),
   lang: z.enum(["pt-BR", "en"]).default("pt-BR"),
   source: z.string().optional(),
@@ -149,7 +150,8 @@ export const siteSchema = z.object({
   }),
   territories: z.array(z.object({ name: z.string(), states: z.array(z.string()) })),
   team: z.object({ technicians: z.number(), radiologists: z.number() }),
-  legacy: z.object({ name: z.string(), url: z.string() }),
+  legacy: z.object({ name: z.string(), url: z.string(), action: z.string(), entry: z.string() }),
+  supportCopy: z.object({ response: z.string(), parts: z.string(), requestLead: z.string() }),
   verificar: z.array(z.string()).default([]),
 });
 

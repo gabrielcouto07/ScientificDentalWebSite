@@ -14,9 +14,18 @@
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Rua+Deputado+F%C3%A1bio+Vasconcelos+58+Buritis+Belo+Horizonte+MG"
   },
   "phones": {
-    "main": { "display": "(31) 2112-1900", "tel": "+553121121900" },
-    "sales": { "display": "(31) 2112-1913", "tel": "+553121121913" },
-    "support": { "display": "(31) 2112-1903", "tel": "+553121121903" }
+    "main": {
+      "display": "(31) 2112-1900",
+      "tel": "+553121121900"
+    },
+    "sales": {
+      "display": "(31) 2112-1913",
+      "tel": "+553121121913"
+    },
+    "support": {
+      "display": "(31) 2112-1903",
+      "tel": "+553121121903"
+    }
   },
   "whatsapp": {
     "display": "(31) 2112-1938",
@@ -28,15 +37,24 @@
     "privacy": "contato@scientificdental.com.br"
   },
   "hours": [
-    { "days": "Segunda a quinta", "time": "08:00 às 18:00" },
-    { "days": "Sexta", "time": "08:00 às 17:30" }
+    {
+      "days": "Segunda a quinta",
+      "time": "08:00 às 18:00"
+    },
+    {
+      "days": "Sexta",
+      "time": "08:00 às 17:30"
+    }
   ],
   "foundedYear": 1977,
   "dentalSinceYear": 2005,
   "social": {
     "instagram": "https://www.instagram.com/scientificdental/"
   },
-  "brands": ["J. Morita", "Carestream"],
+  "brands": [
+    "J. Morita",
+    "Carestream"
+  ],
   "moritaNotice": {
     "quote": "J. Morita Brasil não está mais em operação. Entre em contato com as empresas abaixo para obter assistência com os produtos da J. Morita.",
     "summary": "A J. Morita direciona clientes brasileiros à Scientific Dental para vendas e assistência técnica de raios X e endodontia.",
@@ -44,9 +62,48 @@
     "sourceUrl": "https://www.morita.com/america/en/in-focus/morita-in-brazil/suporte-ao-produto/"
   },
   "territories": [
-    { "name": "Sul", "states": ["PR", "SC", "RS"] },
-    { "name": "Minas Gerais, Rio de Janeiro e Nordeste", "states": ["MG", "RJ", "BA", "SE", "AL", "PE", "PB", "RN", "CE", "PI", "MA"] },
-    { "name": "São Paulo, Centro-Oeste, Espírito Santo e Norte", "states": ["SP", "ES", "GO", "DF", "MT", "MS", "TO", "PA", "AM", "RO", "AC", "RR", "AP"] }
+    {
+      "name": "Sul",
+      "states": [
+        "PR",
+        "SC",
+        "RS"
+      ]
+    },
+    {
+      "name": "Minas Gerais, Rio de Janeiro e Nordeste",
+      "states": [
+        "MG",
+        "RJ",
+        "BA",
+        "SE",
+        "AL",
+        "PE",
+        "PB",
+        "RN",
+        "CE",
+        "PI",
+        "MA"
+      ]
+    },
+    {
+      "name": "São Paulo, Centro-Oeste, Espírito Santo e Norte",
+      "states": [
+        "SP",
+        "ES",
+        "GO",
+        "DF",
+        "MT",
+        "MS",
+        "TO",
+        "PA",
+        "AM",
+        "RO",
+        "AC",
+        "RR",
+        "AP"
+      ]
+    }
   ],
   "team": {
     "technicians": 8,
@@ -54,13 +111,20 @@
   },
   "legacy": {
     "name": "Legacy SD",
-    "url": "https://sd-hit.com/legacysd/"
+    "url": "https://sd-hit.com/legacysd/",
+    "action": "Conversar sobre o Legacy SD",
+    "entry": "Fale com a equipe para receber informações sobre a participação e o acesso ao programa."
   },
   "verificar": [
     "foundedYear 1977: derivado de 'há 46 anos' escrito no site em 2023. Confirmar ano de fundação da Scientific (grupo).",
-    "whatsapp 2112-1938: número do site atual; o Legacy SD usa 99264-0883 e 97122-9418.",
     "territories: estrutura regional e siglas inferidas da página sd-hit.com (Sul; MG|RJ|NE; SP|CO|ES|NO). Confirmar estados e bases físicas.",
     "team: '8 técnicos nacionais, 3 radiologistas' vem de sd-hit.com/morita-abro. Confirmar números atuais.",
-    "emails: o site usa .com.br e a página da Morita usa .com. Confirmar o canônico."
-  ]
+    "emails: o site usa .com.br e a página da Morita usa .com. Confirmar o canônico.",
+    "Confirmar SLA de suporte, estoque de peças em Belo Horizonte, condições de visita e contratos antes de publicar compromissos específicos."
+  ],
+  "supportCopy": {
+    "response": "Prazo informado no atendimento",
+    "parts": "Disponibilidade sob consulta",
+    "requestLead": "Conte o que está acontecendo para que a equipe de assistência avalie o seu chamado."
+  }
 }

@@ -61,12 +61,10 @@ export default async function ArtigoPage({ params }: { params: Promise<Params> }
               </span>
               {a.source && <span>{a.source}</span>}
             </p>
-            <div className="card mt-6 border-dashed p-6 text-tecido sm:p-8">
-              <p className="font-medium text-marca">Texto completo em migração</p>
+            <div className="card mt-6 p-6 text-tecido sm:p-8">
+              <p className="font-medium text-marca">Sobre este registro</p>
               <p className="mt-2 text-sm">
-                O conteúdo integral está sendo trazido do site anterior e entra nesta página na próxima etapa, sem
-                mudar o endereço.
-                {/* VERIFICAR: migrar corpo do artigo do WordPress; traduzir casos em inglês */}
+                {a.archiveNote} <a href="/contato" className="link">Solicitar material completo</a>
               </p>
             </div>
             <div className="mt-10 flex flex-col items-start gap-3 border-t border-escala pt-8 sm:flex-row sm:items-center">

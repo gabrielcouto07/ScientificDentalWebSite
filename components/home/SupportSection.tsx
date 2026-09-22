@@ -12,10 +12,10 @@ export function SupportSection({ site }: { site: SiteConfig }) {
   const stateCount = site.territories.flatMap((territory) => territory.states).filter((state) => state !== "DF").length;
   const commitments = [
     /* VERIFICAR: prazos e números abaixo são propostas; confirmar com a coordenação de assistência */
-    { icon: ClockIcon, label: "Primeira resposta ao chamado", value: "até 1 dia útil" },
-    { icon: HeadsetIcon, label: "Diagnóstico remoto", value: site.hours[0] ? `seg a sex, ${site.hours[0].time}` : "horário a confirmar" },
+    { icon: ClockIcon, label: "Primeira resposta ao chamado", value: site.supportCopy.response },
+    { icon: HeadsetIcon, label: "Diagnóstico remoto", value: site.hours.map((h) => `${h.days}: ${h.time}`).join("; ") },
     { icon: UsersIcon, label: "Técnicos em campo", value: `${site.team.technicians} em ${site.territories.length} regiões` },
-    { icon: PackageIcon, label: "Peças originais", value: "estoque em Belo Horizonte" },
+    { icon: PackageIcon, label: "Peças originais", value: site.supportCopy.parts },
   ];
 
   return (
@@ -34,9 +34,9 @@ export function SupportSection({ site }: { site: SiteConfig }) {
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-radiopaco/10 text-radiopaco">
                   <Icon size={19} />
                 </span>
-                <div className="flex flex-1 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                <div className="flex min-w-0 flex-1 flex-col gap-1">
                   <span className="text-sm text-escala">{label}</span>
-                  <span className="font-mono text-sm text-radiopaco sm:text-right">{value}</span>
+                  <span className="text-sm text-radiopaco">{value}</span>
                 </div>
               </li>
             ))}
@@ -70,7 +70,7 @@ export function SupportSection({ site }: { site: SiteConfig }) {
                 key={t.name}
                 className="flex flex-col rounded-xl border border-radiopaco/10 bg-radiopaco/[0.04] p-5 transition-colors hover:bg-radiopaco/[0.08]"
               >
-                <span className="font-mono text-xs text-escala">Território {String(i + 1).padStart(2, "0")}</span>
+                <span className="text-xs text-escala">Território {String(i + 1).padStart(2, "0")}</span>
                 <span className="mt-2 text-base font-semibold leading-snug text-radiopaco">{t.name}</span>
                 <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Estados atendidos">
                   {t.states.map((s) => (

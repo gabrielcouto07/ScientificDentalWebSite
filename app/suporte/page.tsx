@@ -32,10 +32,10 @@ export default function SuportePage() {
 
   /* VERIFICAR: todos os prazos e condições abaixo são propostas para validação da coordenação de assistência */
   const commitments = [
-    { icon: ClockIcon, label: "Primeira resposta ao chamado", value: "até 1 dia útil" },
-    { icon: HeadsetIcon, label: "Diagnóstico remoto", value: `seg a sex, ${site.hours[0].time}` },
+    { icon: ClockIcon, label: "Primeira resposta ao chamado", value: site.supportCopy.response },
+    { icon: HeadsetIcon, label: "Diagnóstico remoto", value: site.hours.map((h) => `${h.days}: ${h.time}`).join("; ") },
     { icon: UsersIcon, label: "Técnicos em campo", value: `${site.team.technicians} em ${site.territories.length} regiões` },
-    { icon: PackageIcon, label: "Peças originais J. Morita", value: "estoque em Belo Horizonte" },
+    { icon: PackageIcon, label: "Peças originais J. Morita", value: site.supportCopy.parts },
     { icon: ShieldCheckIcon, label: "Radiologistas de aplicação", value: String(site.team.radiologists) },
   ];
 
@@ -70,9 +70,9 @@ export default function SuportePage() {
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-marca-tint text-marca">
                   <Icon size={17} />
                 </span>
-                <div className="flex flex-1 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                <div className="flex min-w-0 flex-1 flex-col gap-1">
                   <span className="text-sm text-tecido">{label}</span>
-                  <span className="font-mono text-sm text-marca sm:text-right">{value}</span>
+                  <span className="text-sm text-marca">{value}</span>
                 </div>
               </li>
             ))}
@@ -104,7 +104,7 @@ export default function SuportePage() {
         <ul className="grid gap-5 sm:grid-cols-3">
           {site.territories.map((t, i) => (
             <li key={t.name} className={cn("card reveal flex flex-col p-6", i === 1 && "reveal-delay-1", i === 2 && "reveal-delay-2")}>
-              <span className="font-mono text-xs text-tecido">Território {String(i + 1).padStart(2, "0")}</span>
+              <span className="text-xs text-tecido">Território {String(i + 1).padStart(2, "0")}</span>
               <span className="mt-2 text-lg font-semibold leading-snug text-marca">{t.name}</span>
               <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Estados atendidos">
                 {t.states.map((s) => (
@@ -134,7 +134,7 @@ export default function SuportePage() {
         {/* VERIFICAR: nomes e condições dos contratos oferecidos */}
       </Section>
 
-      <Section id="chamado" eyebrow="Chamado" title="Abrir chamado técnico" lead="Conte o que está acontecendo. Um técnico responde em até 1 dia útil.">
+      <Section id="chamado" eyebrow="Chamado" title="Abrir chamado técnico" lead={site.supportCopy.requestLead}>
         <div className="grid gap-8 lg:grid-cols-12">
           <LeadForm
             kind="suporte"
@@ -147,7 +147,7 @@ export default function SuportePage() {
           />
           <aside className="reveal reveal-delay-1 flex flex-col gap-3 lg:col-span-5">
             <p className="text-base font-semibold text-marca">Canais diretos</p>
-            <a href={`tel:${site.phones.support.tel}`} className="card card-hover flex items-center gap-4 p-4 focus-visible:outline-none">
+            <a href={`tel:${site.phones.support.tel}`} className="card card-hover flex items-center gap-4 p-4">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-marca-tint text-marca">
                 <PhoneIcon size={18} />
               </span>
@@ -156,7 +156,7 @@ export default function SuportePage() {
                 <span className="text-xs text-tecido">Telefone da assistência</span>
               </span>
             </a>
-            <a href={`mailto:${site.emails.support}`} className="card card-hover flex items-center gap-4 p-4 focus-visible:outline-none">
+            <a href={`mailto:${site.emails.support}`} className="card card-hover flex items-center gap-4 p-4">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-marca-tint text-marca">
                 <MailIcon size={18} />
               </span>

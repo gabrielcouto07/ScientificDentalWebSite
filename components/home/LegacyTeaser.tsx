@@ -20,7 +20,7 @@ export function LegacyTeaser({ site, whatsappHref }: { site: SiteConfig; whatsap
         <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-radiopaco/[0.06] blur-2xl" />
         <div aria-hidden className="pointer-events-none absolute -bottom-32 left-1/3 h-64 w-64 rounded-full bg-marcador/20 blur-3xl" />
         <div className="relative grid gap-10 p-7 sm:p-10 lg:grid-cols-12 lg:items-center lg:gap-12 lg:p-14">
-          <div className="lg:col-span-7">
+          <div className="min-w-0 lg:col-span-7">
             <Eyebrow dark>Programa gratuito</Eyebrow>
             <h2 className="mt-4 text-3xl text-radiopaco sm:text-4xl">{site.legacy.name}</h2>
             <p className="mt-4 max-w-xl text-lg text-escala">
@@ -38,20 +38,19 @@ export function LegacyTeaser({ site, whatsappHref }: { site: SiteConfig; whatsap
               ))}
             </ul>
           </div>
-          <div className="lg:col-span-5">
+          <div className="min-w-0 lg:col-span-5">
             <div className="rounded-xl border border-radiopaco/10 bg-radiopaco/[0.06] p-6 backdrop-blur-sm sm:p-7">
               <span className="flex h-11 w-11 items-center justify-center rounded-md bg-radiopaco text-marca">
                 <GraduationIcon size={22} />
               </span>
               <p className="mt-5 text-base text-radiopaco">
-                Gratuito para donos e gestores de centros de radiologia odontológica. A entrada é pelo canal do
-                WhatsApp.
+                {site.legacy.entry}
                 {/* VERIFICAR: link direto do canal e foto real de turma para esta seção */}
               </p>
               <div className="mt-6 flex flex-col gap-3">
                 <Button href={whatsappHref} variant="inverse-solid" size="lg" target="_blank" className="h-auto min-h-13 w-full whitespace-normal py-3 text-center">
                   <WhatsAppIcon size={18} className="shrink-0 text-sucesso" />
-                  Entrar no canal do WhatsApp
+                  {site.legacy.action}
                 </Button>
                 <Button href="/legacy-sd" variant="inverse" size="lg" className="w-full">
                   Conhecer o Legacy SD

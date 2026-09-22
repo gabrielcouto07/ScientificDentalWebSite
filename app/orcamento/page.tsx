@@ -1,3 +1,4 @@
+import copy from "@/content/forms.json";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { QuoteWizard } from "@/components/forms/QuoteWizard";
@@ -48,7 +49,7 @@ export default function OrcamentoPage() {
   const whatsappBase = `https://wa.me/${site.whatsapp.e164}?text=${encodeURIComponent(whatsappMessages.quote())}`;
 
   const facts = [
-    { icon: ClockIcon, label: "Retorno", value: "até 1 dia útil" },
+    { icon: ClockIcon, label: "Retorno", value: copy.returnLabel },
     { icon: PhoneIcon, label: "Comercial", value: site.phones.main.display },
     { icon: HeadsetIcon, label: "Horário", value: site.hours[0].time },
     { icon: ShieldCheckIcon, label: "Assistência", value: "oficial J. Morita" },
@@ -74,12 +75,11 @@ export default function OrcamentoPage() {
                   </span>
                   <span className="flex min-w-0 flex-col">
                     <span className="text-xs text-tecido">{label}</span>
-                    <span className="truncate font-mono text-sm text-marca">{value}</span>
+                    <span className="text-sm text-marca">{value}</span>
                   </span>
                 </li>
               ))}
             </ul>
-            {/* VERIFICAR: prazo de retorno comercial */}
           </div>
           <div className="animate-rise lg:col-span-8" style={{ animationDelay: "120ms" }}>
             {/* O fallback reserva a altura da etapa 1 para não haver salto de layout (CLS) */}
