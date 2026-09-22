@@ -1,10 +1,11 @@
 import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from "react";
+import copy from "@/content/forms.json";
 import { cn } from "@/lib/utils";
 
 const control =
-  "w-full rounded-md border border-escala bg-radiopaco px-3.5 text-base text-radiolucido shadow-[inset_0_1px_2px_rgb(38_36_67/0.04)] " +
-  "placeholder:text-tecido/60 transition-[border-color,box-shadow] duration-150 " +
-  "hover:border-tecido focus:border-marca focus:shadow-focus focus:outline-none " +
+  "w-full rounded-md border border-tecido bg-radiopaco px-3.5 text-base text-radiolucido shadow-[inset_0_1px_2px_rgb(38_36_67/0.04)] " +
+  "placeholder:text-tecido transition-[border-color,box-shadow] duration-150 " +
+  "hover:border-tecido focus:border-marca focus:shadow-focus focus-visible:outline-2 focus-visible:outline-marca " +
   "aria-[invalid=true]:border-marcador aria-[invalid=true]:focus:shadow-[0_0_0_4px_rgb(214_48_43/0.16)]";
 
 type Wrap = {
@@ -111,11 +112,12 @@ export function SelectField({ id, label, hint, error, optional, options, placeho
 }
 
 /** Consentimento LGPD explícito, com link para a política. Obrigatório em todo formulário. */
-export function ConsentField({ error, id = "consent" }: { error?: string; id?: string }) {
+export function ConsentField({ error, id = "consent", ...props }: { error?: string; id?: string } & InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div>
       <div className="flex items-start gap-3 rounded-md bg-osso p-3.5">
         <input
+          {...props}
           id={id}
           name="consent"
           type="checkbox"
@@ -129,8 +131,7 @@ export function ConsentField({ error, id = "consent" }: { error?: string; id?: s
           <a href="/privacidade" className="link text-marca" target="_blank" rel="noopener">
             política de privacidade
           </a>
-          . Os dados ficam guardados por até 24 meses e não são repassados a terceiros.
-          {/* VERIFICAR: prazo de retenção acordado com o jurídico do cliente */}
+          {copy.consentSuffix}
         </label>
       </div>
       {error && (

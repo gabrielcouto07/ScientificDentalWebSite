@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { submitLead, type LeadState } from "@/app/actions/lead";
 import { Button, ButtonArrow } from "@/components/ui/Button";
 import { CheckIcon, WhatsAppIcon } from "@/components/ui/Icons";
@@ -20,6 +20,8 @@ type Props = {
   className?: string;
 };
 
+import copy from "@/content/forms.json";
+
 const initial: LeadState = { status: "idle" };
 
 /**
@@ -38,6 +40,13 @@ export function LeadForm({
   className,
 }: Props) {
   const [state, action, pending] = useActionState(submitLead, initial);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [values, setValues] = useState<Record<string, string>>({});
+  const [consent, setConsent] = useState(false);
+  const fieldValue = (name: string) => ({ value: values[name] ?? "", onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setValues((previous) => ({ ...previous, [name]: event.target.value })) });
+  useEffect(() => {
+    if (state.status === "error") formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
+  }, [state]);
   const errors = state.status === "error" ? state.fieldErrors ?? {} : {};
 
   if (state.status === "success") {
@@ -48,9 +57,7 @@ export function LeadForm({
         </span>
         <p className="mt-5 text-xl font-semibold text-marca">Pedido registrado</p>
         <p className="mt-2 text-tecido">
-          Protocolo <span className="font-mono text-marca">{state.id}</span>. Um especialista da Scientific Dental
-          responde em até 1 dia útil pelo telefone ou e-mail informados.
-          {/* VERIFICAR: prazo de resposta comercial */}
+          Protocolo <span className="font-mono text-marca">{state.id}</span>. {copy.success.lead}
         </p>
         <a href={whatsappHref} className="link mt-5 inline-flex items-center gap-2 text-marca" target="_blank" rel="noopener">
           <WhatsAppIcon size={18} className="text-sucesso" />
@@ -61,16 +68,16 @@ export function LeadForm({
   }
 
   return (
-    <form action={action} className={cn("card p-6 sm:p-8", className)} noValidate>
+    <form ref={formRef} action={action} className={cn("card p-6 sm:p-8", className)} noValidate>
       <input type="hidden" name="kind" value={kind} />
       <input type="hidden" name="sourcePath" value={sourcePath} />
       {product && <input type="hidden" name="product" value={product} />}
       <Honeypot id={`${kind}-website`} />
       <div className="grid gap-5 sm:grid-cols-2">
-        <TextField id={`${kind}-name`} name="name" label="Nome" autoComplete="name" error={errors.name} />
+        <TextField id={`${kind}-name`} name="name" {...fieldValue("name")}  label="Nome" autoComplete="name" error={errors.name} />
         <TextField
           id={`${kind}-phone`}
-          name="phone"
+          name="phone" {...fieldValue("phone")} 
           label="Telefone ou WhatsApp"
           type="tel"
           inputMode="tel"
@@ -79,16 +86,16 @@ export function LeadForm({
           error={errors.phone}
         />
         <div className="sm:col-span-2">
-          <TextField id={`${kind}-email`} name="email" label="E-mail" type="email" autoComplete="email" error={errors.email} />
+          <TextField id={`${kind}-email`} name="email" {...fieldValue("email")}  label="E-mail" type="email" autoComplete="email" error={errors.email} />
         </div>
         {withMessage && (
           <div className="sm:col-span-2">
-            <TextArea id={`${kind}-message`} name="message" label={messageLabel} optional error={errors.message} />
+            <TextArea id={`${kind}-message`} name="message" {...fieldValue("message")}  label={messageLabel} optional error={errors.message} />
           </div>
         )}
       </div>
       <div className="mt-5">
-        <ConsentField id={`${kind}-consent`} error={errors.consent} />
+        <ConsentField checked={consent} onChange={(event) => setConsent(event.target.checked)} id={`${kind}-consent`} error={errors.consent} />
       </div>
       {state.status === "error" && (
         <p role="alert" className="mt-4 rounded-md bg-marcador-tint px-3.5 py-2.5 text-sm text-marcador">

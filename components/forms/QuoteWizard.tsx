@@ -1,5 +1,7 @@
 "use client";
 
+import { quoteStepSchema } from "@/lib/lead-schema";
+import copy from "@/content/forms.json";
 import { useSearchParams } from "next/navigation";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { submitLead, type LeadState } from "@/app/actions/lead";
@@ -53,6 +55,10 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
   const [operation, setOperation] = useState("");
   const [timeline, setTimeline] = useState("");
   const [stepError, setStepError] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [values, setValues] = useState<Record<string, string>>({});
+  const [consent, setConsent] = useState(false);
+  const fieldValue = (name: string) => ({ value: values[name] ?? "", onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setValues((previous) => ({ ...previous, [name]: event.target.value })) });
   const [state, action, pending] = useActionState(async (previous: LeadState, formData: FormData) => {
     const result = await submitLead(previous, formData);
     if (result.status === "error" && result.fieldErrors) {
@@ -69,16 +75,17 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
     mounted.current = true;
   }, [step]);
 
+  useEffect(() => {
+    if (state.status === "error") formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"], [aria-describedby$="-error"]')?.focus();
+  }, [state]);
+
   const errors = state.status === "error" ? state.fieldErrors ?? {} : {};
 
   function next() {
-    const missing =
-      (step === 0 && !equipment && "Escolha um equipamento para continuar.") ||
-      (step === 1 && !operation && "Escolha o tipo de operação para continuar.") ||
-      (step === 2 && !timeline && "Escolha um prazo para continuar.") ||
-      null;
-    if (missing) {
-      setStepError(missing);
+    const key = (["equipment", "operation", "timeline"] as const)[step];
+    const parsed = quoteStepSchema.shape[key].safeParse({ equipment, operation, timeline }[key]);
+    if (!parsed.success) {
+      setStepError(parsed.error.issues[0].message);
       return;
     }
     setStepError(null);
@@ -103,9 +110,7 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
         <p className="mt-5 font-mono text-sm text-tecido">Protocolo {state.id}</p>
         <h2 className="mt-2 text-2xl sm:text-3xl">Pedido de orçamento registrado</h2>
         <p className="mt-4 max-w-xl text-tecido">
-          Um especialista da Scientific Dental entra em contato em até 1 dia útil pelo telefone ou e-mail
-          informados, com proposta para <span className="font-medium text-marca">{equipment}</span>.
-          {/* VERIFICAR: prazo de resposta comercial */}
+          {copy.success.quote} <span className="font-medium text-marca">{equipment}</span>.
         </p>
         <a href={whatsappHref} className="link mt-6 inline-flex items-center gap-2 text-marca" target="_blank" rel="noopener">
           <WhatsAppIcon size={18} className="text-sucesso" />
@@ -116,7 +121,7 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
   }
 
   return (
-    <form action={action} noValidate className="card min-h-[36rem] p-6 sm:p-8 lg:p-10">
+    <form ref={formRef} action={action} onSubmit={(event) => { if (step < 3) { event.preventDefault(); next(); } }} noValidate className="card min-h-[36rem] p-6 sm:p-8 lg:p-10">
       <input type="hidden" name="kind" value="orcamento" />
       <input type="hidden" name="sourcePath" value={sourcePath} />
       <Honeypot id="quote-website" />
@@ -149,7 +154,7 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
         <h2 ref={step === 0 ? headingRef : undefined} tabIndex={-1} className="text-2xl outline-none sm:text-3xl">
           O que você quer orçar?
         </h2>
-        <RadioList name="equipment" options={EQUIPMENT_OPTIONS} value={equipment} onChange={setEquipment} columns />
+        <RadioList error={(step === 0 ? stepError : null) ?? errors.equipment} name="equipment" options={EQUIPMENT_OPTIONS} value={equipment} onChange={setEquipment} columns />
       </fieldset>
 
       {/* Etapa 2: operação */}
@@ -158,7 +163,7 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
         <h2 ref={step === 1 ? headingRef : undefined} tabIndex={-1} className="text-2xl outline-none sm:text-3xl">
           Onde o equipamento vai operar?
         </h2>
-        <RadioList name="operation" options={OPERATION_OPTIONS} value={operation} onChange={setOperation} />
+        <RadioList error={(step === 1 ? stepError : null) ?? errors.operation} name="operation" options={OPERATION_OPTIONS} value={operation} onChange={setOperation} />
       </fieldset>
 
       {/* Etapa 3: prazo */}
@@ -167,11 +172,11 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
         <h2 ref={step === 2 ? headingRef : undefined} tabIndex={-1} className="text-2xl outline-none sm:text-3xl">
           Qual é o prazo estimado?
         </h2>
-        <RadioList name="timeline" options={TIMELINE_OPTIONS} value={timeline} onChange={setTimeline} />
+        <RadioList error={(step === 2 ? stepError : null) ?? errors.timeline} name="timeline" options={TIMELINE_OPTIONS} value={timeline} onChange={setTimeline} />
         <div className="mt-6">
           <TextField
             id="city"
-            name="city"
+            name="city" {...fieldValue("city")} 
             label="Cidade e estado"
             optional
             placeholder="Belo Horizonte, MG"
@@ -188,10 +193,10 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
           Para quem enviamos a proposta?
         </h2>
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
-          <TextField id="name" name="name" label="Nome" autoComplete="name" error={errors.name} />
+          <TextField id="name" name="name" {...fieldValue("name")}  label="Nome" autoComplete="name" error={errors.name} />
           <TextField
             id="phone"
-            name="phone"
+            name="phone" {...fieldValue("phone")} 
             label="Telefone ou WhatsApp"
             type="tel"
             inputMode="tel"
@@ -199,10 +204,10 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
             placeholder="(31) 99999-9999"
             error={errors.phone}
           />
-          <TextField id="email" name="email" label="E-mail" type="email" autoComplete="email" error={errors.email} />
-          <TextField id="company" name="company" label="Empresa ou clínica" optional autoComplete="organization" error={errors.company} />
+          <TextField id="email" name="email" {...fieldValue("email")}  label="E-mail" type="email" autoComplete="email" error={errors.email} />
+          <TextField id="company" name="company" {...fieldValue("company")}  label="Empresa ou clínica" optional autoComplete="organization" error={errors.company} />
           <div className="sm:col-span-2">
-            <ConsentField error={errors.consent} />
+            <ConsentField checked={consent} onChange={(event) => setConsent(event.target.checked)} error={errors.consent} />
           </div>
         </div>
       </fieldset>
@@ -218,9 +223,9 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
           <WhatsAppIcon size={16} className="text-sucesso" />
           Prefiro continuar pelo WhatsApp
         </a>
-        <div className="flex items-center gap-3">
+        <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto">
           {step > 0 && (
-            <Button type="button" variant="quiet" onClick={back}>
+            <Button type="button" variant="quiet" onClick={back} disabled={pending}>
               Voltar
             </Button>
           )}
@@ -250,14 +255,17 @@ function RadioList({
   value,
   onChange,
   columns = false,
+  error,
 }: {
   name: string;
   options: Option[];
   value: string;
   onChange: (v: string) => void;
   columns?: boolean;
+  error?: string | null;
 }) {
   return (
+    <div>
     <ul className={cn("mt-6 grid gap-3", columns && "sm:grid-cols-2")}>
       {options.map((o) => {
         const id = `${name}-${o.value.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
@@ -279,6 +287,7 @@ function RadioList({
                 name={name}
                 value={o.value}
                 checked={checked}
+                aria-describedby={error ? `${name}-error` : undefined}
                 onChange={() => onChange(o.value)}
                 className="mt-1 h-4.5 w-4.5 shrink-0 accent-marca"
               />
@@ -291,5 +300,7 @@ function RadioList({
         );
       })}
     </ul>
+    {error && <p id={`${name}-error`} role="alert" className="mt-2 text-sm text-marcador">{error}</p>}
+    </div>
   );
 }

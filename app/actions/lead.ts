@@ -19,6 +19,9 @@ export async function submitLead(_prev: LeadState, formData: FormData): Promise<
     Array.from(formData.entries()).filter(([k]) => !k.startsWith("$")).map(([k, v]) => [k, typeof v === "string" ? v : ""]),
   );
 
+  // Bots receive no delivery and do not consume a real visitor's quota.
+  if (raw.website?.trim()) return { status: "success", id: "SD-OK" };
+
   const parsed = leadSchema.safeParse(raw);
   if (!parsed.success) {
     const fieldErrors: Record<string, string> = {};

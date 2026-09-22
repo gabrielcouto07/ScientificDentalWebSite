@@ -1,0 +1,90 @@
+{
+  "equipment": [
+    {
+      "value": "Tomógrafo CBCT Veraview X800",
+      "label": "Tomógrafo CBCT",
+      "hint": "Veraview X800: panorâmica, ceph e CBCT com voxel de 80 µm"
+    },
+    {
+      "value": "Panorâmico com CBCT Veraviewepocs 3D",
+      "label": "Panorâmico com CBCT",
+      "hint": "Veraviewepocs 3D R100"
+    },
+    {
+      "value": "Endodontia (Tri Auto ZX2, Root ZX mini)",
+      "label": "Endodontia",
+      "hint": "Tri Auto ZX2, Root ZX mini"
+    },
+    {
+      "value": "Impressoras DryView e filmes",
+      "label": "Impressão e filmes",
+      "hint": "DryView 5700 e 5950, filme dry, filmes intraorais"
+    },
+    {
+      "value": "Proteção radiológica e acessórios",
+      "label": "Proteção e acessórios",
+      "hint": "Aventais, lençol de chumbo, barita, afastadores"
+    },
+    {
+      "value": "Ainda não sei, quero orientação",
+      "label": "Ainda não sei",
+      "hint": "Um especialista ajuda a dimensionar"
+    }
+  ],
+  "operation": [
+    {
+      "value": "Centro de radiologia odontológica",
+      "label": "Centro de radiologia odontológica"
+    },
+    {
+      "value": "Clínica odontológica",
+      "label": "Clínica odontológica"
+    },
+    {
+      "value": "Hospital ou serviço de imagem",
+      "label": "Hospital ou serviço de imagem"
+    },
+    {
+      "value": "Consultório",
+      "label": "Consultório"
+    },
+    {
+      "value": "Outro",
+      "label": "Outro"
+    }
+  ],
+  "timeline": [
+    {
+      "value": "Nos próximos 30 dias",
+      "label": "Nos próximos 30 dias"
+    },
+    {
+      "value": "Em até 3 meses",
+      "label": "Em até 3 meses"
+    },
+    {
+      "value": "Em até 6 meses",
+      "label": "Em até 6 meses"
+    },
+    {
+      "value": "Sem prazo definido",
+      "label": "Sem prazo definido, estou pesquisando"
+    }
+  ],
+  "steps": [
+    "Equipamento",
+    "Operação",
+    "Prazo",
+    "Contato"
+  ],
+  "success": {
+    "lead": "A equipe da Scientific Dental entrará em contato pelo telefone ou e-mail informados.",
+    "quote": "A equipe da Scientific Dental entrará em contato para conversar sobre o equipamento selecionado."
+  },
+  "consentSuffix": ".",
+  "returnLabel": "Pelo telefone ou e-mail informado",
+  "verificar": [
+    "Confirmar prazo de resposta comercial e de suporte antes de divulgar um SLA. A confirmação de envio não promete prazo.",
+    "Confirmar com o jurídico prazo de retenção e operadores; o consentimento remete à política, sem prometer ausência de compartilhamento necessário."
+  ]
+}

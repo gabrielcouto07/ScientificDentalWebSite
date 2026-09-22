@@ -1,6 +1,7 @@
 import "server-only";
 import nodemailer from "nodemailer";
-import { z } from "zod";
+import type { LeadInput } from "./lead-schema";
+export { leadSchema } from "./lead-schema";
 
 /**
  * Entrega de leads. Ponto único de integração com o CRM.
@@ -16,31 +17,6 @@ import { z } from "zod";
  *   LEAD_TO            destinatário(s) do e-mail, separados por vírgula
  *   LEAD_FROM          remetente
  */
-
-export const leadSchema = z.object({
-  kind: z.enum(["orcamento", "contato", "suporte", "produto"]),
-  name: z.string().trim().min(2, "Informe seu nome").max(120),
-  email: z.string().trim().email("E-mail inválido").max(160),
-  phone: z
-    .string()
-    .trim()
-    .min(10, "Informe telefone com DDD")
-    .max(20)
-    .regex(/^[\d\s()+-]+$/, "Use apenas números, parênteses e traços"),
-  company: z.string().trim().max(160).optional().or(z.literal("")),
-  city: z.string().trim().max(120).optional().or(z.literal("")),
-  message: z.string().trim().max(2000).optional().or(z.literal("")),
-  product: z.string().trim().max(160).optional().or(z.literal("")),
-  operation: z.string().trim().max(80).optional().or(z.literal("")),
-  timeline: z.string().trim().max(80).optional().or(z.literal("")),
-  equipment: z.string().trim().max(400).optional().or(z.literal("")),
-  consent: z.literal("on", { message: "É preciso aceitar a política de privacidade" }),
-  sourcePath: z.string().max(300).optional().or(z.literal("")),
-  /** honeypot: deve chegar vazio */
-  website: z.string().max(0).optional().or(z.literal("")),
-});
-
-export type LeadInput = z.infer<typeof leadSchema>;
 
 export type Lead = Omit<LeadInput, "consent" | "website"> & {
   id: string;
@@ -115,6 +91,9 @@ async function sendEmail(lead: Lead): Promise<boolean> {
     host: SMTP_HOST,
     port: Number(SMTP_PORT ?? 587),
     secure: SMTP_SECURE === "true",
+    connectionTimeout: 8_000,
+    greetingTimeout: 8_000,
+    socketTimeout: 15_000,
     auth: SMTP_USER ? { user: SMTP_USER, pass: SMTP_PASS } : undefined,
   });
   await transport.sendMail({
@@ -142,7 +121,7 @@ export async function deliverLead(lead: Lead): Promise<{ delivered: boolean; cha
   }
   if (channels.length === 0) {
     const anyConfigured = Boolean(process.env.LEAD_WEBHOOK_URL || process.env.SMTP_HOST);
-    if (anyConfigured) return { delivered: false, channels };
+    if (anyConfigured || process.env.NODE_ENV === "production") return { delivered: false, channels };
     console.info("[leads] nenhum canal configurado; lead registrado no console:\n" + renderText(lead));
     channels.push("console");
   }
