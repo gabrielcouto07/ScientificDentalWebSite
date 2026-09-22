@@ -3,10 +3,11 @@ import { Button, ButtonArrow } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ArrowUpRightIcon, HeadsetIcon, MapPinIcon, ShieldCheckIcon, SparkIcon, UsersIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
+import { YearsSince } from "@/components/ui/CurrentTime";
 import { Section } from "@/components/ui/Section";
 import { getSite } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
-import { cn, yearsSince } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
   title: "A Scientific: distribuidora oficial J. Morita e Carestream",
@@ -18,12 +19,9 @@ export const metadata: Metadata = pageMetadata({
 /** Copy baseada no site atual (páginas A Scientific, Missão, Visão, Valores, parcerias). Fase 2 amplia. */
 export default function AScientificPage() {
   const site = getSite();
-  const groupYears = yearsSince(site.foundedYear); /* VERIFICAR: ano de fundação do grupo (site diz "46 anos" desde 2023) */
-  const dentalYears = yearsSince(site.dentalSinceYear);
-
   const stats = [
-    { value: String(groupYears), unit: "anos", label: "de Scientific no mercado" },
-    { value: String(dentalYears), unit: "anos", label: "no segmento odontológico" },
+    { value: <YearsSince key="group-years" year={site.foundedYear} />, unit: "anos", label: "de Scientific no mercado" },
+    { value: <YearsSince key="dental-years" year={site.dentalSinceYear} />, unit: "anos", label: "no segmento odontológico" },
     { value: "1º", unit: "", label: "distribuidor Carestream da América Latina" },
   ];
 
@@ -44,7 +42,7 @@ export default function AScientificPage() {
       <PageHero
         eyebrow="Institucional"
         title="A Scientific"
-        lead={`Em ${site.dentalSinceYear}, a Scientific, grupo líder de mercado há ${groupYears} anos, entrou no segmento odontológico ao adquirir a maior empresa de equipamentos e filmes dentais do Brasil.`}
+        lead={<>Em {site.dentalSinceYear}, a Scientific, grupo líder de mercado há <YearsSince year={site.foundedYear} /> anos, entrou no segmento odontológico ao adquirir a maior empresa de equipamentos e filmes dentais do Brasil.</>}
         aside={
           <ul className="card grid divide-y divide-escala sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {stats.map((s) => (
@@ -105,7 +103,7 @@ export default function AScientificPage() {
 
       <Section id="marcas" eyebrow="Marcas representadas" title="J. Morita e Carestream" lead="Duas fabricantes de referência mundial, um único ponto de venda e assistência no Brasil.">
         <div className="grid gap-5 lg:grid-cols-2">
-          <article className="card reveal flex flex-col p-6 sm:p-8">
+          <article id="morita" className="card reveal scroll-mt-36 flex flex-col p-6 sm:p-8">
             <p className="text-xs font-medium text-tecido">Kyoto, Japão · desde 1916</p>
             <h3 className="mt-2 text-2xl font-semibold text-marca sm:text-3xl">J. Morita</h3>
             <p className="mt-4 text-tecido">
@@ -127,7 +125,7 @@ export default function AScientificPage() {
               <ArrowUpRightIcon size={15} />
             </a>
           </article>
-          <article className="card reveal reveal-delay-1 flex flex-col p-6 sm:p-8">
+          <article id="carestream" className="card reveal reveal-delay-1 scroll-mt-36 flex flex-col p-6 sm:p-8">
             <p className="text-xs font-medium text-tecido">Carestream Health</p>
             <h3 className="mt-2 text-2xl font-semibold text-marca sm:text-3xl">Carestream</h3>
             <p className="mt-4 text-tecido">

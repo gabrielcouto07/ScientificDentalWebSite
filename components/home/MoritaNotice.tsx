@@ -6,7 +6,7 @@ import type { SiteConfig } from "@/lib/content";
  * O sinal de confiança mais forte da empresa, com a fonte citada, ao lado
  * das duas marcas representadas. Afirmação com fonte, não slogan.
  */
-export function MoritaNotice({ notice }: { notice: SiteConfig["moritaNotice"] }) {
+export function MoritaNotice({ notice, brands }: { notice: SiteConfig["moritaNotice"]; brands: string[] }) {
   return (
     <section aria-label="Comunicado oficial da J. Morita e marcas representadas" className="border-y border-escala bg-osso">
       <Container className="grid gap-6 py-10 lg:grid-cols-12 lg:gap-8 lg:py-12">
@@ -16,11 +16,10 @@ export function MoritaNotice({ notice }: { notice: SiteConfig["moritaNotice"] })
           </span>
           <div className="flex-1">
             <blockquote className="text-xl font-medium text-marca sm:text-2xl">
-              <p>“J. Morita Brasil não está mais em operação.”</p>
+              <p>“{notice.quote}”</p>
             </blockquote>
             <figcaption className="mt-3 text-sm text-tecido">
-              <span className="font-medium text-radiolucido">J. Morita Corporation</span>, página oficial de suporte ao
-              produto. {notice.summary}
+              <span className="font-medium text-radiolucido">{notice.sourceLabel}</span>. {notice.summary}
             </figcaption>
             <a
               href={notice.sourceUrl}
@@ -35,8 +34,8 @@ export function MoritaNotice({ notice }: { notice: SiteConfig["moritaNotice"] })
         </figure>
 
         <div className="reveal reveal-delay-1 grid grid-cols-2 gap-4 lg:col-span-4">
-          <BrandTile name="J. Morita" detail="Kyoto, desde 1916" role="Raios X, CBCT e endodontia" />
-          <BrandTile name="Carestream" detail="Carestream Health" role="Filmes e impressoras DryView" />
+          <BrandTile name={brands[0] ?? "J. Morita"} detail="Kyoto, desde 1916" role="Raios X, CBCT e endodontia" />
+          <BrandTile name={brands[1] ?? "Carestream"} detail="Carestream Health" role="Filmes e impressoras DryView" />
         </div>
       </Container>
     </section>

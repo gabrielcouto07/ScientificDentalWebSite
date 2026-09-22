@@ -7,7 +7,6 @@
     "date": "2024-02-22",
     "lang": "en",
     "source": "J. Morita, material clínico do fabricante",
-    "oldPath": "/sd/case-retention-of-tooth-17/",
     "verificar": ["Texto original em inglês; traduzir ou substituir por caso brasileiro."]
   },
   {
@@ -18,7 +17,6 @@
     "date": "2024-02-22",
     "lang": "en",
     "source": "J. Morita, material clínico do fabricante",
-    "oldPath": "/sd/case-cone-beam-computed-tomography-in-endodontics/",
     "verificar": ["Texto original em inglês; traduzir ou substituir por caso brasileiro."]
   },
   {
@@ -29,7 +27,6 @@
     "date": "2024-02-22",
     "lang": "en",
     "source": "J. Morita, material clínico do fabricante",
-    "oldPath": "/sd/case-dens-in-dente-type-iii-oehlers/",
     "verificar": ["Texto original em inglês; traduzir ou substituir por caso brasileiro."]
   },
   {
@@ -38,8 +35,7 @@
     "title": "Tomógrafo X800 da Morita eleva a odontologia a novos patamares",
     "excerpt": "Por que o feixe horizontal, o voxel de 80 µm e os 11 campos de visão mudam o padrão de diagnóstico em um centro de radiologia.",
     "date": "2023-12-22",
-    "lang": "pt-BR",
-    "oldPath": "/sd/tomografo-x800-da-morita-eleva-a-odontologia-a-novos-patamares/"
+    "lang": "pt-BR"
   },
   {
     "slug": "explorando-as-vantagens-vitais-a-importancia-do-uso-de-tomografos-dentais-de-alta-resolucao",
@@ -47,8 +43,7 @@
     "title": "A importância do uso de tomógrafos dentais de alta resolução",
     "excerpt": "O que muda no laudo quando a resolução espacial passa de 125 µm para 80 µm, e onde isso pesa na prática do radiologista.",
     "date": "2023-12-22",
-    "lang": "pt-BR",
-    "oldPath": "/sd/explorando-as-vantagens-vitais-a-importancia-do-uso-de-tomografos-dentais-de-alta-resolucao/"
+    "lang": "pt-BR"
   },
   {
     "slug": "a-importancia-do-marketing-digital-para-clinicas-radiologicas-dentais",
@@ -56,8 +51,7 @@
     "title": "Marketing digital para clínicas de radiologia odontológica",
     "excerpt": "Como centros de radiologia usam presença digital para atrair dentistas encaminhadores e ocupar a agenda do tomógrafo.",
     "date": "2023-12-22",
-    "lang": "pt-BR",
-    "oldPath": "/sd/a-importancia-do-marketing-digital-para-clinicas-radiologicas-dentais/"
+    "lang": "pt-BR"
   },
   {
     "slug": "inovacao-em-foco-apresentacao-exclusiva-do-tomografo-x800-da-morita-no-evento-da-scientific-dental-no-proximo-mes",
@@ -65,7 +59,6 @@
     "title": "Apresentação do tomógrafo X800 no evento da Scientific Dental",
     "excerpt": "Registro do evento de lançamento do Veraview X800 para a comunidade odontológica de Belo Horizonte.",
     "date": "2023-12-22",
-    "lang": "pt-BR",
-    "oldPath": "/sd/inovacao-em-foco-apresentacao-exclusiva-do-tomografo-x800-da-morita-no-evento-da-scientific-dental-no-proximo-mes/"
+    "lang": "pt-BR"
   }
 ]

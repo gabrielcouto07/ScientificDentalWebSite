@@ -37,13 +37,32 @@ function getServerSnapshot(): "loading" {
   return "loading";
 }
 
-function write(value: Consent) {
+export function writeCookieConsent(value: Consent) {
   try {
     window.localStorage.setItem(KEY, value);
   } catch {
     /* armazenamento bloqueado: segue sem persistir */
   }
   listeners.forEach((l) => l());
+}
+
+export function revokeCookieConsent() {
+  try {
+    window.localStorage.removeItem(KEY);
+  } catch {
+    /* armazenamento bloqueado: a store já fica sem consentimento persistido */
+  }
+  listeners.forEach((listener) => listener());
+  // Recarrega para descarregar imediatamente qualquer script não essencial já injetado.
+  window.location.reload();
+}
+
+export function CookieSettingsButton() {
+  return (
+    <button type="button" className="text-escala transition-colors hover:text-radiopaco" onClick={revokeCookieConsent}>
+      Gerenciar cookies
+    </button>
+  );
 }
 
 /**
@@ -80,10 +99,10 @@ export function CookieConsent({ gtmId }: { gtmId?: string }) {
             .
           </p>
           <div className="mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
-            <Button variant="secondary" onClick={() => write("essential")}>
+            <Button variant="secondary" onClick={() => writeCookieConsent("essential")}>
               Somente essenciais
             </Button>
-            <Button variant="contrast" onClick={() => write("all")}>
+            <Button variant="contrast" onClick={() => writeCookieConsent("all")}>
               Aceitar todos
             </Button>
           </div>

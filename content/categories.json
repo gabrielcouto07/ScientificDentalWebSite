@@ -6,8 +6,7 @@
     "description": "Tomógrafos CBCT e panorâmicos J. Morita com feixe horizontal de raios X e voxel mínimo de 80 µm.",
     "specLine": "80 µm · até 11 FOV · pan + ceph",
     "order": 1,
-    "flagship": ["veraview-x800", "veraviewepocs-3d"],
-    "oldSlugs": ["equipamentos"]
+    "flagship": ["veraview-x800", "veraviewepocs-3d"]
   },
   {
     "slug": "endodontia",
@@ -16,8 +15,7 @@
     "description": "Motores endodônticos e localizadores apicais J. Morita.",
     "specLine": "Root ZX integrado",
     "order": 2,
-    "flagship": ["tri-auto-zx-2", "localizador-apical-root-zx-mini"],
-    "oldSlugs": ["endodontia"]
+    "flagship": ["tri-auto-zx-2", "localizador-apical-root-zx-mini"]
   },
   {
     "slug": "intraoral",
@@ -30,8 +28,7 @@
       "filme-periapical-e-speed-caixa-com-150-peliculas",
       "filme-periapical-insight-ip-21",
       "posicionadores-autoclavaveis"
-    ],
-    "oldSlugs": ["filmes-intra-orais", "posicionadores"]
+    ]
   },
   {
     "slug": "insumos-e-impressao",
@@ -40,8 +37,7 @@
     "description": "Impressoras a laser DryView, filme dry, revelador e fixador.",
     "specLine": "DryView 5700 e 5950",
     "order": 4,
-    "flagship": ["impressora-5950", "impressora-5700", "filme-dry-com-125-peliculas"],
-    "oldSlugs": ["impressoras", "filme-dry", "revelador", "fixador"]
+    "flagship": ["impressora-5950", "impressora-5700", "filme-dry-com-125-peliculas"]
   },
   {
     "slug": "protecao-e-acessorios",
@@ -54,7 +50,6 @@
       "avental-panoramico-em-borracha-plumbifera",
       "lencol-de-chumbo-1-mm-de-espessura",
       "afastador-oclusal-kit-com-p-m-g"
-    ],
-    "oldSlugs": ["aventais", "afastadores", "espelhos", "protecao-radiologica"]
+    ]
   }
 ]

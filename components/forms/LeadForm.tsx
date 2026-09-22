@@ -65,7 +65,7 @@ export function LeadForm({
       <input type="hidden" name="kind" value={kind} />
       <input type="hidden" name="sourcePath" value={sourcePath} />
       {product && <input type="hidden" name="product" value={product} />}
-      <Honeypot />
+      <Honeypot id={`${kind}-website`} />
       <div className="grid gap-5 sm:grid-cols-2">
         <TextField id={`${kind}-name`} name="name" label="Nome" autoComplete="name" error={errors.name} />
         <TextField

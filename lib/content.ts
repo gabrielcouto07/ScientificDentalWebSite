@@ -93,7 +93,6 @@ export const productSchema = z.object({
   related: z.array(z.string()).default([]),
   anvisa: z.string().optional(),
   price: z.literal("sob-consulta").default("sob-consulta"),
-  featured: z.boolean().default(false),
   order: z.number().default(100),
   verificar: z.array(z.string()).default([]),
 });
@@ -106,7 +105,6 @@ export const categorySchema = z.object({
   specLine: z.string(),
   order: z.number(),
   flagship: z.array(z.string()).default([]),
-  oldSlugs: z.array(z.string()).default([]),
 });
 
 export const articleSchema = z.object({
@@ -117,7 +115,6 @@ export const articleSchema = z.object({
   date: z.string(),
   lang: z.enum(["pt-BR", "en"]).default("pt-BR"),
   source: z.string().optional(),
-  oldPath: z.string().optional(),
   verificar: z.array(z.string()).default([]),
 });
 
@@ -152,7 +149,7 @@ export const siteSchema = z.object({
   }),
   territories: z.array(z.object({ name: z.string(), states: z.array(z.string()) })),
   team: z.object({ technicians: z.number(), radiologists: z.number() }),
-  legacy: z.object({ name: z.string(), url: z.string(), whatsappUrl: z.string() }),
+  legacy: z.object({ name: z.string(), url: z.string() }),
   verificar: z.array(z.string()).default([]),
 });
 
@@ -237,10 +234,6 @@ export function getProduct(slug: string): Product | undefined {
 
 export function getProductsByCategory(categorySlug: string): Product[] {
   return loadProducts().filter((p) => p.category === categorySlug);
-}
-
-export function getFeaturedProducts(): Product[] {
-  return loadProducts().filter((p) => p.featured);
 }
 
 export function getRelatedProducts(product: Product, limit = 3): Product[] {

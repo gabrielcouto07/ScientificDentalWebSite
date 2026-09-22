@@ -27,7 +27,7 @@ const variants: Record<Variant, string> = {
   inverse: "border border-radiopaco/35 text-radiopaco hover:border-radiopaco hover:bg-radiopaco/10",
   "inverse-solid": "bg-radiopaco text-marca shadow-soft hover:bg-osso hover:-translate-y-0.5",
   quiet: "text-marca underline decoration-escala underline-offset-[0.2em] hover:decoration-marca hover:decoration-2",
-  whatsapp: "bg-whatsapp text-[#0b3d2e] hover:brightness-95 hover:-translate-y-0.5 shadow-soft",
+  whatsapp: "bg-whatsapp text-whatsapp-ink hover:brightness-95 hover:-translate-y-0.5 shadow-soft",
 };
 
 const sizes: Record<Size, string> = {

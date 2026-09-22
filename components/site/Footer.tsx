@@ -3,6 +3,8 @@ import { Container } from "@/components/ui/Container";
 import { ArrowUpRightIcon, MailIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/Icons";
 import type { Category, SiteConfig } from "@/lib/content";
 import { whatsappLink, whatsappMessages } from "@/lib/whatsapp";
+import { CurrentYear } from "@/components/ui/CurrentTime";
+import { CookieSettingsButton } from "./CookieConsent";
 import { Logo } from "./Logo";
 
 type Props = { site: SiteConfig; categories: Category[] };
@@ -12,7 +14,6 @@ type Props = { site: SiteConfig; categories: Category[] };
  * desktop; no celular vira uma coluna com os contatos primeiro.
  */
 export function Footer({ site, categories }: Props) {
-  const year = new Date().getFullYear();
   const whatsappHref = whatsappLink(whatsappMessages.default);
   return (
     <footer className="surface-marca on-dark" aria-labelledby="footer-title">
@@ -142,13 +143,15 @@ export function Footer({ site, categories }: Props) {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-radiopaco/15 pt-6 text-xs text-radiopaco/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {site.legalName}. Distribuidor autorizado J. Morita e Carestream.
+            © <CurrentYear /> {site.legalName}. Distribuidor autorizado J. Morita e Carestream.
             {/* VERIFICAR: CNPJ e razão social completa para o rodapé */}
           </p>
           <p className="flex items-center gap-4">
             <Link href="/privacidade" className="hover:text-radiopaco">
               Privacidade e LGPD
             </Link>
+            <span aria-hidden>·</span>
+            <CookieSettingsButton />
             <span aria-hidden>·</span>
             <span>Belo Horizonte, MG</span>
           </p>

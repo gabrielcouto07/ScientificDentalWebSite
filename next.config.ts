@@ -40,6 +40,10 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+          // HSTS só faz sentido com certificado válido e renovação automática (Vercel provisiona).
+          // Sem includeSubDomains nem preload de propósito: o host antigo (IIS) ainda responde
+          // com certificado vencido, e preload é irreversível por meses.
+          { key: "Strict-Transport-Security", value: "max-age=31536000" },
         ],
       },
       {

@@ -1,5 +1,5 @@
 {
-  "_comment": "Fonte única dos 301 do site antigo (/sd/...). Consumido por next.config.ts e por scripts/generate-web-config.mjs (IIS). Rotas não listadas caem em app/sd/[[...rest]] e vão para a home.",
+  "_comment": "Fonte única dos 301 explícitos do site antigo (/sd/...). Consumido por next.config.ts e por scripts/generate-web-config.mjs (IIS). Produtos antigos são validados pela rota catch-all antes do redirecionamento.",
   "redirects": [
     { "source": "/sd", "destination": "/" },
     { "source": "/sd/index.php", "destination": "/" },
@@ -25,8 +25,6 @@
     { "source": "/sd/author/:author", "destination": "/conteudo" },
     { "source": "/sd/feed", "destination": "/conteudo" },
     { "source": "/sd/comments/feed", "destination": "/conteudo" },
-
-    { "source": "/sd/produto/:slug", "destination": "/produtos/:slug" },
 
     { "source": "/sd/categoria-produto/equipamentos", "destination": "/produtos/imagem-3d" },
     { "source": "/sd/categoria-produto/endodontia", "destination": "/produtos/endodontia" },

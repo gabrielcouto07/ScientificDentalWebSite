@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   robots: { index: true, follow: true },
-  openGraph: { type: "website", locale: "pt_BR", siteName: site.name },
+  openGraph: { type: "website", locale: site.locale.replace("-", "_"), siteName: site.name },
   formatDetection: { telephone: true, email: true, address: false },
 };
 
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }));
 
   return (
-    <html lang="pt-BR" className={`${plexSans.variable} ${plexMono.variable}`}>
+    <html lang={site.locale} className={`${plexSans.variable} ${plexMono.variable}`}>
       <body className="flex min-h-svh flex-col">
         <a href="#conteudo" className="sr-only-focusable">
           Pular para o conteúdo

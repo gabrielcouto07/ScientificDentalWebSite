@@ -14,6 +14,8 @@ npm run dev        # abre em http://localhost:3000
 npm run build      # gera a versão de produção (também valida tipos)
 npm run start      # serve a versão de produção
 npm run lint       # ESLint
+npm test           # integridade das referências de conteúdo
+npm run validate:content
 ```
 
 Formulários funcionam sem configurar nada: em desenvolvimento o lead é impresso no terminal.
@@ -135,6 +137,10 @@ cookie e listam elementos que estourem a viewport. Regra prática: qualquer `ove
 - Nenhum script de terceiros carrega antes do aceite de cookies (`CookieConsent`). Para ligar o
   Google Tag Manager, defina `NEXT_PUBLIC_GTM_ID`.
 - Campo-armadilha (honeypot) contra bots; sem CAPTCHA por enquanto.
+- Em produção, configure `LEAD_RATE_LIMIT_REDIS_URL` e `LEAD_RATE_LIMIT_REDIS_TOKEN`
+  com um Redis REST compatível com Upstash/Vercel KV. Sem essas variáveis, a entrega falha de forma
+  segura; com elas, cada IP pode enviar até 5 formulários a cada 10 minutos.
+- O rodapé oferece “Gerenciar cookies”, que revoga a escolha salva e reabre o painel de consentimento.
 
 ## Performance: como medir
 

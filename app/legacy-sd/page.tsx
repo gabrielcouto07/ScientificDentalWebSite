@@ -35,7 +35,7 @@ export default function LegacySdPage() {
     <main id="conteudo" className="flex-1">
       <PageHero
         eyebrow="Programa gratuito da Scientific Dental"
-        title="Legacy SD"
+        title={site.legacy.name}
         lead="Apoiamos os radiologistas mais visionários do mercado a transformar o cenário do diagnóstico no Brasil, com um nível superior de precisão, eficiência e segurança."
         actions={
           <>

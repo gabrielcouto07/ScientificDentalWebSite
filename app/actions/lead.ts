@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import { buildLead, deliverLead, leadSchema } from "@/lib/leads";
+import { consumeLeadRateLimit } from "@/lib/rate-limit";
 
 export type LeadState =
   | { status: "idle" }
@@ -33,10 +34,19 @@ export async function submitLead(_prev: LeadState, formData: FormData): Promise<
     return { status: "success", id: "SD-OK" };
   }
 
-  const ua = (await headers()).get("user-agent") ?? undefined;
+  const requestHeaders = await headers();
+  const forwarded = requestHeaders.get("x-vercel-forwarded-for") ?? requestHeaders.get("x-forwarded-for");
+  const ip = forwarded?.split(",")[0]?.trim() ?? requestHeaders.get("x-real-ip") ?? "unknown";
+  const ua = requestHeaders.get("user-agent") ?? undefined;
   const lead = buildLead(parsed.data, { userAgent: ua });
 
   try {
+    if (!(await consumeLeadRateLimit(ip))) {
+      return {
+        status: "error",
+        message: "Muitas tentativas em pouco tempo. Aguarde alguns minutos ou fale conosco pelo WhatsApp.",
+      };
+    }
     const result = await deliverLead(lead);
     if (!result.delivered) {
       return {

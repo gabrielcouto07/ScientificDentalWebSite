@@ -6,7 +6,7 @@ import { Eyebrow } from "./Section";
 type Props = {
   eyebrow?: string;
   title: string;
-  lead?: string;
+  lead?: ReactNode;
   /** Trilha "Você está em" acima do eyebrow */
   breadcrumb?: ReactNode;
   /** Ações abaixo do lead (botões, links) */

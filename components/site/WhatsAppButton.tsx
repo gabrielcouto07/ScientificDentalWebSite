@@ -13,7 +13,7 @@ export function WhatsAppButton({ href }: { href: string }) {
       href={href}
       target="_blank"
       rel="noopener"
-      className="wa-float group fixed bottom-4 right-4 z-30 inline-flex h-14 items-center gap-0 rounded-full bg-whatsapp pl-0 pr-0 text-[#0b3d2e] shadow-lift transition-[padding,box-shadow,transform] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_6px_10px_rgb(38_36_67/0.12),0_22px_44px_-16px_rgb(38_36_67/0.4)] sm:bottom-6 sm:right-6 lg:hover:pl-5 lg:hover:pr-1"
+      className="wa-float group fixed bottom-4 right-4 z-30 inline-flex h-14 items-center gap-0 rounded-full bg-whatsapp pl-0 pr-0 text-whatsapp-ink shadow-lift transition-[padding,box-shadow,transform] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_6px_10px_rgb(38_36_67/0.12),0_22px_44px_-16px_rgb(38_36_67/0.4)] sm:bottom-6 sm:right-6 lg:hover:pl-5 lg:hover:pr-1"
       aria-label="Falar com um especialista pelo WhatsApp"
     >
       <span className="hidden max-w-0 overflow-hidden whitespace-nowrap text-sm font-semibold opacity-0 transition-[max-width,opacity] duration-300 ease-out group-hover:max-w-52 group-hover:opacity-100 lg:inline-block">

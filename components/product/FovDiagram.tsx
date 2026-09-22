@@ -6,12 +6,11 @@ import type { Fov } from "@/lib/content";
  * aninhados com a base alinhada. Barra de escala de 50 mm em Marcador
  * (linha de medição, o único uso do vermelho num painel escuro).
  *
- * Sem JavaScript: hover só por CSS, e a tabela abaixo carrega toda a informação.
+ * O hover é feito por CSS, e a tabela abaixo carrega toda a informação.
  */
 const S = 1.3; // px por mm
 const PAD_X = 28;
 const TOP = 46;
-const BASE = TOP + 140 * S; // linha de base para o maior H (140 mm)
 const GAP = 44;
 const LABEL_H = 34;
 
@@ -22,6 +21,8 @@ export function FovDiagram({
   fovs: Fov[];
   productName: string;
 }) {
+  const maxHeight = Math.max(...fovs.map((f) => f.height));
+  const base = TOP + maxHeight * S;
   const groups = groupByDiameter(fovs);
   // Posiciona cada grupo da esquerda para a direita (laço simples: sem mutação em callback)
   const placed: Array<(typeof groups)[number] & { x: number; w: number }> = [];
@@ -32,7 +33,7 @@ export function FovDiagram({
     cursor += w + GAP;
   }
   const width = cursor - GAP + PAD_X;
-  const height = BASE + LABEL_H;
+  const height = base + LABEL_H;
   const scaleLen = 50 * S;
 
   return (
@@ -59,8 +60,8 @@ export function FovDiagram({
           <line
             x1={PAD_X - 12}
             x2={width - PAD_X + 12}
-            y1={BASE + 0.5}
-            y2={BASE + 0.5}
+            y1={base + 0.5}
+            y2={base + 0.5}
             stroke="var(--color-tecido)"
             strokeWidth={1}
           />
@@ -96,7 +97,7 @@ export function FovDiagram({
                 .sort((a, b) => b.height - a.height)
                 .map((h, i, arr) => {
                   const hh = h.height * S;
-                  const y = BASE - hh;
+                  const y = base - hh;
                   const isInner = i > 0;
                   return (
                     <g key={h.height} className="fov-item">
@@ -131,7 +132,7 @@ export function FovDiagram({
                       {arr.length - 1 === i && (
                         <text
                           x={g.x + g.w / 2}
-                          y={BASE + 18}
+                          y={base + 18}
                           textAnchor="middle"
                           fontFamily="var(--font-mono)"
                           fontSize={10}

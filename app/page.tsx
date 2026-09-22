@@ -34,7 +34,7 @@ export default function HomePage() {
   return (
     <main id="conteudo" className="flex-1">
       <Hero whatsappHref={whatsappHref} />
-      <MoritaNotice notice={site.moritaNotice} />
+      <MoritaNotice notice={site.moritaNotice} brands={site.brands} />
       <CategoryPlate
         categories={categories}
         productsBySlug={productsBySlug}

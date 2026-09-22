@@ -54,15 +54,13 @@
   },
   "legacy": {
     "name": "Legacy SD",
-    "url": "https://sd-hit.com/legacysd/",
-    "whatsappUrl": "https://sd-hit.com/legacysd/"
+    "url": "https://sd-hit.com/legacysd/"
   },
   "verificar": [
     "foundedYear 1977: derivado de 'há 46 anos' escrito no site em 2023. Confirmar ano de fundação da Scientific (grupo).",
     "whatsapp 2112-1938: número do site atual; o Legacy SD usa 99264-0883 e 97122-9418.",
     "territories: estrutura regional e siglas inferidas da página sd-hit.com (Sul; MG|RJ|NE; SP|CO|ES|NO). Confirmar estados e bases físicas.",
     "team: '8 técnicos nacionais, 3 radiologistas' vem de sd-hit.com/morita-abro. Confirmar números atuais.",
-    "legacy.whatsappUrl: não há link direto para o canal; usar o link do formulário do sd-hit até o cliente informar.",
     "emails: o site usa .com.br e a página da Morita usa .com. Confirmar o canônico."
   ]
 }

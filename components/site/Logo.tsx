@@ -27,7 +27,7 @@ export function Logo({
       width={width}
       height={height}
       decoding="async"
-      className={cn("block h-auto w-auto select-none", className)}
+      className={cn("h-auto w-auto select-none", className)}
       style={{ height, width }}
       draggable={false}
     />

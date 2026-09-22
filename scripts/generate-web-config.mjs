@@ -41,6 +41,10 @@ ${redirects.map(toRule).join("\n")}
         <match url="^sd/(wp-json|xmlrpc\\.php)" ignoreCase="true" />
         <action type="CustomResponse" statusCode="410" statusReason="Gone" statusDescription="Gone" />
       </rule>
+      <rule name="sd-old-product-fallback" stopProcessing="true">
+        <match url="^sd/produto/[^/]+/?$" ignoreCase="true" />
+        <action type="Redirect" url="/produtos" redirectType="Permanent" appendQueryString="false" />
+      </rule>
       <rule name="sd-catch-all" stopProcessing="true">
         <match url="^sd(/.*)?$" ignoreCase="true" />
         <action type="Redirect" url="/" redirectType="Permanent" appendQueryString="false" />

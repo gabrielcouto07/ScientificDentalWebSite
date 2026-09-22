@@ -354,7 +354,7 @@ negatoscópio; Marca = instituição.
   `surface-marca` (Marca com gradiente radial sutil), `surface-hero` (branco com dois gradientes
   radiais leves, um Marca e um Marcador), `grid-dots` (grade de pontos que desvanece por máscara),
   `nav-link` (sublinhado Marcador que cresce da esquerda), `no-scrollbar`.
-- A régua com ticks (`rule-ticks`) continua disponível, mas deixou de ser padrão nas seções: o ritmo
+- A antiga régua com ticks foi removida por não ter uso; o ritmo
   agora vem do eyebrow (traço Marcador + rótulo) e da alternância branco/Osso/Marca.
 
 ### 9.3 Movimento (revoga a seção 5)
@@ -407,3 +407,37 @@ mega-menu, o menu mobile e as 4 etapas do orçamento, tudo por Playwright (Chrom
 - Números da faixa de confiança e do suporte seguem com os `VERIFICAR` da fase 1.
 - Lighthouse não foi remedido após a revisão; a tabela do README é de 17/09. Remedir antes do
   deploy (a fonte 700 e as sombras são os únicos custos novos esperados).
+
+---
+
+## Cores dos fabricantes e rampa da Marca (18/09/2026)
+
+Pesquisa feita com amostragem real (stylesheet e logo da morita.com, manual de marca publicado da
+Carestream, SVG oficial da Scientific Dental):
+
+| Marca | Cor | Hex | Matiz | Fonte |
+|---|---|---|---|---|
+| Scientific Dental | Azul-marinho | `#262443` | 244° | `public/brand/logo-marca.svg` |
+| J. Morita | Azul-lavanda (periwinkle) | `#6d77b8` | 232° | app.css do morita.com (70 usos) e logo |
+| Carestream | Laranja Pantone 158C | `#F58025` | 26° | carestream.com/brand-guidelines |
+
+**Achado central:** a Marca e o azul da Morita são o mesmo matiz (12° de diferença) em luminosidades
+diferentes (20 % × 57 %). A rampa `marca-profundo → marca → marca-claro → marca-medio → marca-suave →
+marca-tint` preenche o meio que faltava, e os passos médios (`#4c579c`, `#6d77b8`) são literalmente
+o azul da Morita. Isso dá continuidade visual com a fabricante sem copiar a cor dela.
+
+**Regra dos parceiros:** cor de fabricante é *dado*, não cromo. Só aparece onde "quem fabricou" é a
+informação do elemento: filete de 2 px no `ProductCard`, tick no chip de filtro do catálogo, traço do
+eyebrow na página do produto e ponto nos painéis de parceiro. Nunca em botão, link, título ou fundo de
+seção. Motivos: (1) o manual da Carestream restringe o laranja ao logo sobre branco e proíbe uso em
+títulos e corpo; (2) adotar o azul da Morita como cromo faria o site parecer um microsite de uma
+empresa que encerrou a operação no país; (3) três acentos é nenhum acento.
+
+**Contrastes medidos (WCAG):** branco sobre laranja **2,63:1, reprova**; laranja como texto sobre
+branco **2,63:1, reprova**; `#6d77b8` sobre branco 4,22:1 (só texto grande e UI); `#4c579c` sobre
+branco 6,67:1 (corpo ok); `#1a1a1a` sobre laranja 8,0:1. Por isso existe `--color-marca-carestream-ink`.
+
+Implementação: `lib/brands.ts` (registro), `components/product/ProductCard.tsx`,
+`components/product/CatalogExplorer.tsx` (filtro por fabricante e categoria, URL como fonte de
+verdade), `components/ui/Section.tsx` (`Eyebrow accent`). Movimento com `<ViewTransition>` do React
+(morph cartão → hero, crossfade do catálogo), sem biblioteca.

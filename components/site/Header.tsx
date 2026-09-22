@@ -45,8 +45,8 @@ const getCondensedServer = () => false;
  * nunca quebra em duas linhas. O que não cabe some por breakpoint, nesta
  * ordem: telefone (só ≥ xl), rótulo "WhatsApp" (só ≥ xl), CTA (só ≥ sm).
  *
- * Ao rolar, a barra encolhe de 76 para 64 px e ganha fundo translúcido com
- * desfoque e uma sombra fina, para descolar do conteúdo.
+ * A barra mantém 64 px para que a subnavegação sticky das páginas de produto
+ * nunca se sobreponha ao header. Ao rolar, ganha fundo translúcido e sombra.
  */
 export function Header({ categories, phone, whatsappHref }: Props) {
   const pathname = usePathname();
@@ -56,6 +56,8 @@ export function Header({ categories, phone, whatsappHref }: Props) {
   const mobileOpen = mobileOpenFor === pathname;
   const megaOpen = megaOpenFor === pathname;
   const megaButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileButtonRef = useRef<HTMLButtonElement>(null);
+  const mobilePanelRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const closeTimer = useRef<number | null>(null);
   const megaId = useId();
@@ -81,7 +83,7 @@ export function Header({ categories, phone, whatsappHref }: Props) {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         closeAll();
-        megaButtonRef.current?.focus();
+        (mobileOpen ? mobileButtonRef : megaButtonRef).current?.focus();
       }
     };
     const onClick = (e: MouseEvent) => {
@@ -97,12 +99,45 @@ export function Header({ categories, phone, whatsappHref }: Props) {
     };
   }, [megaOpen, mobileOpen]);
 
-  // Trava o scroll do fundo com o menu mobile aberto (efeito no DOM, não em estado)
+  // Trava o fundo inclusive no iOS, preservando a posição da página.
   useEffect(() => {
-    document.documentElement.style.overflow = mobileOpen ? "hidden" : "";
+    if (!mobileOpen) return;
+    const scrollY = window.scrollY;
+    const { style } = document.body;
+    style.position = "fixed";
+    style.top = `-${scrollY}px`;
+    style.width = "100%";
+    style.overflow = "hidden";
     return () => {
-      document.documentElement.style.overflow = "";
+      style.position = "";
+      style.top = "";
+      style.width = "";
+      style.overflow = "";
+      window.scrollTo(0, scrollY);
     };
+  }, [mobileOpen]);
+
+  // Mantém o foco dentro do diálogo mobile enquanto ele cobre a página.
+  useEffect(() => {
+    if (!mobileOpen || !mobilePanelRef.current) return;
+    const panel = mobilePanelRef.current;
+    const selector = 'a[href], button:not([disabled]), summary, input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusable = Array.from(panel.querySelectorAll<HTMLElement>(selector));
+    focusable[0]?.focus();
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== "Tab" || focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    panel.addEventListener("keydown", trapFocus);
+    return () => panel.removeEventListener("keydown", trapFocus);
   }, [mobileOpen]);
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
@@ -123,7 +158,7 @@ export function Header({ categories, phone, whatsappHref }: Props) {
       <Container
         className={cn(
           "flex items-center justify-between gap-3 transition-[height] duration-200 ease-out motion-reduce:transition-none lg:gap-4 xl:gap-6",
-          condensed ? "h-16" : "h-16 lg:h-[76px]",
+          "h-16",
         )}
       >
         <Link href="/" className="flex shrink-0 items-center rounded-sm py-1" aria-label="Scientific Dental, página inicial">
@@ -194,6 +229,7 @@ export function Header({ categories, phone, whatsappHref }: Props) {
             </Button>
           </div>
           <button
+            ref={mobileButtonRef}
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-md text-marca transition-colors hover:bg-osso lg:hidden"
             aria-expanded={mobileOpen}
@@ -207,9 +243,8 @@ export function Header({ categories, phone, whatsappHref }: Props) {
       </Container>
 
       {/* Mega-menu Produtos (desktop) */}
-      <div
+      {megaOpen && <div
         id={megaId}
-        hidden={!megaOpen}
         className="absolute inset-x-0 top-full hidden border-b border-escala bg-radiopaco shadow-lift lg:block"
         onMouseEnter={cancelClose}
       >
@@ -244,12 +279,15 @@ export function Header({ categories, phone, whatsappHref }: Props) {
             </span>
           </div>
         </Container>
-      </div>
+      </div>}
 
       {/* Menu mobile */}
-      <div
+      {mobileOpen && <div
+        ref={mobilePanelRef}
         id={mobileId}
-        hidden={!mobileOpen}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu principal"
         className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto border-t border-escala bg-radiopaco lg:hidden"
       >
         <Container className="flex min-h-full flex-col py-4">
@@ -308,7 +346,7 @@ export function Header({ categories, phone, whatsappHref }: Props) {
             </div>
           </div>
         </Container>
-      </div>
+      </div>}
     </header>
   );
 }

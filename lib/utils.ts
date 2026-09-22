@@ -17,21 +17,11 @@ export function formatDate(iso: string): string {
     .replace(" de ", " ");
 }
 
-/** Anos completos desde um ano de referência, calculados em tempo de build. */
-export function yearsSince(year: number, now: Date = new Date()): number {
-  return Math.max(0, now.getFullYear() - year);
-}
-
-/** Converte "+553121121900" em "tel:+553121121900". */
-export function telHref(e164: string): string {
-  return `tel:${e164}`;
-}
-
 /** Slug seguro para âncoras e ids. */
 export function slugify(text: string): string {
   return text
     .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
+    .replace(/\p{M}/gu, "")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");

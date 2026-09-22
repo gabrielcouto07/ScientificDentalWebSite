@@ -22,7 +22,7 @@ export function LegacyTeaser({ site, whatsappHref }: { site: SiteConfig; whatsap
         <div className="relative grid gap-10 p-7 sm:p-10 lg:grid-cols-12 lg:items-center lg:gap-12 lg:p-14">
           <div className="lg:col-span-7">
             <Eyebrow dark>Programa gratuito</Eyebrow>
-            <h2 className="mt-4 text-3xl text-radiopaco sm:text-4xl">Legacy SD</h2>
+            <h2 className="mt-4 text-3xl text-radiopaco sm:text-4xl">{site.legacy.name}</h2>
             <p className="mt-4 max-w-xl text-lg text-escala">
               Educação continuada e mentoria para radiologistas que querem estabelecer um novo padrão de diagnóstico
               no próprio mercado.

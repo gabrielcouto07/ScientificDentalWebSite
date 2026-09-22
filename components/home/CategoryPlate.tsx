@@ -18,6 +18,7 @@ type Props = {
  */
 export function CategoryPlate({ categories, productsBySlug, images = {} }: Props) {
   const [first, ...rest] = categories;
+  if (!first) return null;
   return (
     <Section
       id="produtos"

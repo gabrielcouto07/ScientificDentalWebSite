@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import type { Product, SiteConfig } from "./content";
+import siteConfig from "@/content/site.json";
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.scientificdental.com.br";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url;
+const OPEN_GRAPH_LOCALE = siteConfig.locale.replace("-", "_");
 
 export function absoluteUrl(path: string): string {
   return new URL(path, SITE_URL).toString();
@@ -31,8 +33,8 @@ export function pageMetadata({
       description,
       url: path,
       type: "website",
-      locale: "pt_BR",
-      siteName: "Scientific Dental",
+      locale: OPEN_GRAPH_LOCALE,
+      siteName: siteConfig.name,
       images: image ? [image] : undefined,
     },
     twitter: { card: image ? "summary_large_image" : "summary", title, description },

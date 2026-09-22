@@ -8,6 +8,7 @@ import type { SiteConfig } from "@/lib/content";
  * Superfície clara com borda, para não repetir o escuro do rodapé logo abaixo.
  */
 export function CtaBand({ site, whatsappHref }: { site: SiteConfig; whatsappHref: string }) {
+  const [primaryHours, secondaryHours] = site.hours;
   return (
     <section aria-labelledby="cta-title" className="bg-radiopaco">
       <Container className="py-16 sm:py-20">
@@ -56,17 +57,18 @@ export function CtaBand({ site, whatsappHref }: { site: SiteConfig; whatsappHref
                   <span className="text-xs text-tecido">Assistência técnica</span>
                 </span>
               </li>
-              <li className="card flex items-center gap-4 p-4">
+              {primaryHours && <li className="card flex items-center gap-4 p-4">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-marca-tint text-marca">
                   <ClockIcon size={18} />
                 </span>
                 <span className="flex flex-col">
-                  <span className="font-mono text-base text-marca">{site.hours[0].time}</span>
+                  <span className="font-mono text-base text-marca">{primaryHours.time}</span>
                   <span className="text-xs text-tecido">
-                    {site.hours[0].days.toLowerCase()}; {site.hours[1].days.toLowerCase()} {site.hours[1].time}
+                    {primaryHours.days.toLowerCase()}
+                    {secondaryHours && `; ${secondaryHours.days.toLowerCase()} ${secondaryHours.time}`}
                   </span>
                 </span>
-              </li>
+              </li>}
             </ul>
           </div>
         </div>

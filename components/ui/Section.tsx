@@ -16,9 +16,6 @@ type Props = {
   className?: string;
   /** Fundo: branco, Osso ou Marca (escuro) */
   tone?: Tone;
-  /** Régua com ticks no topo. Desligue quando a seção anterior já fecha com uma. */
-  rule?: boolean;
-  headingLevel?: "h1" | "h2";
   /** Título centralizado (para seções de destaque) */
   center?: boolean;
   /** Espaçamento vertical reduzido */
@@ -44,17 +41,14 @@ export function Section({
   children,
   className,
   tone = "radiopaco",
-  rule = false,
-  headingLevel = "h2",
   center = false,
   compact = false,
 }: Props) {
-  const Heading = headingLevel;
   const dark = tone === "marca";
   return (
     <section id={id} className={cn(tones[tone], className)} aria-labelledby={title && id ? `${id}-title` : undefined}>
       <Container>
-        <div className={cn(rule && "rule-ticks", compact ? "py-12 sm:py-14" : "py-16 sm:py-20 lg:py-24")}>
+        <div className={compact ? "py-12 sm:py-14" : "py-16 sm:py-20 lg:py-24"}>
           {(title || aside || eyebrow) && (
             <div
               className={cn(
@@ -65,12 +59,12 @@ export function Section({
               <div className={cn("max-w-2xl", center && "flex flex-col items-center")}>
                 {eyebrow && <Eyebrow dark={dark}>{eyebrow}</Eyebrow>}
                 {title && (
-                  <Heading
+                  <h2
                     id={id ? `${id}-title` : undefined}
                     className={cn("text-3xl sm:text-4xl", eyebrow && "mt-4", dark && "text-radiopaco")}
                   >
                     {title}
-                  </Heading>
+                  </h2>
                 )}
                 {lead && (
                   <p className={cn("mt-4 text-lg", dark ? "text-escala" : "text-tecido", center && "prose-measure")}>
@@ -89,10 +83,21 @@ export function Section({
 }
 
 /** Rótulo curto com o traço de medição em Marcador. Sentence case, nunca caixa alta espaçada. */
-export function Eyebrow({ children, dark = false, className }: { children: ReactNode; dark?: boolean; className?: string }) {
+export function Eyebrow({
+  children,
+  dark = false,
+  accent = "bg-marcador",
+  className,
+}: {
+  children: ReactNode;
+  dark?: boolean;
+  /** Classe de cor do traço. Padrão Marcador; a página do produto passa a cor do fabricante (lib/brands.ts). */
+  accent?: string;
+  className?: string;
+}) {
   return (
     <p className={cn("inline-flex items-center gap-2.5 text-sm font-medium", dark ? "text-escala" : "text-marca", className)}>
-      <span aria-hidden className="inline-block h-0.5 w-6 rounded-full bg-marcador" />
+      <span aria-hidden className={cn("inline-block h-0.5 w-6 rounded-full", accent)} />
       {children}
     </p>
   );

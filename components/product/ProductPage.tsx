@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { CheckIcon, DownloadIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/Icons";
 import { Eyebrow, Section } from "@/components/ui/Section";
 import { Viewer } from "@/components/ui/Viewer";
+import { BRANDS, brandKeyOf } from "@/lib/brands";
 import type { Category, Product, SiteConfig } from "@/lib/content";
 import { cn, slugify } from "@/lib/utils";
 import { FovDiagram } from "./FovDiagram";
@@ -56,7 +57,10 @@ export function ProductPage({ product, category, related, site, whatsappHref }: 
                 { name: product.name },
               ]}
             />
-            <div className="mt-6">{product.brand && <Eyebrow>{product.brand}</Eyebrow>}</div>
+            {/* Traço do eyebrow na cor do fabricante: indicador de procedência, o único uso da cor de parceiro na página */}
+            <div className="mt-6">
+              {product.brand && <Eyebrow accent={BRANDS[brandKeyOf(product.brand)].accent}>{product.brand}</Eyebrow>}
+            </div>
             <h1 className="mt-3 text-4xl sm:text-5xl">{product.name}</h1>
             <p className="prose-measure mt-4 text-lg text-tecido sm:text-xl">{product.tagline}</p>
             <p className="prose-measure mt-5 text-base">{product.summary}</p>
@@ -106,7 +110,7 @@ export function ProductPage({ product, category, related, site, whatsappHref }: 
             </ul>
           </div>
           <div className="animate-rise order-1 lg:order-2 lg:col-span-5" style={{ animationDelay: "120ms" }}>
-            <ProductGallery images={gallery} name={product.name} />
+            <ProductGallery images={gallery} name={product.name} slug={product.slug} />
           </div>
         </Container>
       </section>
@@ -155,8 +159,8 @@ export function ProductPage({ product, category, related, site, whatsappHref }: 
         <Section key={s.title} id={slugify(s.title)} title={s.title} tone={i % 2 === (hasFov ? 0 : 1) ? "osso" : "radiopaco"}>
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="reveal prose-measure space-y-4 text-base lg:col-span-7">
-              {s.paragraphs.map((p) => (
-                <p key={p.slice(0, 40)}>{p}</p>
+              {s.paragraphs.map((p, paragraphIndex) => (
+                <p key={`${paragraphIndex}-${p}`}>{p}</p>
               ))}
             </div>
             {s.bullets.length > 0 && (

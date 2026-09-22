@@ -22,6 +22,17 @@ type Props = {
 };
 
 const initial: LeadState = { status: "idle" };
+const FIELD_STEP: Record<string, number> = {
+  equipment: 0,
+  operation: 1,
+  timeline: 2,
+  city: 2,
+  name: 3,
+  phone: 3,
+  email: 3,
+  company: 3,
+  consent: 3,
+};
 
 /**
  * Orçamento em 4 etapas curtas, no máximo 3 campos por etapa.
@@ -42,7 +53,14 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
   const [operation, setOperation] = useState("");
   const [timeline, setTimeline] = useState("");
   const [stepError, setStepError] = useState<string | null>(null);
-  const [state, action, pending] = useActionState(submitLead, initial);
+  const [state, action, pending] = useActionState(async (previous: LeadState, formData: FormData) => {
+    const result = await submitLead(previous, formData);
+    if (result.status === "error" && result.fieldErrors) {
+      const target = Math.min(...Object.keys(result.fieldErrors).map((field) => FIELD_STEP[field] ?? 3));
+      if (Number.isFinite(target)) setStep(target);
+    }
+    return result;
+  }, initial);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const mounted = useRef(false);
 
@@ -101,7 +119,7 @@ export function QuoteWizard({ prefill, whatsappBase }: Props) {
     <form action={action} noValidate className="card min-h-[36rem] p-6 sm:p-8 lg:p-10">
       <input type="hidden" name="kind" value="orcamento" />
       <input type="hidden" name="sourcePath" value={sourcePath} />
-      <Honeypot />
+      <Honeypot id="quote-website" />
 
       {/* Progresso */}
       <div className="mb-8">

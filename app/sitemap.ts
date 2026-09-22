@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: absoluteUrl(`/produtos/${p.slug}`),
       lastModified: now,
       changeFrequency: "monthly" as const,
-      priority: p.featured ? 0.9 : 0.6,
+      priority: 0.6,
     })),
     ...getArticles().map((a) => ({
       url: absoluteUrl(`/conteudo/${a.slug}`),

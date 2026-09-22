@@ -9,10 +9,11 @@ import type { SiteConfig } from "@/lib/content";
  * confirmado está marcado.
  */
 export function SupportSection({ site }: { site: SiteConfig }) {
+  const stateCount = site.territories.flatMap((territory) => territory.states).filter((state) => state !== "DF").length;
   const commitments = [
     /* VERIFICAR: prazos e números abaixo são propostas; confirmar com a coordenação de assistência */
     { icon: ClockIcon, label: "Primeira resposta ao chamado", value: "até 1 dia útil" },
-    { icon: HeadsetIcon, label: "Diagnóstico remoto", value: `seg a sex, ${site.hours[0].time}` },
+    { icon: HeadsetIcon, label: "Diagnóstico remoto", value: site.hours[0] ? `seg a sex, ${site.hours[0].time}` : "horário a confirmar" },
     { icon: UsersIcon, label: "Técnicos em campo", value: `${site.team.technicians} em ${site.territories.length} regiões` },
     { icon: PackageIcon, label: "Peças originais", value: "estoque em Belo Horizonte" },
   ];
@@ -59,7 +60,7 @@ export function SupportSection({ site }: { site: SiteConfig }) {
           <div className="flex items-baseline justify-between gap-4">
             <h3 className="text-base font-semibold text-radiopaco">Cobertura por região</h3>
             <p className="font-mono text-xs text-escala">
-              {site.territories.reduce((n, t) => n + t.states.length, 0)} estados + DF
+              {stateCount} estados + DF
             </p>
           </div>
           {/* VERIFICAR: territórios e siglas vêm de sd-hit.com; um mapa real entra quando o cliente enviar a lista de bases */}

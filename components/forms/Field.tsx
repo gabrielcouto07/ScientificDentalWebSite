@@ -49,13 +49,13 @@ export function TextField({ id, label, hint, error, optional, className, ...prop
   return (
     <FieldWrap id={id} label={label} hint={hint} error={error} optional={optional}>
       <input
+        {...props}
         id={id}
         name={props.name ?? id}
         className={cn(control, "h-12", className)}
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy(id, hint, error)}
         required={!optional}
-        {...props}
       />
     </FieldWrap>
   );
@@ -67,13 +67,13 @@ export function TextArea({ id, label, hint, error, optional, className, ...props
   return (
     <FieldWrap id={id} label={label} hint={hint} error={error} optional={optional}>
       <textarea
+        {...props}
         id={id}
         name={props.name ?? id}
         className={cn(control, "min-h-28 py-3", className)}
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy(id, hint, error)}
         required={!optional}
-        {...props}
       />
     </FieldWrap>
   );
@@ -86,6 +86,7 @@ export function SelectField({ id, label, hint, error, optional, options, placeho
   return (
     <FieldWrap id={id} label={label} hint={hint} error={error} optional={optional}>
       <select
+        {...props}
         id={id}
         name={props.name ?? id}
         className={cn(control, "h-12", className)}
@@ -93,7 +94,6 @@ export function SelectField({ id, label, hint, error, optional, options, placeho
         aria-describedby={describedBy(id, hint, error)}
         required={!optional}
         defaultValue={props.defaultValue ?? ""}
-        {...props}
       >
         {placeholder && (
           <option value="" disabled>
@@ -143,11 +143,11 @@ export function ConsentField({ error, id = "consent" }: { error?: string; id?: s
 }
 
 /** Campo-armadilha para bots. Invisível e fora da ordem de tabulação. */
-export function Honeypot() {
+export function Honeypot({ id }: { id: string }) {
   return (
     <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
-      <label htmlFor="website">Deixe em branco</label>
-      <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      <label htmlFor={id}>Deixe em branco</label>
+      <input id={id} name="website" type="text" tabIndex={-1} autoComplete="off" />
     </div>
   );
 }

@@ -1,23 +1,21 @@
 import { Container } from "@/components/ui/Container";
 import type { SiteConfig } from "@/lib/content";
-import { yearsSince } from "@/lib/utils";
+import { YearsSince } from "@/components/ui/CurrentTime";
 
 /**
  * Quatro números grandes com a frase que os sustenta. Anos calculados do ano
  * de fundação, nunca escritos à mão. Sem contador animado: o número é um dado.
  */
 export function TrustBand({ site }: { site: SiteConfig }) {
-  const groupYears = yearsSince(site.foundedYear); /* VERIFICAR: ano de fundação do grupo Scientific */
-  const dentalYears = yearsSince(site.dentalSinceYear);
   const items = [
     {
-      value: String(groupYears),
+      value: <YearsSince year={site.foundedYear} />,
       unit: "anos",
       title: "de Scientific",
       text: `Grupo no mercado desde ${site.foundedYear}; no segmento odontológico desde ${site.dentalSinceYear}.`,
     },
     {
-      value: String(dentalYears),
+      value: <YearsSince year={site.dentalSinceYear} />,
       unit: "anos",
       title: "em odontologia",
       text: "Da radiologia convencional ao CBCT de alta resolução, em centros de radiologia de todo o país.",
