@@ -36,8 +36,14 @@ function consumeLocal(key: string): boolean {
  */
 export async function consumeLeadRateLimit(ip: string): Promise<boolean> {
   const key = keyFor(ip);
-  const url = process.env.LEAD_RATE_LIMIT_REDIS_URL;
-  const token = process.env.LEAD_RATE_LIMIT_REDIS_TOKEN;
+  const url =
+    process.env.LEAD_RATE_LIMIT_REDIS_URL ||
+    process.env.UPSTASH_REDIS_REST_URL ||
+    process.env.KV_REST_API_URL;
+  const token =
+    process.env.LEAD_RATE_LIMIT_REDIS_TOKEN ||
+    process.env.UPSTASH_REDIS_REST_TOKEN ||
+    process.env.KV_REST_API_TOKEN;
 
   if (!url || !token) {
     if (process.env.NODE_ENV === "production") {

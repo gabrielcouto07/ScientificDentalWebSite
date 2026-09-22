@@ -2,7 +2,17 @@ import type { Metadata } from "next";
 import type { Product, SiteConfig } from "./content";
 import siteConfig from "@/content/site.json";
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url;
+function siteUrl(): string {
+  const configuredUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+    process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim() ||
+    siteConfig.url;
+  const urlWithProtocol = /^https?:\/\//i.test(configuredUrl) ? configuredUrl : `https://${configuredUrl}`;
+
+  return new URL(urlWithProtocol).origin;
+}
+
+export const SITE_URL = siteUrl();
 const OPEN_GRAPH_LOCALE = siteConfig.locale.replace("-", "_");
 
 export function absoluteUrl(path: string): string {

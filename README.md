@@ -177,8 +177,18 @@ consentimento.
 
 ## Deploy
 
-**Vercel (atual).** Conecte o repositório, defina as variáveis do `.env.example` e publique.
-Os 301 do site antigo estão em `next.config.ts`, lidos de `content/redirects.json`.
+**Vercel (atual).** Importe o repositório com o preset **Next.js** e mantenha Root Directory,
+Build Command e Output Directory nos valores automáticos. Em Settings > Environment Variables:
+
+- `NEXT_PUBLIC_SITE_URL`: domínio público final; pode ser omitida até o domínio ser definido, pois
+  a aplicação usa `VERCEL_PROJECT_PRODUCTION_URL` automaticamente.
+- Para o limite dos formulários, conecte Upstash Redis pelo Marketplace. A aplicação aceita as
+  variáveis injetadas pela integração (`UPSTASH_REDIS_REST_*` ou `KV_REST_API_*`) e também os nomes
+  próprios listados em `.env.example`.
+- Configure pelo menos um canal de entrega: `LEAD_WEBHOOK_URL` ou as variáveis `SMTP_*`.
+
+Depois de alterar variáveis, faça um redeploy. Os 301 do site antigo estão em `next.config.ts`,
+lidos de `content/redirects.json`.
 
 **Se voltar para IIS.** Rode `node scripts/generate-web-config.mjs` para gerar
 `deploy/iis/web.config` com as mesmas regras. Nesse caso o site precisa de Node no servidor
