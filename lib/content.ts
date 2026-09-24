@@ -136,6 +136,8 @@ export const siteSchema = z.object({
   }),
   phones: z.record(z.string(), z.object({ display: z.string(), tel: z.string() })),
   whatsapp: z.object({ display: z.string(), e164: z.string() }),
+  /** WhatsApp da pessoa responsável por orçamentos (produto, /orcamento, CTAs de proposta). */
+  whatsappQuote: z.object({ display: z.string(), e164: z.string() }),
   emails: z.record(z.string(), z.string()),
   hours: z.array(z.object({ days: z.string(), time: z.string() })),
   foundedYear: z.number(),

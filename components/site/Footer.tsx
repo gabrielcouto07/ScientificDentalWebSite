@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { ArrowUpRightIcon, MailIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/Icons";
 import type { Category, SiteConfig } from "@/lib/content";
-import { whatsappLink, whatsappMessages } from "@/lib/whatsapp";
+import { quoteWhatsappLink, whatsappLink, whatsappMessages } from "@/lib/whatsapp";
 import { CurrentYear } from "@/components/ui/CurrentTime";
 import { CookieSettingsButton } from "./CookieConsent";
 import { Logo } from "./Logo";
@@ -10,8 +10,10 @@ import { Logo } from "./Logo";
 type Props = { site: SiteConfig; categories: Category[] };
 
 /**
- * Rodapé em superfície Marca com a logo branca oficial. Quatro colunas no
- * desktop; no celular vira uma coluna com os contatos primeiro.
+ * Rodapé em superfície Marca com a logo branca oficial. No desktop, a marca
+ * (texto, endereço e horário) ocupa uma faixa no topo e, abaixo, quatro colunas
+ * iguais: Produtos, A empresa, Comercial e Suporte. Comercial e Suporte ficam
+ * separados, cada um com o próprio botão. No celular, tudo empilha.
  */
 export function Footer({ site, categories }: Props) {
   const whatsappHref = whatsappLink(whatsappMessages.default);
@@ -21,14 +23,15 @@ export function Footer({ site, categories }: Props) {
         <h2 id="footer-title" className="sr-only">
           Rodapé
         </h2>
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-4">
+        <div className="grid gap-10 border-b border-radiopaco/15 pb-12 lg:grid-cols-3 lg:gap-8">
+          <div>
             <Logo inverse height={34} />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-escala">
               Venda e assistência técnica oficial J. Morita e Carestream no Brasil. No segmento odontológico desde{" "}
               {site.dentalSinceYear}, com sede técnica em Belo Horizonte e equipe em todo o país.
             </p>
-            <address className="mt-8 flex items-start gap-3 text-sm not-italic text-escala">
+          </div>
+          <address className="flex items-start gap-3 text-sm not-italic text-escala lg:pt-1">
               <MapPinIcon size={18} className="mt-0.5 shrink-0 text-radiopaco/70" />
               <span>
                 {site.address.street}
@@ -45,18 +48,19 @@ export function Footer({ site, categories }: Props) {
                   <ArrowUpRightIcon size={14} />
                 </a>
               </span>
-            </address>
-            <dl className="mt-6 space-y-1 text-sm text-escala">
-              {site.hours.map((h) => (
-                <div key={h.days} className="flex gap-3">
-                  <dt className="w-36 text-radiopaco/60">{h.days}</dt>
-                  <dd className="font-mono">{h.time}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+          </address>
+          <dl className="space-y-1 text-sm text-escala lg:pt-1">
+            {site.hours.map((h) => (
+              <div key={h.days} className="flex gap-3">
+                <dt className="w-36 text-radiopaco/60">{h.days}</dt>
+                <dd className="font-mono">{h.time}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
 
-          <nav aria-label="Produtos" className="lg:col-span-2 lg:col-start-6">
+        <div className="grid gap-12 pt-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <nav aria-label="Produtos">
             <h3 className="text-sm font-semibold text-radiopaco">Produtos</h3>
             <ul className="mt-5 space-y-2.5 text-sm">
               {categories.map((c) => (
@@ -64,15 +68,10 @@ export function Footer({ site, categories }: Props) {
                   <FooterLink href={`/produtos/${c.slug}`}>{c.name}</FooterLink>
                 </li>
               ))}
-              <li className="pt-2">
-                <FooterLink href="/orcamento" strong>
-                  Solicitar orçamento
-                </FooterLink>
-              </li>
             </ul>
           </nav>
 
-          <nav aria-label="Institucional" className="lg:col-span-2">
+          <nav aria-label="Institucional">
             <h3 className="text-sm font-semibold text-radiopaco">A empresa</h3>
             <ul className="mt-5 space-y-2.5 text-sm">
               <li>
@@ -86,6 +85,9 @@ export function Footer({ site, categories }: Props) {
               </li>
               <li>
                 <FooterLink href="/conteudo">Conteúdo e casos clínicos</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="/trabalhe-conosco">Trabalhe conosco</FooterLink>
               </li>
               <li>
                 <FooterLink href="/contato">Contato</FooterLink>
@@ -107,8 +109,8 @@ export function Footer({ site, categories }: Props) {
             </ul>
           </nav>
 
-          <div className="lg:col-span-3">
-            <h3 className="text-sm font-semibold text-radiopaco">Comercial e suporte</h3>
+          <div>
+            <h3 className="text-sm font-semibold text-radiopaco">Comercial</h3>
             <ul className="mt-5 space-y-3 text-sm">
               <ContactRow icon={<PhoneIcon size={18} />} label="Comercial">
                 <a href={`tel:${site.phones.main.tel}`} className="font-mono text-radiopaco hover:underline">
@@ -120,6 +122,34 @@ export function Footer({ site, categories }: Props) {
                   {site.whatsapp.display}
                 </a>
               </ContactRow>
+              <ContactRow icon={<PhoneIcon size={18} />} label="Orçamentos">
+                <a href={`tel:${site.phones.quote.tel}`} className="font-mono text-radiopaco hover:underline">
+                  {site.phones.quote.display}
+                </a>
+              </ContactRow>
+              <ContactRow icon={<WhatsAppIcon size={18} />} label="WhatsApp de orçamentos">
+                <a
+                  href={quoteWhatsappLink(whatsappMessages.quoteRequest)}
+                  className="font-mono text-radiopaco hover:underline"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {site.whatsappQuote.display}
+                </a>
+              </ContactRow>
+            </ul>
+            <Link
+              href="/orcamento"
+              className="mt-6 inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-md border border-radiopaco/30 px-4 text-sm font-medium text-radiopaco transition-colors hover:border-radiopaco hover:bg-radiopaco/10"
+            >
+              Solicitar orçamento
+              <ArrowUpRightIcon size={16} />
+            </Link>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold text-radiopaco">Suporte</h3>
+            <ul className="mt-5 space-y-3 text-sm">
               <ContactRow icon={<PhoneIcon size={18} />} label="Assistência técnica">
                 <a href={`tel:${site.phones.support.tel}`} className="font-mono text-radiopaco hover:underline">
                   {site.phones.support.display}
@@ -133,7 +163,7 @@ export function Footer({ site, categories }: Props) {
             </ul>
             <Link
               href="/suporte"
-              className="mt-6 inline-flex h-11 items-center gap-2 rounded-md border border-radiopaco/30 px-4 text-sm font-medium text-radiopaco transition-colors hover:border-radiopaco hover:bg-radiopaco/10"
+              className="mt-6 inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-md border border-radiopaco/30 px-4 text-sm font-medium text-radiopaco transition-colors hover:border-radiopaco hover:bg-radiopaco/10"
             >
               Abrir chamado técnico
               <ArrowUpRightIcon size={16} />

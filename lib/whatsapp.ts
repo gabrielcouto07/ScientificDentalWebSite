@@ -10,10 +10,16 @@ export function whatsappLink(message: string, number: string = site.whatsapp.e16
   return `https://wa.me/${number}?text=${text}`;
 }
 
+/** Mesmo deep link, direcionado ao WhatsApp de orçamentos. */
+export function quoteWhatsappLink(message: string): string {
+  return whatsappLink(message, site.whatsappQuote.e164);
+}
+
 export const whatsappMessages = {
   default: "Olá, vim pelo site da Scientific Dental e gostaria de falar com um especialista.",
   product: (name: string) =>
     `Olá, vim pelo site da Scientific Dental e gostaria de um orçamento do ${name}.`,
+  quoteRequest: "Olá, vim pelo site da Scientific Dental e gostaria de solicitar um orçamento.",
   quote: (step?: string) =>
     `Olá, estava preenchendo o pedido de orçamento no site${step ? ` (etapa: ${step})` : ""} e prefiro continuar por aqui.`,
   support: "Olá, preciso de assistência técnica para um equipamento. Vim pelo site da Scientific Dental.",

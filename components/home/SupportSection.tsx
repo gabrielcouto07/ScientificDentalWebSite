@@ -41,17 +41,18 @@ export function SupportSection({ site }: { site: SiteConfig }) {
               </li>
             ))}
           </ul>
-          <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
             <Button href="/suporte" variant="inverse-solid" size="lg">
               Abrir chamado técnico
               <ButtonArrow />
             </Button>
             <a
               href={`tel:${site.phones.support.tel}`}
-              className="inline-flex items-center gap-2 text-sm text-escala transition-colors hover:text-radiopaco"
+              className="inline-flex min-h-13 shrink-0 items-center gap-2 whitespace-nowrap text-sm text-escala transition-colors hover:text-radiopaco [overflow-wrap:normal]"
             >
-              <PhoneIcon size={16} />
-              Suporte direto <span className="font-mono text-radiopaco">{site.phones.support.display}</span>
+              <PhoneIcon size={16} className="shrink-0" />
+              <span>Suporte direto</span>
+              <span className="font-mono text-radiopaco">{site.phones.support.display}</span>
             </a>
           </div>
         </div>

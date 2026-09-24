@@ -3,6 +3,8 @@
 Rebuild do site da Scientific Dental Medical Ltda. em Next.js. Este README é o guia para quem vai
 mexer no projeto sem ter participado do começo. O raciocínio de design está em
 [docs/DESIGN-PLAN.md](docs/DESIGN-PLAN.md); leia antes de mudar cor, fonte ou layout.
+Para localizar qualquer texto ou entender a função de cada pasta e arquivo, consulte
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Rodar no computador
 

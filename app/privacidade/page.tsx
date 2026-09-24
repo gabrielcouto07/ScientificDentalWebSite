@@ -49,6 +49,12 @@ export default function PrivacidadePage() {
                 consentimento, dado na caixa de aceite de cada formulário, e execução de medidas pré-contratuais.
               </li>
               <li>
+                <strong>Trabalhe conosco</strong>: nome, telefone, e-mail, cidade, perfil do LinkedIn, apresentação e o
+                currículo anexado. Finalidade: avaliar o perfil em processos seletivos e manter o currículo no banco de
+                talentos. Base legal: consentimento, dado na caixa de aceite do formulário. O currículo é enviado por
+                e-mail à equipe de Recursos Humanos e não é usado para fins comerciais.
+              </li>
+              <li>
                 <strong>Registros técnicos</strong>: endereço IP, navegador e páginas acessadas, nos logs da
                 hospedagem, para segurança e funcionamento do site. Base legal: legítimo interesse.
               </li>
@@ -62,7 +68,8 @@ export default function PrivacidadePage() {
             <h2 className="text-xl sm:text-2xl">Por quanto tempo guardamos</h2>
             <p className="mt-2">
               Dados de formulários ficam guardados por até 24 meses após o último contato, ou até você pedir a
-              exclusão. Logs técnicos são mantidos por até 6 meses, conforme o Marco Civil da Internet.
+              exclusão. Currículos ficam no banco de talentos por até 12 meses, ou até você pedir a exclusão.
+              {/* VERIFICAR: prazo de guarda de currículos definido pelo RH e jurídico */} Logs técnicos são mantidos por até 6 meses, conforme o Marco Civil da Internet.
               {/* VERIFICAR: prazos de retenção acordados com o jurídico */}
             </p>
           </section>

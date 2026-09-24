@@ -9,7 +9,7 @@ import { SupportSection } from "@/components/home/SupportSection";
 import { TrustBand } from "@/components/home/TrustBand";
 import { getCategories, getLatestArticles, getProducts, getSite } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
-import { whatsappLink, whatsappMessages } from "@/lib/whatsapp";
+import { quoteWhatsappLink, whatsappLink, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = pageMetadata({
   title: "Scientific Dental | Venda e assistência técnica oficial J. Morita e Carestream no Brasil",
@@ -49,7 +49,7 @@ export default function HomePage() {
       <TrustBand site={site} />
       <LegacyTeaser site={site} whatsappHref={whatsappLink(whatsappMessages.legacy)} />
       <LatestContent articles={getLatestArticles(3)} />
-      <CtaBand site={site} whatsappHref={whatsappHref} />
+      <CtaBand site={site} whatsappHref={quoteWhatsappLink(whatsappMessages.quoteRequest)} />
     </main>
   );
 }

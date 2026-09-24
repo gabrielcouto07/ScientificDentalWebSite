@@ -22,6 +22,11 @@ function loadRedirects() {
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  experimental: {
+    // Currículo (até 4 MB) viaja na server action do Trabalhe conosco. O padrão é 1 MB.
+    // Não passar de 4,5 MB: é o limite de corpo de requisição das funções da Vercel.
+    serverActions: { bodySizeLimit: "4.5mb" },
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [375, 414, 640, 768, 1024, 1280, 1536],

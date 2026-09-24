@@ -112,7 +112,12 @@ export function SelectField({ id, label, hint, error, optional, options, placeho
 }
 
 /** Consentimento LGPD explícito, com link para a política. Obrigatório em todo formulário. */
-export function ConsentField({ error, id = "consent", ...props }: { error?: string; id?: string } & InputHTMLAttributes<HTMLInputElement>) {
+export function ConsentField({
+  error,
+  id = "consent",
+  purpose = "responder ao meu pedido",
+  ...props
+}: { error?: string; id?: string; /** Finalidade declarada no aceite */ purpose?: string } & InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div>
       <div className="flex items-start gap-3 rounded-md bg-osso p-3.5">
@@ -127,7 +132,7 @@ export function ConsentField({ error, id = "consent", ...props }: { error?: stri
           aria-describedby={error ? `${id}-error` : undefined}
         />
         <label htmlFor={id} className="text-sm text-tecido">
-          Autorizo a Scientific Dental a usar estes dados para responder ao meu pedido, conforme a{" "}
+          Autorizo a Scientific Dental a usar estes dados para {purpose}, conforme a{" "}
           <a href="/privacidade" className="link text-marca" target="_blank" rel="noopener">
             política de privacidade
           </a>

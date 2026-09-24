@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { whatsappLink, whatsappMessages } from "@/lib/whatsapp";
+import { quoteWhatsappLink, whatsappLink, whatsappMessages } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "@/components/ui/Icons";
 
 /**
@@ -14,10 +14,10 @@ import { WhatsAppIcon } from "@/components/ui/Icons";
 export function WhatsAppButton({ href, products }: { href: string; products: Record<string, string> }) {
   const pathname = usePathname();
   const productName = products[pathname];
-  const contextualHref = productName ? whatsappLink(whatsappMessages.product(productName))
+  const contextualHref = productName ? quoteWhatsappLink(whatsappMessages.product(productName))
     : pathname === "/suporte" ? whatsappLink(whatsappMessages.support)
     : pathname === "/legacy-sd" ? whatsappLink(whatsappMessages.legacy)
-    : pathname === "/orcamento" ? whatsappLink(whatsappMessages.quote()) : href;
+    : pathname === "/orcamento" ? quoteWhatsappLink(whatsappMessages.quote()) : href;
   return (
     <a
       href={contextualHref}

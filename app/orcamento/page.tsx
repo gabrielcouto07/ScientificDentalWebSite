@@ -4,11 +4,11 @@ import { Suspense } from "react";
 import { QuoteWizard } from "@/components/forms/QuoteWizard";
 import { EQUIPMENT_OPTIONS, type QuotePrefill } from "@/components/forms/quote-options";
 import { Container } from "@/components/ui/Container";
-import { ClockIcon, HeadsetIcon, PhoneIcon, ShieldCheckIcon } from "@/components/ui/Icons";
+import { ClockIcon, HeadsetIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/Icons";
 import { Eyebrow } from "@/components/ui/Section";
 import { getCategories, getProducts, getSite } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
-import { whatsappMessages } from "@/lib/whatsapp";
+import { quoteWhatsappLink, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = pageMetadata({
   title: "Solicitar orçamento",
@@ -46,13 +46,14 @@ function buildPrefill(): QuotePrefill {
 
 export default function OrcamentoPage() {
   const site = getSite();
-  const whatsappBase = `https://wa.me/${site.whatsapp.e164}?text=${encodeURIComponent(whatsappMessages.quote())}`;
+  const whatsappBase = quoteWhatsappLink(whatsappMessages.quote());
 
-  const facts = [
+  /** Os dois primeiros são canais diretos com a pessoa responsável por orçamentos. */
+  const facts: Array<{ icon: typeof PhoneIcon; label: string; value: string; href?: string; external?: boolean }> = [
+    { icon: PhoneIcon, label: "Orçamentos por telefone", value: site.phones.quote.display, href: `tel:${site.phones.quote.tel}` },
+    { icon: WhatsAppIcon, label: "WhatsApp de orçamentos", value: site.whatsappQuote.display, href: whatsappBase, external: true },
     { icon: ClockIcon, label: "Retorno", value: copy.returnLabel },
-    { icon: PhoneIcon, label: "Comercial", value: site.phones.main.display },
-    { icon: HeadsetIcon, label: "Horário", value: site.hours[0].time },
-    { icon: ShieldCheckIcon, label: "Assistência", value: "oficial J. Morita" },
+    { icon: HeadsetIcon, label: "Horário", value: site.hours.map((h) => `${h.days.toLowerCase()} ${h.time}`).join("; ") },
   ];
 
   return (
@@ -67,18 +68,36 @@ export default function OrcamentoPage() {
               Quatro etapas curtas. No fim, um especialista da Scientific Dental monta a proposta com preço, prazo
               de entrega, instalação e assistência técnica.
             </p>
-            <ul className="mt-8 hidden gap-3 sm:grid sm:grid-cols-2 lg:grid-cols-1">
-              {facts.map(({ icon: Icon, label, value }) => (
-                <li key={label} className="card flex items-center gap-3 p-3.5">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-marca-tint text-marca">
-                    <Icon size={17} />
-                  </span>
-                  <span className="flex min-w-0 flex-col">
-                    <span className="text-xs text-tecido">{label}</span>
-                    <span className="text-sm text-marca">{value}</span>
-                  </span>
-                </li>
-              ))}
+            {/* No celular, só os canais diretos aparecem acima do formulário */}
+            <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              {facts.map(({ icon: Icon, label, value, href, external }) => {
+                const body = (
+                  <>
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-marca-tint text-marca">
+                      <Icon size={17} />
+                    </span>
+                    <span className="flex min-w-0 flex-col">
+                      <span className="text-xs text-tecido">{label}</span>
+                      <span className={href ? "font-mono text-sm text-marca" : "text-sm text-marca"}>{value}</span>
+                    </span>
+                  </>
+                );
+                return (
+                  <li key={label} className={href ? undefined : "hidden sm:block"}>
+                    {href ? (
+                      <a
+                        href={href}
+                        className="card card-hover flex items-center gap-3 p-3.5"
+                        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      >
+                        {body}
+                      </a>
+                    ) : (
+                      <div className="card flex items-center gap-3 p-3.5">{body}</div>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="animate-rise lg:col-span-8" style={{ animationDelay: "120ms" }}>

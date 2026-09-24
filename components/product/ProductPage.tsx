@@ -243,13 +243,13 @@ export function ProductPage({ product, category, related, site, whatsappHref }: 
           />
           <aside className="reveal reveal-delay-1 flex flex-col gap-3 lg:col-span-5">
             <p className="text-base font-semibold text-marca">Prefere falar agora?</p>
-            <a href={`tel:${site.phones.main.tel}`} className="card card-hover flex items-center gap-4 p-4">
+            <a href={`tel:${site.phones.quote.tel}`} className="card card-hover flex items-center gap-4 p-4">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-marca-tint text-marca">
                 <PhoneIcon size={18} />
               </span>
               <span className="flex flex-col">
-                <span className="font-mono text-base text-marca">{site.phones.main.display}</span>
-                <span className="text-xs text-tecido">Comercial</span>
+                <span className="font-mono text-base text-marca">{site.phones.quote.display}</span>
+                <span className="text-xs text-tecido">Orçamentos por telefone</span>
               </span>
             </a>
             <a
@@ -262,8 +262,8 @@ export function ProductPage({ product, category, related, site, whatsappHref }: 
                 <WhatsAppIcon size={18} />
               </span>
               <span className="flex flex-col">
-                <span className="text-base font-medium text-marca">WhatsApp</span>
-                <span className="text-xs text-tecido">Com o {product.name} já no assunto</span>
+                <span className="font-mono text-base text-marca">{site.whatsappQuote.display}</span>
+                <span className="text-xs text-tecido">WhatsApp de orçamentos, com o {product.name} já no assunto</span>
               </span>
             </a>
             <p className="mt-2 text-sm text-tecido">

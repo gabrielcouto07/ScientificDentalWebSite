@@ -13,7 +13,7 @@ OUTPUT.mkdir(exist_ok=True)
 products = [json.loads(p.read_text(encoding='utf-8')) for p in (ROOT/'content/products').glob('*.json')]
 categories = json.loads((ROOT/'content/categories.json').read_text(encoding='utf-8'))
 articles = json.loads((ROOT/'content/articles.json').read_text(encoding='utf-8'))
-routes = ['/', '/produtos', '/suporte', '/contato', '/orcamento', '/a-scientific', '/legacy-sd', '/conteudo', '/privacidade']
+routes = ['/', '/produtos', '/suporte', '/contato', '/orcamento', '/a-scientific', '/legacy-sd', '/conteudo', '/privacidade', '/trabalhe-conosco']
 routes += ['/produtos/'+p['slug'] for p in categories+products]
 routes += ['/conteudo/'+a['slug'] for a in articles]
 issues, links, checks = [], set(), []

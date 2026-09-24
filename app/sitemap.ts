@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/legacy-sd", 0.6, "monthly"],
     ["/conteudo", 0.5, "weekly"],
     ["/contato", 0.6, "monthly"],
+    ["/trabalhe-conosco", 0.4, "monthly"],
     ["/privacidade", 0.2, "yearly"],
   ];
   return [

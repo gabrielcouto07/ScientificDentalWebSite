@@ -52,10 +52,11 @@ export function Button(props: AnchorProps | NativeButtonProps) {
 
   if ("href" in props && props.href) {
     const { href, variant: _v, size: _s, className: _c, children: _ch, ...rest } = props;
-    const external = /^https?:\/\//.test(href);
+    // http(s), tel: e mailto: não são rotas do app: <a> puro, sem prefetch do next/link.
+    const external = /^(?:https?:\/\/|tel:|mailto:)/.test(href);
     if (external) {
       return (
-        <a href={href} className={classes} rel="noopener" {...rest}>
+        <a href={href} className={classes} rel={rest.target === "_blank" ? "noopener noreferrer" : undefined} {...rest}>
           {children}
         </a>
       );

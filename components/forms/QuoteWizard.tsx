@@ -44,10 +44,13 @@ const FIELD_STEP: Record<string, number> = {
  */
 export function QuoteWizard({ prefill, whatsappBase }: Props) {
   const searchParams = useSearchParams();
-  const produto = searchParams.get("produto");
-  const categoria = searchParams.get("categoria");
-  const initialEquipment =
-    (produto && prefill.products[produto]) || (categoria && prefill.categories[categoria]) || "";
+  // Só slugs conhecidos entram: um ?produto= arbitrário (ou longo demais) ia
+  // para o campo oculto sourcePath e reprovava o envio sem erro visível.
+  const produtoParam = searchParams.get("produto");
+  const categoriaParam = searchParams.get("categoria");
+  const produto = produtoParam && Object.hasOwn(prefill.products, produtoParam) ? produtoParam : null;
+  const categoria = categoriaParam && Object.hasOwn(prefill.categories, categoriaParam) ? categoriaParam : null;
+  const initialEquipment = (produto && prefill.products[produto]) || (categoria && prefill.categories[categoria]) || "";
   const sourcePath = `/orcamento${produto ? `?produto=${produto}` : categoria ? `?categoria=${categoria}` : ""}`;
 
   const [step, setStep] = useState(0);

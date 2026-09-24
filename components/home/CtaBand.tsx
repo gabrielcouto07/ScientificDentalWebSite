@@ -30,7 +30,7 @@ export function CtaBand({ site, whatsappHref }: { site: SiteConfig; whatsappHref
                 </Button>
                 <Button href={whatsappHref} variant="secondary" size="lg" target="_blank">
                   <WhatsAppIcon size={18} className="text-sucesso" />
-                  WhatsApp
+                  WhatsApp de orçamentos
                 </Button>
               </div>
             </div>
@@ -40,10 +40,10 @@ export function CtaBand({ site, whatsappHref }: { site: SiteConfig; whatsappHref
                   <PhoneIcon size={18} />
                 </span>
                 <span className="flex flex-col">
-                  <a href={`tel:${site.phones.main.tel}`} className="font-mono text-base text-marca hover:underline">
-                    {site.phones.main.display}
+                  <a href={`tel:${site.phones.quote.tel}`} className="font-mono text-base text-marca hover:underline">
+                    {site.phones.quote.display}
                   </a>
-                  <span className="text-xs text-tecido">Comercial</span>
+                  <span className="text-xs text-tecido">Orçamentos</span>
                 </span>
               </li>
               <li className="card flex items-center gap-4 p-4">

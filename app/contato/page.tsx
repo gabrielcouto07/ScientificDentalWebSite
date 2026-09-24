@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { Container } from "@/components/ui/Container";
-import { ArrowUpRightIcon, ClockIcon, MailIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/Icons";
+import Link from "next/link";
+import { ArrowUpRightIcon, ClockIcon, MailIcon, MapPinIcon, PhoneIcon, UsersIcon, WhatsAppIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { getSite } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
-import { whatsappLink, whatsappMessages } from "@/lib/whatsapp";
+import { quoteWhatsappLink, whatsappLink, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contato",
@@ -37,6 +38,21 @@ export default function ContatoPage() {
                 {site.phones.sales.display}
               </a>
             </Channel>
+            <Channel icon={<PhoneIcon size={18} />} label="Orçamentos">
+              <a href={`tel:${site.phones.quote.tel}`} className="font-mono text-base text-marca hover:underline">
+                {site.phones.quote.display}
+              </a>{" "}
+              <span className="text-tecido">ou</span>{" "}
+              <a
+                href={quoteWhatsappLink(whatsappMessages.quoteRequest)}
+                className="inline-flex items-center gap-1.5 font-mono text-base text-marca hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhatsAppIcon size={15} className="text-sucesso" />
+                {site.whatsappQuote.display}
+              </a>
+            </Channel>
             <Channel icon={<PhoneIcon size={18} />} label="Assistência técnica">
               <a href={`tel:${site.phones.support.tel}`} className="font-mono text-base text-marca hover:underline">
                 {site.phones.support.display}
@@ -56,6 +72,20 @@ export default function ContatoPage() {
                   {site.emails.support}
                 </a>{" "}
                 <span className="text-tecido">(chamados técnicos)</span>
+              </span>
+            </Channel>
+            <Channel icon={<UsersIcon size={18} />} label="Trabalhe conosco (RH)">
+              <a href={`mailto:${site.emails.hr}`} className="break-all text-marca hover:underline">
+                {site.emails.hr}
+              </a>
+              <span className="mt-1 block text-sm">
+                <a href={`tel:${site.phones.hr.tel}`} className="font-mono text-marca hover:underline">
+                  {site.phones.hr.display}
+                </a>{" "}
+                <span className="text-tecido">·</span>{" "}
+                <Link href="/trabalhe-conosco" className="font-medium text-marca hover:underline">
+                  Enviar currículo pelo site
+                </Link>
               </span>
             </Channel>
             <Channel icon={<MapPinIcon size={18} />} label="Endereço">
@@ -92,7 +122,7 @@ export default function ContatoPage() {
           </div>
           <div className="reveal reveal-delay-1 lg:col-span-7">
             <h2 className="text-2xl sm:text-3xl">Envie uma mensagem</h2>
-            <p className="mt-2 text-tecido">Respondemos em até 1 dia útil pelo telefone ou e-mail informados.</p>
+            <p className="mt-2 text-tecido">A equipe responde pelo telefone ou e-mail informados.</p>
             <LeadForm
               kind="contato"
               sourcePath="/contato"

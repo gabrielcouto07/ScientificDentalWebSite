@@ -25,16 +25,29 @@
     "support": {
       "display": "(31) 2112-1903",
       "tel": "+553121121903"
+    },
+    "quote": {
+      "display": "(31) 2112-1910",
+      "tel": "+553121121910"
+    },
+    "hr": {
+      "display": "(31) 2112-1923",
+      "tel": "+553121121923"
     }
   },
   "whatsapp": {
     "display": "(31) 2112-1938",
     "e164": "553121121938"
   },
+  "whatsappQuote": {
+    "display": "(31) 7141-9833",
+    "e164": "553171419833"
+  },
   "emails": {
     "contact": "contato@scientificdental.com.br",
     "support": "suporte@scientificdental.com.br",
-    "privacy": "contato@scientificdental.com.br"
+    "privacy": "contato@scientificdental.com.br",
+    "hr": "recursoshumanos@filmexdental.com"
   },
   "hours": [
     {
@@ -120,7 +133,8 @@
     "territories: estrutura regional e siglas inferidas da página sd-hit.com (Sul; MG|RJ|NE; SP|CO|ES|NO). Confirmar estados e bases físicas.",
     "team: '8 técnicos nacionais, 3 radiologistas' vem de sd-hit.com/morita-abro. Confirmar números atuais.",
     "emails: o site usa .com.br e a página da Morita usa .com. Confirmar o canônico.",
-    "Confirmar SLA de suporte, estoque de peças em Belo Horizonte, condições de visita e contratos antes de publicar compromissos específicos."
+    "Confirmar SLA de suporte, estoque de peças em Belo Horizonte, condições de visita e contratos antes de publicar compromissos específicos.",
+    "whatsappQuote: número informado como (31) 7141-9833 (8 dígitos, sem o 9 inicial de celular). Confirmar se o WhatsApp de orçamentos é 553171419833 ou 5531971419833."
   ],
   "supportCopy": {
     "response": "Prazo informado no atendimento",

@@ -1,5 +1,6 @@
 import "server-only";
 import { createHash } from "node:crypto";
+import { headers } from "next/headers";
 
 const LIMIT = 5;
 const WINDOW_SECONDS = 10 * 60;
@@ -7,9 +8,11 @@ const WINDOW_SECONDS = 10 * 60;
 type Bucket = { count: number; expiresAt: number };
 const localBuckets = new Map<string, Bucket>();
 
-function keyFor(ip: string): string {
+type Scope = "lead" | "careers";
+
+function keyFor(ip: string, scope: Scope): string {
   const digest = createHash("sha256").update(ip).digest("hex");
-  return `rate-limit:lead:${digest}`;
+  return `rate-limit:${scope}:${digest}`;
 }
 
 function consumeLocal(key: string): boolean {
@@ -28,14 +31,21 @@ function consumeLocal(key: string): boolean {
   return current.count <= LIMIT;
 }
 
+/** IP do visitante atrás do proxy da Vercel (ou de outro proxy reverso). */
+export async function requestIp(): Promise<string> {
+  const requestHeaders = await headers();
+  const forwarded = requestHeaders.get("x-vercel-forwarded-for") ?? requestHeaders.get("x-forwarded-for");
+  return forwarded?.split(",")[0]?.trim() || requestHeaders.get("x-real-ip") || "unknown";
+}
+
 /**
  * Limite distribuído para formulários. Em produção, a proteção é persistida
  * no Redis REST (compatível com Upstash/Vercel KV) e falha fechada: se o
  * serviço não estiver configurado ou responder com erro, nenhum lead é
  * entregue ao SMTP/CRM. O Map local existe apenas para desenvolvimento.
  */
-export async function consumeLeadRateLimit(ip: string): Promise<boolean> {
-  const key = keyFor(ip);
+export async function consumeLeadRateLimit(ip: string, scope: Scope = "lead"): Promise<boolean> {
+  const key = keyFor(ip, scope);
   const url =
     process.env.LEAD_RATE_LIMIT_REDIS_URL ||
     process.env.UPSTASH_REDIS_REST_URL ||

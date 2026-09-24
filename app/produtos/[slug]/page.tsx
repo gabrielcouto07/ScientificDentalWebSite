@@ -20,7 +20,7 @@ import {
 } from "@/lib/content";
 import { breadcrumbJsonLd, pageMetadata, productJsonLd } from "@/lib/seo";
 import { cn } from "@/lib/utils";
-import { whatsappLink, whatsappMessages } from "@/lib/whatsapp";
+import { quoteWhatsappLink, whatsappMessages } from "@/lib/whatsapp";
 
 type Params = { slug: string };
 
@@ -135,7 +135,7 @@ export default async function ProdutoOuCategoriaPage({ params }: { params: Promi
   const category = getCategory(product.category);
   if (!category) notFound();
   const related = getRelatedProducts(product, 3);
-  const whatsappHref = whatsappLink(whatsappMessages.product(product.name));
+  const whatsappHref = quoteWhatsappLink(whatsappMessages.product(product.name));
 
   return (
     <main id="conteudo" className="has-cta-bar flex-1 pb-20 sm:pb-0">

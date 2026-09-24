@@ -2,12 +2,14 @@
 
 import { headers } from "next/headers";
 import { buildLead, deliverLead, leadSchema } from "@/lib/leads";
-import { consumeLeadRateLimit } from "@/lib/rate-limit";
+import { consumeLeadRateLimit, requestIp } from "@/lib/rate-limit";
 
 export type LeadState =
   | { status: "idle" }
   | { status: "error"; message: string; fieldErrors?: Record<string, string> }
   | { status: "success"; id: string };
+
+const VISIBLE_FIELDS = new Set(["name", "email", "phone", "company", "city", "message", "equipment", "operation", "timeline", "consent"]);
 
 /**
  * Server action compartilhada por todos os formulários (orçamento, contato,
@@ -29,18 +31,18 @@ export async function submitLead(_prev: LeadState, formData: FormData): Promise<
       const key = String(issue.path[0] ?? "form");
       if (!fieldErrors[key]) fieldErrors[key] = issue.message;
     }
-    return { status: "error", message: "Confira os campos destacados.", fieldErrors };
+    // Campos ocultos (kind, sourcePath, product) não têm onde exibir o erro: sem
+    // isso, a pessoa veria "confira os campos destacados" sem nada destacado.
+    const visible = Object.keys(fieldErrors).some((key) => VISIBLE_FIELDS.has(key));
+    return {
+      status: "error",
+      message: visible ? "Confira os campos destacados." : "Não conseguimos enviar o formulário. Recarregue a página e tente de novo.",
+      fieldErrors,
+    };
   }
 
-  // Honeypot preenchido: responde sucesso silencioso sem entregar
-  if (parsed.data.website) {
-    return { status: "success", id: "SD-OK" };
-  }
-
-  const requestHeaders = await headers();
-  const forwarded = requestHeaders.get("x-vercel-forwarded-for") ?? requestHeaders.get("x-forwarded-for");
-  const ip = forwarded?.split(",")[0]?.trim() ?? requestHeaders.get("x-real-ip") ?? "unknown";
-  const ua = requestHeaders.get("user-agent") ?? undefined;
+  const ip = await requestIp();
+  const ua = (await headers()).get("user-agent") ?? undefined;
   const lead = buildLead(parsed.data, { userAgent: ua });
 
   try {

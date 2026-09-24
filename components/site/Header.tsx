@@ -29,6 +29,7 @@ const NAV = [
   { href: "/legacy-sd", label: "Legacy SD" },
   { href: "/conteudo", label: "Conteúdo" },
   { href: "/contato", label: "Contato" },
+  { href: "/trabalhe-conosco", label: "Trabalhe conosco" },
 ];
 
 /** Estado "rolou mais de 12 px" lido como store externa, sem setState em effect. */
@@ -42,8 +43,9 @@ const getCondensedServer = () => false;
 /**
  * Uma barra só, fixa no topo. Logo oficial à esquerda, navegação ao centro,
  * contatos e o CTA à direita. Tudo em `whitespace-nowrap`: item de menu
- * nunca quebra em duas linhas. O que não cabe some por breakpoint, nesta
- * ordem: telefone (só ≥ xl), rótulo "WhatsApp" (só ≥ xl), CTA (só ≥ sm).
+ * nunca quebra em duas linhas. O Container limita a barra a 1280 px, então
+ * telefone e WhatsApp ficam só como ícones (número no title/aria-label) e o
+ * CTA encurta abaixo de xl e some abaixo de sm.
  *
  * A barra mantém 64 px para que a subnavegação sticky das páginas de produto
  * nunca se sobreponha ao header. Ao rolar, ganha fundo translúcido e sombra.
@@ -183,7 +185,7 @@ export function Header({ categories, phone, whatsappHref }: Props) {
             type="button"
             data-open={megaOpen || produtosActive}
             className={cn(
-              "nav-link inline-flex h-10 items-center gap-1 whitespace-nowrap rounded-md px-2.5 text-sm font-medium text-radiolucido transition-colors hover:text-marca xl:px-3",
+              "nav-link inline-flex h-10 items-center gap-1 whitespace-nowrap rounded-md px-1.5 text-sm font-medium text-radiolucido transition-colors hover:text-marca xl:px-2",
               (megaOpen || produtosActive) && "text-marca",
             )}
             aria-expanded={megaOpen}
@@ -206,26 +208,20 @@ export function Header({ categories, phone, whatsappHref }: Props) {
 
         <div className="flex shrink-0 items-center gap-1 sm:gap-2">
           <a
-            href={`tel:${phone.tel}`}
-            className="hidden h-10 items-center gap-2 whitespace-nowrap rounded-md px-3 text-sm text-radiolucido transition-colors hover:bg-osso hover:text-marca xl:inline-flex"
-          >
-            <PhoneIcon size={17} className="text-marca" />
-            <span className="font-mono">{phone.display}</span>
-          </a>
-          <a
             href={whatsappHref}
-            className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-md px-2.5 text-sm text-radiolucido transition-colors hover:bg-osso hover:text-marca xl:px-3"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-radiolucido transition-colors hover:bg-osso hover:text-marca"
             rel="noopener"
             target="_blank"
             aria-label="Falar pelo WhatsApp"
+            title="WhatsApp"
           >
             <WhatsAppIcon size={19} className="text-sucesso" />
-            <span className="hidden xl:inline">WhatsApp</span>
           </a>
           <a
             href={`tel:${phone.tel}`}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-radiolucido transition-colors hover:bg-osso hover:text-marca xl:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-radiolucido transition-colors hover:bg-osso hover:text-marca"
             aria-label={`Ligar para ${phone.display}`}
+            title={phone.display}
           >
             <PhoneIcon size={18} />
           </a>
@@ -367,7 +363,7 @@ function NavLink({ href, active, children }: { href: string; active: boolean; ch
       href={href}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "nav-link inline-flex h-10 items-center whitespace-nowrap rounded-md px-2.5 text-sm font-medium text-radiolucido transition-colors hover:text-marca xl:px-3",
+        "nav-link inline-flex h-10 items-center whitespace-nowrap rounded-md px-1.5 text-sm font-medium text-radiolucido transition-colors hover:text-marca xl:px-2",
         active && "text-marca",
       )}
     >

@@ -1,6 +1,6 @@
 import "server-only";
-import nodemailer from "nodemailer";
 import type { LeadInput } from "./lead-schema";
+import { defaultSender, smtpTransport } from "./mailer";
 export { leadSchema } from "./lead-schema";
 
 /**
@@ -25,14 +25,20 @@ export type Lead = Omit<LeadInput, "consent" | "website"> & {
   userAgent?: string;
 };
 
-export const PRIVACY_POLICY_VERSION = "2026-09-17";
+export const PRIVACY_POLICY_VERSION = "2026-09-24";
+
+/** Protocolo curto e legível; o sufixo aleatório evita colisão entre envios no mesmo milissegundo. */
+export function protocolId(prefix: string): string {
+  const suffix = Math.random().toString(36).slice(2, 5).toUpperCase();
+  return `${prefix}-${Date.now().toString(36).toUpperCase()}${suffix}`;
+}
 
 export function buildLead(input: LeadInput, meta: { userAgent?: string } = {}): Lead {
   const { consent: _c, website: _w, ...rest } = input;
   const now = new Date().toISOString();
   return {
     ...rest,
-    id: `SD-${Date.now().toString(36).toUpperCase()}`,
+    id: protocolId("SD"),
     receivedAt: now,
     consent: { accepted: true, at: now, policyVersion: PRIVACY_POLICY_VERSION },
     userAgent: meta.userAgent,
@@ -85,19 +91,11 @@ async function sendWebhook(lead: Lead): Promise<boolean> {
 }
 
 async function sendEmail(lead: Lead): Promise<boolean> {
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE, LEAD_TO, LEAD_FROM } = process.env;
-  if (!SMTP_HOST || !LEAD_TO) return false;
-  const transport = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: Number(SMTP_PORT ?? 587),
-    secure: SMTP_SECURE === "true",
-    connectionTimeout: 8_000,
-    greetingTimeout: 8_000,
-    socketTimeout: 15_000,
-    auth: SMTP_USER ? { user: SMTP_USER, pass: SMTP_PASS } : undefined,
-  });
+  const { LEAD_TO } = process.env;
+  const transport = smtpTransport();
+  if (!transport || !LEAD_TO) return false;
   await transport.sendMail({
-    from: LEAD_FROM ?? SMTP_USER ?? LEAD_TO,
+    from: defaultSender(LEAD_TO),
     to: LEAD_TO,
     replyTo: lead.email,
     subject: `[Site] ${KIND_LABEL[lead.kind]}${lead.product ? `: ${lead.product}` : ""} · ${lead.name}`,
