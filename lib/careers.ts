@@ -52,13 +52,28 @@ function renderText(app: Application): string {
     .join("\n");
 }
 
+/** Monta a mensagem sem acessar SMTP nem variáveis de ambiente. */
+export function applicationMail(app: Application, from: string, to: string) {
+  return {
+    from,
+    to,
+    replyTo: app.email,
+    subject: `[Site] Currículo · ${app.name}`,
+    text: renderText(app),
+    attachments: [{ filename: app.cv.filename, content: app.cv.content, contentType: app.cv.mime }],
+  };
+}
+
+type ApplicationTransport = {
+  sendMail: (mail: ReturnType<typeof applicationMail>) => Promise<unknown>;
+};
+
 /**
  * Envia a candidatura. Sem SMTP em desenvolvimento, registra no console e
  * considera entregue; em produção, falha para que a pessoa saiba que não chegou.
  */
-export async function deliverApplication(app: Application): Promise<boolean> {
+export async function deliverApplication(app: Application, transport: ApplicationTransport | null = smtpTransport()): Promise<boolean> {
   const to = process.env.CAREERS_TO || site.emails.hr;
-  const transport = smtpTransport();
   if (!transport) {
     if (process.env.NODE_ENV === "production") {
       console.error("[careers] SMTP não configurado; currículo não entregue");
@@ -68,14 +83,7 @@ export async function deliverApplication(app: Application): Promise<boolean> {
     return true;
   }
   try {
-    await transport.sendMail({
-      from: defaultSender(to),
-      to,
-      replyTo: app.email,
-      subject: `[Site] Currículo · ${app.name}`,
-      text: renderText(app),
-      attachments: [{ filename: app.cv.filename, content: app.cv.content, contentType: app.cv.mime }],
-    });
+    await transport.sendMail(applicationMail(app, defaultSender(to), to));
     return true;
   } catch (err) {
     console.error("[careers] falha de entrega:", err);
